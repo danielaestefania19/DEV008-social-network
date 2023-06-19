@@ -113,15 +113,22 @@ body {
       bottom: 0%;
       position: absolute;
       width: 50%;
-      height: 30%;
+      height: 36%;
       left: 50%;
     }
     &__img {
       position: relative;
-      top: 20%;
-      left: 25%;
+      top: 10%;
+      left: 20%;
+      width: 63%;
+      height: 90%;
+    }
+    &__reg{
+      position: relative;
+      top: 10%;
+      left: 24%;
       width: 50%;
-      height: 80%;
+      height: 90%;
     }
   }
 }
