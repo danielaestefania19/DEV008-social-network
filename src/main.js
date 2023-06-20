@@ -18,3 +18,4 @@ export const onNavigate = (pathname) => {
 };
 
 rootDiv.appendChild(routes[window.location.pathname](onNavigate)); 
+ 
