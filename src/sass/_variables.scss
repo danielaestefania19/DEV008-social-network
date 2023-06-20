@@ -1,25 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 /*colores*/
 $sl-blanco: rgb(255, 255, 255);
-$sl-principal: #9747FF;
-$sl-verde-amarillo : #C4E24C;
+$sl-principal: #9747FF
+;
+$sl-verde-amarillo : #C4E24C
+;
 $sl-verde-oscuro:#095573;
-$sl-morado-secundario: #7851D9;
-$sl-negro: #1A1A1A;
-$sl-gris: #A2A3A8;
-$sl-azul-cielo: #56AAF5;
-$sl-morado-terc: #AB4BD5;
-$sl-naranja: #ED950A;
-$sl-rosa-piel : #F8B5B5;
+$sl-morado-secundario: #7851D9
+;
+$sl-negro: #1A1A1A
+;
+$sl-gris: #A2A3A8
+;
+$sl-azul-cielo: #56AAF5
+;
+$sl-morado-terc: #AB4BD5
+;
+$sl-naranja: #ED950A
+;
+$sl-rosa-piel : #F8B5B5
+;
 $sl-morado-claro:#CCB5F8;
-$sl-coral: #F56056;
-$sl-amarillo: #F6BD01;
-$sl-verde: #00875A;
-$sl-rojo: #B03449;
+$sl-coral: #F56056
+;
+$sl-amarillo: #F6BD01
+;
+$sl-verde: #00875A
+;
+$sl-rojo: #B03449
+;/*fuente*/
+$tp-aaeezee:'ABeeZee', sans-serif;
+$tp-roboto:'Roboto', sans-serif;
+//$tp-roboto4:'Roboto', sans-serif;
+$tp-inconsolata: 'Inconsolata', monospace;
 
-/*fuente*/
-$tp-aaeezee:'ABeeZee', sans-serif;;
-$tp-roboto:'Roboto', sans-serif;;
-$tp-inconsolata: 'Inconsolata', monospace;;

@@ -10,7 +10,11 @@ export const routes = {
 
 export const onNavigate = (pathname) => {
   window.history.pushState({}, pathname, window.location.origin + pathname);
-  rootDiv.appendChild(routes[pathname]());
+
+  while (rootDiv.firstChild) {
+    rootDiv.removeChild(rootDiv.firstChild);
+  }
+  rootDiv.appendChild(routes[pathname](onNavigate));
 };
 
-rootDiv.appendChild(routes[window.location.pathname]());
+rootDiv.appendChild(routes[window.location.pathname](onNavigate)); 
