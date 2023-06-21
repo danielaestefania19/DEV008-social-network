@@ -132,4 +132,22 @@ body {
   height: 90%;
 }
 
+.mainContainer {
+  background-image: url("img/fondoInicio.png");
+  background-size: 100%;
+  width: 100vw;
+  height: 100vh;
+}
+.mainContainer__bienvenida__right {
+  background-color: #1A1A1A;
+  width: 100%;
+  height: 20%;
+}
+.mainContainer__bienvenida__right__logo {
+  width: 40%;
+}
+.mainContainer__bienvenida__right__text {
+  font-size: 20px;
+}
+
 /*# sourceMappingURL=styles.css.map */

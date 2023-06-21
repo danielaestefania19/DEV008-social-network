@@ -133,6 +133,24 @@ body {
 
 }}
 
-.containerInicio{
-  background: url("img/fondoInicio.png");
+.mainContainer{
+  background-image: url("img/fondoInicio.png");
+  background-size: 100%;
+  width: 100vw;
+  height: 100vh;
+  &__bienvenida{
+   
+    &__right{
+      background-color: variables.$sl-negro;
+   width: 100%;
+   height: 20%;
+      &__logo{
+        
+        width: 40%;
+      }
+      &__text{
+        font-size: 20px;
+      }
+    }
+  }
 }
