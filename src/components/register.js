@@ -27,12 +27,12 @@ export const register = (onNavigate) => {
   email.setAttribute('id', 'idEmail');
   email.classList.add('loginContainer__inputs__text');
   const pass = document.createElement('input');
-  pass.setAttribute('type', 'text');
+  pass.setAttribute('type', 'password');
   pass.setAttribute('placeholder', 'Contraseña');
   pass.setAttribute('id', 'idPassword');
   pass.classList.add('loginContainer__inputs__text');
   const verifyPass = document.createElement('input');
-  verifyPass.setAttribute('type', 'text');
+  verifyPass.setAttribute('type', 'password');
   verifyPass.setAttribute('placeholder', 'Verificar contraseña');
   verifyPass.setAttribute('id', 'idPasswordVerify');
   verifyPass.classList.add('loginContainer__inputs__text');

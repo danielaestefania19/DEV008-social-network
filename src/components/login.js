@@ -1,3 +1,5 @@
+import { iniciarSesion } from '../lib/index.js';
+
 export const logIn = (onNavigate) => {
   const logMainSection = document.createElement('section');
   logMainSection.setAttribute('id', 'idlogin');
@@ -21,10 +23,12 @@ export const logIn = (onNavigate) => {
   const email = document.createElement('input');
   email.setAttribute('type', 'text');
   email.setAttribute('placeholder', 'Usuario');
+  email.setAttribute('id', 'idUserEmail');
   email.classList.add('loginContainer__inputs__text');
   const pass = document.createElement('input');
-  pass.setAttribute('type', 'text');
+  pass.setAttribute('type', 'password');
   pass.setAttribute('placeholder', 'Contraseña');
+  pass.setAttribute('id', 'idUserPass');
   pass.classList.add('loginContainer__inputs__text');
   const remember = document.createElement('p');
   remember.classList.add('loginContainer__inputs__rec');
@@ -65,7 +69,7 @@ export const logIn = (onNavigate) => {
   containerBtns.appendChild(gooBtn);
   containerBtns.appendChild(createAccount);
 
-  iniciaBtn.addEventListener('click', () => onNavigate('/inicio'));
+  iniciaBtn.addEventListener('click', () => iniciarSesion());
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('loginContainer__idImagen');
