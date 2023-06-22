@@ -8,14 +8,14 @@ export const inicio = (onNavigate) => {
     containerBienvenida.classList.add('mainContainer__bienvenida');
     const right = document.createElement('div');
     right.classList.add('mainContainer__bienvenida__right');
-    const logo = document.createElement("img");
-    logo.classList.add('mainContainer__bienvenida__right__logo')
+    const logo = document.createElement('img');
+    logo.classList.add('mainContainer__bienvenida__right__logo');
     logo.setAttribute('src', 'img/logoPowempNombre.png');
     const parrfBien = document.createElement('p');
     parrfBien.classList.add('mainContainer__bienvenida__right__parr');
     parrfBien.innerHTML = 'Bienvenida';
   
-    containerBienvenida.appendChild(right)
+    containerBienvenida.appendChild(right);
     right.appendChild(logo);
     right.appendChild(parrfBien);
   
@@ -53,12 +53,12 @@ export const inicio = (onNavigate) => {
     textb3.classList.add('mainContainer__menu__button__textboton');
     textb3.textContent='Mi Perfil';
     
-    containerMenu.appendChild(inicioBtn)
-    containerMenu.appendChild(negociosBtn)
-    containerMenu.appendChild(perfilBtn)
+    containerMenu.appendChild(inicioBtn);
+    containerMenu.appendChild(negociosBtn);
+    containerMenu.appendChild(perfilBtn);
 
     inicioBtn.appendChild(textb1);
-    inicioBtn.appendChild(imgbt1m)
+    inicioBtn.appendChild(imgbt1m);
     negociosBtn.appendChild(textb2);
     negociosBtn.appendChild(imgbt2m);
     perfilBtn.appendChild(textb3);
@@ -73,9 +73,9 @@ export const inicio = (onNavigate) => {
     btpub.classList.add('mainContainer__publicar__button');
     const txtBut = document.createElement('span');
     txtBut.classList.add('mainContainer__publicar__button__textbutton');
-    txtBut.textContent='Publicar';
-    const imgPlus =document.createElement('img');
-    imgPlus.setAttribute('src','img/plus.png');
+    txtBut.textContent = 'Publicar';
+    const imgPlus = document.createElement('img');
+    imgPlus.setAttribute('src', 'img/plus.png');
   
     containerPublicar.appendChild(btpub);
     btpub.appendChild(txtBut);

@@ -55,13 +55,11 @@ export const logIn = (onNavigate) => {
   const noAccount = document.createElement('label');
   noAccount.textContent = '¿No tienes cuenta?';
   const creaC = document.createElement('a');
-  creaC.textContent='¡Crea tu cuenta!';
- creaC.addEventListener('click', () => onNavigate('/register'));
+  creaC.textContent = '¡Crea tu cuenta!';
+  creaC.addEventListener('click', () => onNavigate('/register'));
 
- 
   createAccount.appendChild(noAccount);
   createAccount.appendChild(creaC);
-  
   containerBtns.appendChild(iniciaBtn);
   containerBtns.appendChild(labelO);
   containerBtns.appendChild(gooBtn);

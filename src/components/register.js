@@ -1,3 +1,5 @@
+import { registrar } from '../lib/index.js';
+
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
   logMainSection.setAttribute('id', 'idlogin');
@@ -56,10 +58,11 @@ export const register = (onNavigate) => {
   const noAccount = document.createElement('label');
   noAccount.textContent = '¿Ya tienes cuenta?';
   const IngresaT = document.createElement('a');
-  IngresaT.textContent='¡Ingresa!';
+  IngresaT.textContent = '¡Ingresa!';
+
   IngresaT.addEventListener('click', () => onNavigate('/'));
-  
-  
+  createUser.addEventListener('click', () => registrar());
+
   createAccount.appendChild(noAccount);
   createAccount.appendChild(IngresaT);
 
@@ -68,7 +71,7 @@ export const register = (onNavigate) => {
   containerBtns.appendChild(gooBtnCreate);
   containerBtns.appendChild(createAccount);
 
-  createUser.addEventListener('click', () => onNavigate('/inicio'));
+  // createUser.addEventListener('click', () => onNavigate('/inicio'));
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('loginContainer__idImagen');
