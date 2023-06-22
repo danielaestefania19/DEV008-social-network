@@ -55,15 +55,20 @@ export const register = (onNavigate) => {
   const createAccount = document.createElement('p');
   const noAccount = document.createElement('label');
   noAccount.textContent = '¿Ya tienes cuenta?';
-  createAccount.textContent = '¡Ingresa!';
+  const IngresaT = document.createElement('a');
+  IngresaT.textContent='¡Ingresa!';
+  IngresaT.addEventListener('click', () => onNavigate('/'));
+  
+  
   createAccount.appendChild(noAccount);
+  createAccount.appendChild(IngresaT);
 
   containerBtns.appendChild(createUser);
   containerBtns.appendChild(labelO);
   containerBtns.appendChild(gooBtnCreate);
   containerBtns.appendChild(createAccount);
 
-  createUser.addEventListener('click', () => onNavigate('/'));
+  createUser.addEventListener('click', () => onNavigate('/inicio'));
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('loginContainer__idImagen');

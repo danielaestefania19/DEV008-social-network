@@ -54,15 +54,20 @@ export const logIn = (onNavigate) => {
   const createAccount = document.createElement('p');
   const noAccount = document.createElement('label');
   noAccount.textContent = '¿No tienes cuenta?';
-  createAccount.textContent = '¡Crea tu cuenta!';
-  createAccount.appendChild(noAccount);
+  const creaC = document.createElement('a');
+  creaC.textContent='¡Crea tu cuenta!';
+ creaC.addEventListener('click', () => onNavigate('/register'));
 
+ 
+  createAccount.appendChild(noAccount);
+  createAccount.appendChild(creaC);
+  
   containerBtns.appendChild(iniciaBtn);
   containerBtns.appendChild(labelO);
   containerBtns.appendChild(gooBtn);
   containerBtns.appendChild(createAccount);
 
-  iniciaBtn.addEventListener('click', () => onNavigate('/register'));
+  iniciaBtn.addEventListener('click', () => onNavigate('/inicio'));
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('loginContainer__idImagen');
