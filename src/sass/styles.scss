@@ -5,6 +5,12 @@ body {
   padding: 0px;
 }
 
+hr {
+  margin: 0;
+  height: 2px;
+  background-color: variables.$sl-blanco;
+}
+
 .loginContainer {
   display: flex;
   width: 100vw;
@@ -135,7 +141,7 @@ body {
 
 .mainContainer{
   background-image: url("img/fondoInicio.png");
-  background-size: 100%;
+  background-size: 200%;
   width: 100vw;
   height: 100vh;
   &__bienvenida{
@@ -181,13 +187,49 @@ body {
   justify-content: space-between;
   background-color: variables.$sl-negro;
   &__button{
+    color: variables.$sl-blanco;
     background-color: variables.$sl-negro;
     border: none;
+    cursor: pointer;
+    &__textboton{
+      font-size: 20px;
+    }
    img{
-    width: 100%;
+    vertical-align: middle;
+    width: 40%;
     height: 100%;  
    }
    
   }
+}
+&__publicar{
+  position: absolute;
+  margin-left: 24%;
+  margin-top: 6%; 
+  &__button{
+    background: variables.$sl-verde-amarillo;
+    width: 95%;
+    height: 50%;
+    border-radius: 13px;
+    border: 0;
+    padding: 5%;
+    cursor: pointer;
+    &__textbutton{
+      font-family: variables.$tp-roboto;
+      font-weight: 700;
+      font-size: 25px;
+    }
+    img{
+      vertical-align: middle;
+      width: 25%;
+     }
+  }
+}
+&__publicaciones{
+  background-color:variables.$sl-negro;
+  margin-top: -20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 100%;
 }
 }

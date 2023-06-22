@@ -8,6 +8,12 @@ body {
   padding: 0px;
 }
 
+hr {
+  margin: 0;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
 .loginContainer {
   display: flex;
   width: 100vw;
@@ -134,7 +140,7 @@ body {
 
 .mainContainer {
   background-image: url("img/fondoInicio.png");
-  background-size: 100%;
+  background-size: 200%;
   width: 100vw;
   height: 100vh;
 }
@@ -181,11 +187,47 @@ body {
   background-color: #1A1A1A;
 }
 .mainContainer__menu__button {
+  color: rgb(255, 255, 255);
   background-color: #1A1A1A;
   border: none;
+  cursor: pointer;
+}
+.mainContainer__menu__button__textboton {
+  font-size: 20px;
 }
 .mainContainer__menu__button img {
-  width: 100%;
+  vertical-align: middle;
+  width: 40%;
+  height: 100%;
+}
+.mainContainer__publicar {
+  position: absolute;
+  margin-left: 24%;
+  margin-top: 6%;
+}
+.mainContainer__publicar__button {
+  background: #C4E24C;
+  width: 95%;
+  height: 50%;
+  border-radius: 13px;
+  border: 0;
+  padding: 5%;
+  cursor: pointer;
+}
+.mainContainer__publicar__button__textbutton {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+.mainContainer__publicar__button img {
+  vertical-align: middle;
+  width: 25%;
+}
+.mainContainer__publicaciones {
+  background-color: #1A1A1A;
+  margin-top: -20px;
+  margin-left: 10%;
+  margin-right: 10%;
   height: 100%;
 }
 
