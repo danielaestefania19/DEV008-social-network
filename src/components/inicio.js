@@ -48,7 +48,7 @@ export const inicio = (onNavigate) => {
     const perfilBtn = document.createElement('button');
     perfilBtn.classList.add('mainContainer__menu__button');
     const imgbt3m=document.createElement('img');
-    imgbt3m.setAttribute('src','img/MisNegocios.png');
+    imgbt3m.setAttribute('src','img/Perfil.png');
     const textb3 = document.createElement('span');
     textb3.classList.add('mainContainer__menu__button__textboton');
     textb3.textContent='Mi Perfil';
@@ -57,12 +57,13 @@ export const inicio = (onNavigate) => {
     containerMenu.appendChild(negociosBtn);
     containerMenu.appendChild(perfilBtn);
 
-    inicioBtn.appendChild(textb1);
     inicioBtn.appendChild(imgbt1m);
-    negociosBtn.appendChild(textb2);
+    inicioBtn.appendChild(textb1);
     negociosBtn.appendChild(imgbt2m);
-    perfilBtn.appendChild(textb3);
+    negociosBtn.appendChild(textb2);
     perfilBtn.appendChild(imgbt3m);
+    perfilBtn.appendChild(textb3);
+   
 
 
     // iniciaBtn.addEventListener('click', () => onNavigate('/register'));
@@ -89,11 +90,23 @@ export const inicio = (onNavigate) => {
 
     containerPublicaciones.appendChild(textp);
 
+    const containerLogout = document.createElement('div');
+    containerLogout.classList.add('mainContainer__logout');
+    const btlogout = document.createElement('button');
+    btlogout.classList.add('mainContainer__logout__button');
+    const imgLogout = document.createElement('img');
+    imgLogout.setAttribute('src', 'img/logout.png');
+  
+    containerLogout.appendChild(btlogout);
+    btlogout.appendChild(imgLogout);
+
+
     // Agregar todos los div al div principal
     InicioCont.appendChild(containerBienvenida);
     InicioCont.appendChild(containerMenu);
     InicioCont.appendChild(containerPublicar);
     InicioCont.appendChild(containerPublicaciones);
+    InicioCont.appendChild(containerLogout);
   
     inicioSection.appendChild(InicioCont);
   

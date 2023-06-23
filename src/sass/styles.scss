@@ -230,6 +230,28 @@ hr {
   margin-top: -20px;
   margin-left: 10%;
   margin-right: 10%;
-  height: 100%;
+  height: 50%;
+}
+&__logout{
+  // position: absolute;
+  // margin-left: 24%;
+  // margin-top: 6%; 
+  margin-right: 14px;
+  width: 100vw;
+  &__button{
+    background: variables.$sl-amarillo;
+    //width: 30%;
+    border-radius: 13px;
+    border: 0;
+    padding: 3px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    // img{
+    //   vertical-align: middle;
+    //   width: 25%;
+    //  }
+  }
 }
 }

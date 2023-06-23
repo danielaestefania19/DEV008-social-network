@@ -46,6 +46,7 @@ export const logIn = (onNavigate) => {
   containerBtns.classList.add('loginContainer__botones');
   const iniciaBtn = document.createElement('button');
   iniciaBtn.classList.add('loginContainer__botones__ing');
+  iniciaBtn.setAttribute("id","idBotonInicia");
   iniciaBtn.textContent = 'Ingresar';
   const labelO = document.createElement('label');
   labelO.textContent = 'o';

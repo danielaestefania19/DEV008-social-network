@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,12 +36,19 @@ export const registrar = () => {
     });
 };
 
+export function redirige() {
+  console.log("redirigiendo...");
+  return "/inicio";
+}
+
 export const iniciarSesion = () => {
+  
   const email = document.querySelector('#idUserEmail').value;
   const password = document.querySelector('#idUserPass').value;
 
   signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
     // Signed in 
+    redirige();
     const user = userCredential.user;
     console.log('usuario en sesión' + user);
     // ...
@@ -52,3 +59,21 @@ export const iniciarSesion = () => {
     console.log(errorCode, errorMessage);
   });
 };
+
+
+export function observador(){
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      
+      //aparece();
+      const uid = user.uid;
+      console.log(uid);
+      return uid;
+    } else {
+      console.log("no existe usuario activo");
+      return null;
+    }
+  });
+  
+}
