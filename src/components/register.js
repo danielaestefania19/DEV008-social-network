@@ -46,14 +46,6 @@ export const register = (onNavigate) => {
   const createUser = document.createElement('button');
   createUser.classList.add('loginContainer__botones__ing');
   createUser.textContent = 'Crear cuenta';
-  const labelO = document.createElement('label');
-  labelO.textContent = 'o';
-  const gooBtnCreate = document.createElement('button');
-  gooBtnCreate.classList.add('loginContainer__botones__goo');
-  gooBtnCreate.textContent = 'Crear cuenta con Google';
-  const gooImg = document.createElement('img');
-  gooImg.setAttribute('src', 'img/goo.png');
-  gooBtnCreate.appendChild(gooImg);
   const createAccount = document.createElement('p');
   const noAccount = document.createElement('label');
   noAccount.textContent = '¿Ya tienes cuenta?';
@@ -87,8 +79,6 @@ export const register = (onNavigate) => {
   createAccount.appendChild(IngresaT);
 
   containerBtns.appendChild(createUser);
-  containerBtns.appendChild(labelO);
-  containerBtns.appendChild(gooBtnCreate);
   containerBtns.appendChild(createAccount);
 
   // createUser.addEventListener('click', () => onNavigate('/inicio'));

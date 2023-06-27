@@ -53,6 +53,9 @@ hr {
   align-items: center;
   justify-content: flex-end;
 }
+.loginContainer__inputs__rec input {
+  cursor: pointer;
+}
 .loginContainer__logo {
   height: 30%;
 }
@@ -86,6 +89,7 @@ hr {
   height: 40px;
   border-radius: 13px;
   border: 0;
+  cursor: pointer;
 }
 .loginContainer__botones__goo {
   font-family: "Roboto", sans-serif;
@@ -96,6 +100,7 @@ hr {
   height: 40px;
   border-radius: 13px;
   border: 0;
+  cursor: pointer;
 }
 .loginContainer__botones__goo img {
   padding-left: 5px;
@@ -110,6 +115,7 @@ hr {
 }
 .loginContainer__botones a {
   color: #F6BD01;
+  cursor: pointer;
 }
 .loginContainer__idImagen {
   display: flex;

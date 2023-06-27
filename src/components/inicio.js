@@ -1,3 +1,4 @@
+import {salirSesion} from '../lib/firebase';
 export const inicio = (onNavigate) => {
     const inicioSection = document.createElement('section');
     inicioSection.setAttribute('id', 'idInicio');
@@ -100,7 +101,15 @@ export const inicio = (onNavigate) => {
     containerLogout.appendChild(btlogout);
     btlogout.appendChild(imgLogout);
 
-
+    btlogout.addEventListener('click', ()=>{ 
+      salirSesion().then(function(response) {
+        onNavigate('/');
+      }).catch(function(error) {
+        const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+      });
+    });
     // Agregar todos los div al div principal
     InicioCont.appendChild(containerBienvenida);
     InicioCont.appendChild(containerMenu);

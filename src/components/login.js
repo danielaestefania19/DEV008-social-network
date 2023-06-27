@@ -86,7 +86,7 @@ export const logIn = (onNavigate, onNavigates) => {
   gooBtn.addEventListener('click',() =>{
   inicioGoogle().then(function(response){
    console.log("my google -->" , response)
-
+   onNavigate('/inicio');
   }).catch(function(error) {
     const errorCode = error.code;
         const errorMessage = error.message;
