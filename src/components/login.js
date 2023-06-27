@@ -1,6 +1,6 @@
-import { iniciarSesion } from '../lib/index.js';
+import {iniciaSesionUsuario } from '../lib/firebase';
 
-export const logIn = (onNavigate) => {
+export const logIn = (onNavigate, onNavigates) => {
   const logMainSection = document.createElement('section');
   logMainSection.setAttribute('id', 'idlogin');
   const logInCont = document.createElement('div');
@@ -63,14 +63,32 @@ export const logIn = (onNavigate) => {
   creaC.textContent = '¡Crea tu cuenta!';
   creaC.addEventListener('click', () => onNavigate('/register'));
 
+  iniciaBtn.addEventListener('click', ()=>{ 
+     const email= document.getElementById("idUserEmail").value;
+     const pass = document.getElementById("idUserPass").value;
+     iniciaSesionUsuario(email,pass).then(function(response) {
+        console.log("my user -->", response.user);
+        if(response.user.email !== null){
+          // guardar esos datos local.storage
+          // redirigir 
+          // onNavigate("/home"); 
+          onNavigate('/inicio');
+        }
+
+     }).catch(function(error) {
+      const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+     });
+   
+  });
+
   createAccount.appendChild(noAccount);
   createAccount.appendChild(creaC);
   containerBtns.appendChild(iniciaBtn);
   containerBtns.appendChild(labelO);
   containerBtns.appendChild(gooBtn);
   containerBtns.appendChild(createAccount);
-
-  iniciaBtn.addEventListener('click', () => iniciarSesion());
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('loginContainer__idImagen');
@@ -92,5 +110,11 @@ export const logIn = (onNavigate) => {
 
   logMainSection.appendChild(logInCont);
 
+
+
   return logMainSection;
 };
+
+
+
+

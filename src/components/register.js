@@ -1,4 +1,4 @@
-import { registrar } from '../lib/index.js';
+import { registrarUsuario } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -21,6 +21,11 @@ export const register = (onNavigate) => {
   const containerInput = document.createElement('div');
   containerInput.classList.add('loginContainer__inputs');
   containerInput.setAttribute('id', 'regContainer');
+  const nameUser = document.createElement('input');
+  nameUser.setAttribute('type', 'text');
+  nameUser.setAttribute('placeholder', 'Nombre usuario');
+  nameUser.setAttribute('id', 'idNameUser');
+  nameUser.classList.add('loginContainer__inputs__text');
   const email = document.createElement('input');
   email.setAttribute('type', 'text');
   email.setAttribute('placeholder', 'Correo electrónico');
@@ -31,16 +36,11 @@ export const register = (onNavigate) => {
   pass.setAttribute('placeholder', 'Contraseña');
   pass.setAttribute('id', 'idPassword');
   pass.classList.add('loginContainer__inputs__text');
-  const verifyPass = document.createElement('input');
-  verifyPass.setAttribute('type', 'password');
-  verifyPass.setAttribute('placeholder', 'Verificar contraseña');
-  verifyPass.setAttribute('id', 'idPasswordVerify');
-  verifyPass.classList.add('loginContainer__inputs__text');
-
+  
+  containerInput.appendChild(nameUser);
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
-  containerInput.appendChild(verifyPass);
-
+ 
   const containerBtns = document.createElement('div');
   containerBtns.classList.add('loginContainer__botones');
   const createUser = document.createElement('button');
@@ -61,7 +61,27 @@ export const register = (onNavigate) => {
   IngresaT.textContent = '¡Ingresa!';
 
   IngresaT.addEventListener('click', () => onNavigate('/'));
-  createUser.addEventListener('click', () => registrar());
+  createUser.addEventListener('click', ()=>{ 
+    const email= document.getElementById("idEmail").value;
+    const pass = document.getElementById("idPassword").value;
+    //const name = document.getElementById("idNameUser").value;
+    registrarUsuario(email,pass).then(function(response) {
+       console.log("my user -->", response.user);
+       if(response.user.email !== null){
+         // guardar esos datos local.storage
+         // redirigir 
+         // onNavigate("/home"); 
+         onNavigate('/inicio');
+       }
+
+    }).catch(function(error) {
+     const errorCode = error.code;
+         const errorMessage = error.message;
+         console.log(errorCode, errorMessage);
+    });
+  
+ });
+
 
   createAccount.appendChild(noAccount);
   createAccount.appendChild(IngresaT);
