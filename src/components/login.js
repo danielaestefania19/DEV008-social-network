@@ -1,4 +1,4 @@
-import {iniciaSesionUsuario } from '../lib/firebase';
+import {iniciaSesionUsuario, inicioGoogle} from '../lib/firebase';
 
 export const logIn = (onNavigate, onNavigates) => {
   const logMainSection = document.createElement('section');
@@ -51,6 +51,7 @@ export const logIn = (onNavigate, onNavigates) => {
   const labelO = document.createElement('label');
   labelO.textContent = 'o';
   const gooBtn = document.createElement('button');
+  gooBtn.setAttribute('id', 'idbotongoogle');
   gooBtn.classList.add('loginContainer__botones__goo');
   gooBtn.textContent = 'Inicia sesión con tu cuenta de Google';
   const gooImg = document.createElement('img');
@@ -82,7 +83,16 @@ export const logIn = (onNavigate, onNavigates) => {
      });
    
   });
+  gooBtn.addEventListener('click',() =>{
+  inicioGoogle().then(function(response){
+   console.log("my google -->" , response)
 
+  }).catch(function(error) {
+    const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+   });
+});
   createAccount.appendChild(noAccount);
   createAccount.appendChild(creaC);
   containerBtns.appendChild(iniciaBtn);
