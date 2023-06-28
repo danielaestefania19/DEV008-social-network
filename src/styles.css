@@ -171,6 +171,9 @@ hr {
 .mainContainer__bienvenida__right__parr {
   padding-top: 26%;
   margin-left: -45%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
 }
 .mainContainer__bienvenida__right__parr__text {
   font-family: "Roboto", sans-serif;
@@ -198,9 +201,6 @@ hr {
   border: none;
   cursor: pointer;
 }
-.mainContainer__menu__button__textboton {
-  font-size: 20px;
-}
 .mainContainer__menu__button img {
   vertical-align: middle;
   width: 40%;
@@ -223,7 +223,6 @@ hr {
 .mainContainer__publicar__button__textbutton {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  font-size: 25px;
 }
 .mainContainer__publicar__button img {
   vertical-align: middle;

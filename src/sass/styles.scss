@@ -170,10 +170,13 @@ hr {
       &__parr{
         padding-top: 26%;
         margin-left: -45%;
+        font-family: variables.$tp-roboto;
+        font-weight: 400;
+        color:variables.$sl-blanco; ;
         &__text{
           font-family: variables.$tp-roboto;
           font-weight: 400;
-          color:variables.$sl-blanco; ;
+          color:variables.$sl-blanco;
           font-size: 20px;
         }
       }
@@ -198,9 +201,6 @@ hr {
     background-color: variables.$sl-negro;
     border: none;
     cursor: pointer;
-    &__textboton{
-      font-size: 20px;
-    }
    img{
     vertical-align: middle;
     width: 40%;
@@ -224,7 +224,6 @@ hr {
     &__textbutton{
       font-family: variables.$tp-roboto;
       font-weight: 700;
-      font-size: 25px;
     }
     img{
       vertical-align: middle;

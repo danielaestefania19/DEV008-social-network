@@ -14,8 +14,8 @@ export const inicio = (onNavigate) => {
     logo.setAttribute('src', 'img/logoPowempNombre.png');
     const parrfBien = document.createElement('p');
     parrfBien.classList.add('mainContainer__bienvenida__right__parr');
-    parrfBien.innerHTML = 'Bienvenida';
-  
+    parrfBien.innerHTML = 'Bienvenida '+ localStorage.getItem("nameStorage");
+
     containerBienvenida.appendChild(right);
     right.appendChild(logo);
     right.appendChild(parrfBien);

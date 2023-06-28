@@ -1,4 +1,4 @@
-import { registrarUsuario } from '../lib/firebase';
+import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -56,13 +56,10 @@ export const register = (onNavigate) => {
   createUser.addEventListener('click', ()=>{ 
     const email= document.getElementById("idEmail").value;
     const pass = document.getElementById("idPassword").value;
-    //const name = document.getElementById("idNameUser").value;
+    localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
     registrarUsuario(email,pass).then(function(response) {
-       console.log("my user -->", response.user);
        if(response.user.email !== null){
-         // guardar esos datos local.storage
-         // redirigir 
-         // onNavigate("/home"); 
+       
          onNavigate('/inicio');
        }
 
@@ -71,6 +68,7 @@ export const register = (onNavigate) => {
          const errorMessage = error.message;
          console.log(errorCode, errorMessage);
     });
+  
   
  });
 
