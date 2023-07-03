@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
-=======
 //import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
->>>>>>> feature/creacionWeb-register
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -133,8 +130,6 @@ export const register = (onNavigate) => {
   containertImg.appendChild(imgBoun);
   containertImg.appendChild(imgMujer);
   
-
-
   // Agregar todos los div al div principal
   logInCont.appendChild(containerLogo);
   logInCont.appendChild(containerInput);
