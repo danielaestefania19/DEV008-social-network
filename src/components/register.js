@@ -126,8 +126,6 @@ export const register = (onNavigate) => {
   containertImg.appendChild(imgBoun);
   containertImg.appendChild(imgMujer);
   
-
-
   // Agregar todos los div al div principal
   logInCont.appendChild(containerLogo);
   logInCont.appendChild(containerInput);

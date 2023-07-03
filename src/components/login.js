@@ -1,10 +1,14 @@
 import { iniciaSesionUsuario, inicioGoogle } from "../lib/firebase";
 
+
 export const logIn = (onNavigate, onNavigates) => {
-  const logMainSection = document.createElement("section");
-  logMainSection.setAttribute("id", "idlogin");
-  const logInCont = document.createElement("div");
-  logInCont.classList.add("loginContainer");
+  const logMainSection = document.createElement('section');
+  logMainSection.setAttribute('id', 'idlogin');
+  logMainSection.classList.add('sectionLog');
+  const logInCont = document.createElement('div');
+  logInCont.classList.add('loginContainer');
+  const loginImagenCont = document.createElement('div');
+  loginImagenCont.classList.add('loginImagenContainer');
 
   const containerLogo = document.createElement("div");
   containerLogo.classList.add("loginContainer__logo");
@@ -20,6 +24,7 @@ export const logIn = (onNavigate, onNavigates) => {
 
   const containerInput = document.createElement("div");
   containerInput.classList.add("loginContainer__inputs");
+  containerInput.setAttribute('id', 'logContainer');
   const email = document.createElement("input");
   email.setAttribute("type", "text");
   email.setAttribute("placeholder", "Usuario");
@@ -103,12 +108,12 @@ export const logIn = (onNavigate, onNavigates) => {
   containerBtns.appendChild(createAccount);
 
   const containertImg = document.createElement("div");
-  containertImg.classList.add("loginContainer__idImagen");
+  containertImg.classList.add("loginImagenContainer__idImagen");
   const imgBoun = document.createElement("img");
-  imgBoun.classList.add("loginContainer__idImagen__boun");
+  imgBoun.classList.add("loginImagenContainer__idImagen__boun");
   imgBoun.setAttribute("src", "img/flower_peaking.png");
   const imgMujer = document.createElement("img");
-  imgMujer.classList.add("loginContainer__idImagen__img");
+  imgMujer.classList.add("loginImagenContainer__idImagen__log");
   imgMujer.setAttribute("src", "img/principal-mobil-powemp.png");
 
   containertImg.appendChild(imgBoun);
@@ -118,9 +123,10 @@ export const logIn = (onNavigate, onNavigates) => {
   logInCont.appendChild(containerLogo);
   logInCont.appendChild(containerInput);
   logInCont.appendChild(containerBtns);
-  logInCont.appendChild(containertImg);
+  loginImagenCont.appendChild(containertImg);
 
   logMainSection.appendChild(logInCont);
+  logMainSection.appendChild(loginImagenCont);
 
   return logMainSection;
 };

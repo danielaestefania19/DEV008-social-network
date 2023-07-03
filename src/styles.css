@@ -22,7 +22,7 @@ hr {
 .loginContainer {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   flex-direction: column;
   align-items: center;
   background: #9747FF;
@@ -62,9 +62,10 @@ hr {
   cursor: pointer;
 }
 .loginContainer__logo {
-  height: 30%;
+  height: 45%;
 }
 .loginContainer__logo__img {
+  margin-top: -50px;
   width: 250px;
   height: 250px;
 }
@@ -80,7 +81,7 @@ hr {
   font-family: "Roboto", sans-serif;
   display: flex;
   width: 80%;
-  height: 200px;
+  height: 300px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -122,33 +123,73 @@ hr {
   color: #F6BD01;
   cursor: pointer;
 }
-.loginContainer__idImagen {
+
+.loginImagenContainer__idImagen {
   display: flex;
   width: 100%;
   height: 50%;
 }
-.loginContainer__idImagen__boun {
-  bottom: 0%;
-  position: absolute;
-  width: 50%;
-  height: 36%;
-  left: 50%;
-}
-.loginContainer__idImagen__img {
+.loginImagenContainer__idImagen__log {
   position: relative;
-  top: 10%;
-  left: 20%;
-  width: 63%;
-  height: 90%;
+  left: -43%;
+  width: 80%;
 }
-.loginContainer__idImagen__reg {
-  position: relative;
-  top: 10%;
-  left: 24%;
-  width: 50%;
-  height: 90%;
+.loginImagenContainer__idImagen__boun {
+  top: -60%;
+  left: 35%;
+  width: 80%;
 }
 
+.sectionLog {
+  display: flex;
+  background: #9747FF;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media only screen and (min-width: 992px) {
+  .sectionLog {
+    flex-direction: row-reverse;
+  }
+  .loginContainer {
+    width: 80vw;
+    height: 100vh;
+  }
+  .loginContainer__inputs {
+    width: 54%;
+    height: 147px;
+  }
+  .loginContainer__logo {
+    height: 45%;
+  }
+  .loginContainer__logo__img {
+    margin-top: -60px;
+    width: 100%;
+    height: 120%;
+  }
+  .loginContainer__logo__label {
+    bottom: 130px;
+    margin-left: 80px;
+  }
+  .loginContainer__botones {
+    width: 52%;
+  }
+  .loginImagenContainer__idImagen {
+    position: relative;
+    left: 20%;
+  }
+  .loginImagenContainer__idImagen__log {
+    width: 96%;
+    left: -3%;
+  }
+  .loginImagenContainer__idImagen__boun {
+    position: absolute;
+    top: -14%;
+    left: -19%;
+    width: 66%;
+    height: 114%;
+  }
+}
 .mainContainer {
   background-color: #CCB5F8;
   height: 100vh;
