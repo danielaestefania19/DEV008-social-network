@@ -362,14 +362,48 @@ hr {
   display: flex;
   justify-content: center;
   border-right: solid;
-      border-left: solid;
-      border-color: white;
+  border-left: solid;
+  border-color: white;
+  flex-direction: column;
+  align-items: center;
   &__text{
     width: 80%;
     height: 38%;
-    color: white;
+      color: variables.$sl-negro;
     background: white;
     border-radius: 20px;
+    font-family: variables.$tp-poppins;
+    &__imgUser{
+      position: absolute;
+      color: variables.$sl-verde-amarillo;
+      z-index: 1;
+      margin-top: -11px;
+    }
+    &__userLikes{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items:center;
+      margin-top: 20px;
+      margin-left:5px ;
+      margin-right: 5px;
+      z-index: 2;
+      &__likes{
+        color: variables.$sl-rojo;
+      }
+      &__user{
+        font-weight: 600;
+      }
+    }
+    &__content{
+      margin: 20px 10px 0 10px;
+      font-size: 14px;
+    }
+    &__date{
+      margin-left: 15px;
+      font-size: 10px;
+    }
   }
   }
 .navAction{

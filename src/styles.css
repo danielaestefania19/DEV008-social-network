@@ -342,13 +342,47 @@ hr {
   border-right: solid;
   border-left: solid;
   border-color: white;
+  flex-direction: column;
+  align-items: center;
 }
 .mainContainer__publicaciones__text {
   width: 80%;
   height: 38%;
-  color: white;
+  color: #1A1A1A;
   background: white;
   border-radius: 20px;
+  font-family: "Poppins", monospace;
+}
+.mainContainer__publicaciones__text__imgUser {
+  position: absolute;
+  color: #C4E24C;
+  z-index: 1;
+  margin-top: -11px;
+}
+.mainContainer__publicaciones__text__userLikes {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  z-index: 2;
+}
+.mainContainer__publicaciones__text__userLikes__likes {
+  color: #B03449;
+}
+.mainContainer__publicaciones__text__userLikes__user {
+  font-weight: 600;
+}
+.mainContainer__publicaciones__text__content {
+  margin: 20px 10px 0 10px;
+  font-size: 14px;
+}
+.mainContainer__publicaciones__text__date {
+  margin-left: 15px;
+  font-size: 10px;
 }
 .mainContainer .navAction {
   opacity: 0;
