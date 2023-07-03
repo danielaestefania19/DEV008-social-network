@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
-=======
-//import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
->>>>>>> feature/creacionWeb-register
+import { registrarUsuario, inicioGoogle } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -37,16 +33,22 @@ export const register = (onNavigate) => {
   email.setAttribute('type', 'text');
   email.setAttribute('placeholder', 'Correo electrónico');
   email.setAttribute('id', 'idEmail');
+  email.required = "true";
   email.classList.add('registerContainer__inputs__text');
   const pass = document.createElement('input');
   pass.setAttribute('type', 'password');
   pass.setAttribute('placeholder', 'Contraseña');
   pass.setAttribute('id', 'idPassword');
   pass.classList.add('registerContainer__inputs__text');
-  
+  const msj = document.createElement('label');
+  msj.setAttribute('id','idmsjerror');
+  msj.classList.add('registerContainer__inputs__error');
+  msj.classList.add('alert-content');
+  msj.style.display="none";
 
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
+  containerInput.appendChild(msj);
 
   const containerBtns = document.createElement('div');
   containerBtns.classList.add('registerContainer__botones');
@@ -68,11 +70,13 @@ export const register = (onNavigate) => {
   IngresaT.textContent = '¡Ingresa!';
 
   IngresaT.addEventListener('click', () => onNavigate('/'));
+
   createUser.addEventListener('click', ()=>{ 
-    const email= document.getElementById("idEmail").value;
-    const pass = document.getElementById("idPassword").value;
-    localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
-    registrarUsuario(email,pass).then(function(response) {
+    document.getElementById("idmsjerror").style.display="none";
+    const email= document.getElementById("idEmail");
+    const pass = document.getElementById("idPassword");
+    //localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
+    registrarUsuario(email.value,pass.value).then(function(response) {
        if(response.user.email !== null){
        
          onNavigate('/inicio');
@@ -80,36 +84,27 @@ export const register = (onNavigate) => {
 
     }).catch(function(error) {
      const errorCode = error.code;
-         const errorMessage = error.message;
-         console.log(errorCode, errorMessage);
+         //const errorMessage = error.message;
+         document.getElementById("idmsjerror").style.display="block";
+         document.getElementById("idmsjerror").innerHTML="Favor de ingresar correo electrónico y contraseña.";
+         //console.log(errorCode, errorMessage);
     });
   
   
  });
 
-
-  createAccount.appendChild(noAccount);
-  createAccount.appendChild(IngresaT);
-
-  IngresaT.addEventListener('click', () => onNavigate('/'));
-  createUser.addEventListener('click', ()=>{ 
-    const email= document.getElementById("idEmail").value;
-    const pass = document.getElementById("idPassword").value;
-    localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
-    registrarUsuario(email,pass).then(function(response) {
-       if(response.user.email !== null){
-       
-         onNavigate('/inicio');
-       }
-
-    }).catch(function(error) {
-     const errorCode = error.code;
-         const errorMessage = error.message;
-         console.log(errorCode, errorMessage);
+ gooBtnCreate.addEventListener("click", () => {
+  inicioGoogle()
+    .then(function (response) {
+      console.log("my google -->", response);
+      onNavigate("/inicio");
+    })
+    .catch(function (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
     });
-  
-  
- });
+});
 
   
   containerBtns.appendChild(createUser);
@@ -118,8 +113,6 @@ export const register = (onNavigate) => {
   createAccount.appendChild(IngresaT);
   containerBtns.appendChild(gooBtnCreate);
   containerBtns.appendChild(createAccount);
-
-  // createUser.addEventListener('click', () => onNavigate('/inicio'));
 
   const containertImg = document.createElement('div');
   containertImg.classList.add('registerImagenContainer__idImagen');
