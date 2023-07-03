@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
-=======
 //import { registrarUsuario, actualizaPerfil } from '../lib/firebase';
->>>>>>> feature/creacionWeb-register
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');

@@ -92,8 +92,6 @@ export const inicio = (onNavigate) => {
   containerMenu.classList.add('mainContainer__menu');
   const inicioBtn = document.createElement('i');
   inicioBtn.classList.add('mainContainer__menu__button');
-  // const imgbt1m = document.createElement('img');
-  // imgbt1m.setAttribute('src', 'img/iconHome.png');
   inicioBtn.classList.add(`${'fa-solid'}`);
   inicioBtn.classList.add(`${'fa-house'}`);
   inicioBtn.classList.add(`${'fa-xl'}`);
@@ -102,8 +100,6 @@ export const inicio = (onNavigate) => {
   negociosBtn.classList.add(`${'fa-solid'}`);
   negociosBtn.classList.add(`${'fa-store'}`);
   negociosBtn.classList.add(`${'fa-xl'}`);
-  // const imgbt2m = document.createElement('img');
-  // imgbt2m.setAttribute('src','img/iconBusiness.png');
 
   const perfilBtn = document.createElement('i');
   perfilBtn.classList.add('mainContainer__menu__button');
@@ -121,12 +117,36 @@ export const inicio = (onNavigate) => {
   const btpub = document.createElement('button');
   btpub.classList.add('mainContainer__publicar__button');
   const imgPlus = document.createElement('i');
-  // imgPlus.setAttribute('src', 'img/iconPost.png');
   imgPlus.classList.add(`${'fa-solid'}`);
   imgPlus.classList.add(`${'fa-plus'}`);
 
   containerPublicar.appendChild(btpub);
   btpub.appendChild(imgPlus);
+
+  btpub.addEventListener('click', () => {
+    const publishModal = document.createElement('div');
+    publishModal.setAttribute('id', 'idModal');
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.innerHTML = `
+    <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
+    <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
+    <button class= "content__publishbtn">Publicar</button>
+    <button class= "content__closeBtn">Cerrar</button>`;
+
+    publishModal.appendChild(content);
+    InicioCont.appendChild(publishModal);
+  });
+
+  // const btnCloseModal = document.getElementById('closeModal');
+  // console.log(btnCloseModal);
+  // btnCloseModal.addEventListener('click', () => {
+  //   publishModal.classList.add('closeModal');
+  // });
+
+  // `${const closeModal = document.createElement('button');
+  //    closeModal.classList.add('fa-regular');
+  //    closeModal.classList.add('fa-circle-xmark');}
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
