@@ -344,6 +344,7 @@ hr {
   border-color: white;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 .mainContainer__publicaciones__text {
   width: 80%;
@@ -352,15 +353,14 @@ hr {
   background: white;
   border-radius: 20px;
   font-family: "Poppins", monospace;
+  margin: 15px;
 }
 .mainContainer__publicaciones__text__imgUser {
-  position: absolute;
   color: #C4E24C;
   z-index: 1;
-  margin-top: -11px;
+  margin-top: -21px;
 }
 .mainContainer__publicaciones__text__userLikes {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

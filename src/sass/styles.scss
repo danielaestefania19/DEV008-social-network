@@ -366,6 +366,7 @@ hr {
   border-color: white;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
   &__text{
     width: 80%;
     height: 38%;
@@ -373,14 +374,15 @@ hr {
     background: white;
     border-radius: 20px;
     font-family: variables.$tp-poppins;
+    margin:15px;
     &__imgUser{
-      position: absolute;
+      
       color: variables.$sl-verde-amarillo;
       z-index: 1;
-      margin-top: -11px;
+      margin-top: -21px;
     }
     &__userLikes{
-      position: relative;
+      
       display: flex;
       flex-direction: row;
       justify-content: space-between;
