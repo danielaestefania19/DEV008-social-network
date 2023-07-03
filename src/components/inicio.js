@@ -1,4 +1,4 @@
-import { salirSesion } from '../lib/firebase';
+import { salirSesion, docSnap } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -127,6 +127,15 @@ export const inicio = (onNavigate) => {
 
   containerPublicar.appendChild(btpub);
   btpub.appendChild(imgPlus);
+
+  btpub.addEventListener('click', () => {
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  });
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');

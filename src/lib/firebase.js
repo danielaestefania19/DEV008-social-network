@@ -9,6 +9,9 @@ import { getAuth,
    signOut,
    updateProfile  } from 'firebase/auth';
 
+   import { collection, addDoc, getFirestore,  doc, getDoc } from "firebase/firestore"; 
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,8 +25,10 @@ const firebaseConfig = {
   appId: '1:196468811247:web:191b6369b8cbe2f786421a',
 };
 
-// Initialize Firebase
+// Initialize Firebase y firestore
 export const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 /*
 |--------------------------------------------------------------------------
 | Inicia sesion 
@@ -69,3 +74,11 @@ export const actualizaPerfil =(nombre) =>{
     displayName: nombre
   });
 };
+/*
+|--------------------------------------------------------------------------
+| obtener post en DB firestore
+|--------------------------------------------------------------------------
+*/
+
+const docRef = doc(db, "post", "prueba");
+export const docSnap = await getDoc(docRef);
