@@ -1,4 +1,4 @@
-import { salirSesion } from '../lib/firebase';
+import { salirSesion, querySnapshot } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -148,13 +148,28 @@ export const inicio = (onNavigate) => {
   //    closeModal.classList.add('fa-regular');
   //    closeModal.classList.add('fa-circle-xmark');}
 
+
+  });
+
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
-  const textp = document.createElement('div');
-  textp.classList.add('mainContainer__publicaciones__text');
+  
 
-  containerPublicaciones.appendChild(textp);
+  querySnapshot.forEach((doc) => {
+    const textp = document.createElement('div');
+    textp.classList.add('mainContainer__publicaciones__text');
+    textp.innerHTML=doc.data().postcontent;
+    containerPublicaciones.appendChild(textp);
+    
+    console.log(doc.data() );
+    
+  });
+  
 
+
+ 
+
+  
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
   // InicioCont.appendChild(containerLogout);
