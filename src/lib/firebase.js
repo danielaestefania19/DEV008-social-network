@@ -9,7 +9,7 @@ import { getAuth,
    signOut,
    updateProfile  } from 'firebase/auth';
 
-   import { collection, addDoc, getFirestore,  doc, getDocs } from "firebase/firestore"; 
+   import { collection, addDoc, getFirestore, doc, getDocs } from "firebase/firestore"; 
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -79,6 +79,14 @@ export const actualizaPerfil =(nombre) =>{
 | obtener post en DB firestore
 |--------------------------------------------------------------------------
 */
+const colRef = (collection(db, "post"));
+export const allDocs = getDocs(colRef);
 
-export const querySnapshot = await getDocs(collection(db, "post"));
-
+/*
+|--------------------------------------------------------------------------
+| agregar post en DB firestore
+|--------------------------------------------------------------------------
+*/
+export const pushDoc = (title, post) => { 
+  return addDoc(colRef, {title: title , post: post})
+};

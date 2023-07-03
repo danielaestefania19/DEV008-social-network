@@ -1,4 +1,4 @@
-import { salirSesion, querySnapshot } from '../lib/firebase';
+import { salirSesion, allDocs, pushDoc } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -129,46 +129,56 @@ export const inicio = (onNavigate) => {
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
+    <label for= "title">Título de tu publicación</label>
     <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
+    <label for= "postcontent">Publicación</label>
     <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
     <button class= "content__publishbtn">Publicar</button>
-    <button class= "content__closeBtn">Cerrar</button>`;
+    <button class= 'content__closeBtn'>Cerrar</button>`;
 
     publishModal.appendChild(content);
     InicioCont.appendChild(publishModal);
-  });
 
-  // const btnCloseModal = document.getElementById('closeModal');
-  // console.log(btnCloseModal);
-  // btnCloseModal.addEventListener('click', () => {
-  //   publishModal.classList.add('closeModal');
-  // });
+    const btnCloseModal = document.querySelector('.content__closeBtn');
+    const publishBtn = document.querySelector('.content__publishbtn');
 
-  // `${const closeModal = document.createElement('button');
-  //    closeModal.classList.add('fa-regular');
-  //    closeModal.classList.add('fa-circle-xmark');}
+    btnCloseModal.addEventListener('click', () => {
+      publishModal.classList.add('closeModal');
+    });
 
-
+    publishBtn.addEventListener('click', (e) => {
+      const postTitle = document.querySelector('.content__title').value;
+      const postContent = document.querySelector('.content__text').value;
+      e.preventDefault();
+      pushDoc(postTitle, postContent);
+    });
   });
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
   
-
-  querySnapshot.forEach((doc) => {
-    const textp = document.createElement('div');
-    textp.classList.add('mainContainer__publicaciones__text');
-    textp.innerHTML=doc.data().postcontent;
-    containerPublicaciones.appendChild(textp);
-    
-    console.log(doc.data() );
-    
+  allDocs.then((snapshot) => {
+    let post = [];
+    snapshot.docs.forEach((document) => {
+      post.push({ ...document.data(), id: document.id});
+    });
+    console.log(post);
+  }).catch((err) => {
+    console.log(err.message);
   });
   
-
-
- 
-
+// postInfo(querySnapshot).then((snapshot) => {
+//   console.log(snapshot.docs);
+// });
+  // querySnapshot.then((doc) => {
+  //   // const textp = document.createElement('div');
+  //   // textp.classList.add('mainContainer__publicaciones__text');
+  //   // textp.innerHTML=doc.data().postcontent;
+  //   // containerPublicaciones.appendChild(textp);
+    
+  //   console.log(doc);
+    
+  // });
   
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
