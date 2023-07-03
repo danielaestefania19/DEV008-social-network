@@ -9,7 +9,7 @@ import { getAuth,
    signOut,
    updateProfile  } from 'firebase/auth';
 
-   import { collection, addDoc, getFirestore,  doc, getDoc } from "firebase/firestore"; 
+   import { collection, addDoc, getFirestore,  doc, getDocs } from "firebase/firestore"; 
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -80,5 +80,5 @@ export const actualizaPerfil =(nombre) =>{
 |--------------------------------------------------------------------------
 */
 
-const docRef = doc(db, "post", "prueba");
-export const docSnap = await getDoc(docRef);
+export const querySnapshot = await getDocs(collection(db, "post"));
+

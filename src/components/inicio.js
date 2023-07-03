@@ -1,4 +1,4 @@
-import { salirSesion, docSnap } from '../lib/firebase';
+import { salirSesion, querySnapshot } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -129,21 +129,28 @@ export const inicio = (onNavigate) => {
   btpub.appendChild(imgPlus);
 
   btpub.addEventListener('click', () => {
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-    }
+
   });
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
-  const textp = document.createElement('div');
-  textp.classList.add('mainContainer__publicaciones__text');
+  
 
-  containerPublicaciones.appendChild(textp);
+  querySnapshot.forEach((doc) => {
+    const textp = document.createElement('div');
+    textp.classList.add('mainContainer__publicaciones__text');
+    textp.innerHTML=doc.data().postcontent;
+    containerPublicaciones.appendChild(textp);
+    
+    console.log(doc.data() );
+    
+  });
+  
 
+
+ 
+
+  
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
   // InicioCont.appendChild(containerLogout);
