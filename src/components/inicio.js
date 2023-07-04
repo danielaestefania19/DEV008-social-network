@@ -51,7 +51,6 @@ export const inicio = (onNavigate) => {
   containerLogout.appendChild(closeMenu);
   header.appendChild(containerLogout);
   header.appendChild(menuBtn);
-  // btlogout.appendChild(imgLogout);
 
   const containerBienvenida = document.createElement('div');
   containerBienvenida.classList.add('mainContainer__bienvenida');
@@ -92,8 +91,6 @@ export const inicio = (onNavigate) => {
   containerMenu.classList.add('mainContainer__menu');
   const inicioBtn = document.createElement('i');
   inicioBtn.classList.add('mainContainer__menu__button');
-  // const imgbt1m = document.createElement('img');
-  // imgbt1m.setAttribute('src', 'img/iconHome.png');
   inicioBtn.classList.add(`${'fa-solid'}`);
   inicioBtn.classList.add(`${'fa-house'}`);
   inicioBtn.classList.add(`${'fa-xl'}`);
@@ -102,26 +99,22 @@ export const inicio = (onNavigate) => {
   negociosBtn.classList.add(`${'fa-solid'}`);
   negociosBtn.classList.add(`${'fa-store'}`);
   negociosBtn.classList.add(`${'fa-xl'}`);
-  // const imgbt2m = document.createElement('img');
-  // imgbt2m.setAttribute('src','img/iconBusiness.png');
 
   const perfilBtn = document.createElement('i');
   perfilBtn.classList.add('mainContainer__menu__button');
   perfilBtn.classList.add(`${'fa-solid'}`);
   perfilBtn.classList.add(`${'fa-user'}`);
   perfilBtn.classList.add(`${'fa-xl'}`);
-  
+
   containerMenu.appendChild(inicioBtn);
   containerMenu.appendChild(negociosBtn);
   containerMenu.appendChild(perfilBtn);
-
 
   const containerPublicar = document.createElement('div');
   containerPublicar.classList.add('mainContainer__publicar');
   const btpub = document.createElement('button');
   btpub.classList.add('mainContainer__publicar__button');
   const imgPlus = document.createElement('i');
-  // imgPlus.setAttribute('src', 'img/iconPost.png');
   imgPlus.classList.add(`${'fa-solid'}`);
   imgPlus.classList.add(`${'fa-plus'}`);
 
@@ -129,43 +122,68 @@ export const inicio = (onNavigate) => {
   btpub.appendChild(imgPlus);
 
   btpub.addEventListener('click', () => {
+    const publishModal = document.createElement('div');
+    publishModal.setAttribute('id', 'idModal');
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.innerHTML = `
+    <label for= "title">Título de tu publicación</label>
+    <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
+    <label for= "postcontent">Publicación</label>
+    <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
+    <button class= "content__publishbtn">Publicar</button>
+    <button class= 'content__closeBtn'>Cerrar</button>`;
 
+    publishModal.appendChild(content);
+    InicioCont.appendChild(publishModal);
+
+    const btnCloseModal = document.querySelector('.content__closeBtn');
+    const publishBtn = document.querySelector('.content__publishbtn');
+
+    btnCloseModal.addEventListener('click', () => {
+      publishModal.classList.add('closeModal');
+    });
+
+    // Obtener datos para post en modal
+    publishBtn.addEventListener('click', (e) => {
+      const postTitle = document.querySelector('.content__title').value;
+      const postContent = document.querySelector('.content__text').value;
+      e.preventDefault();
+      pushDoc(postTitle, postContent);
+    });
   });
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
-  
 
   querySnapshot.forEach((doc) => {
     const textp = document.createElement('div');
     textp.classList.add('mainContainer__publicaciones__text');
     const parrafUserLikes = document.createElement('div');
     parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
-    const circleUser =  document.createElement('div');
+    const circleUser = document.createElement('div');
     circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
     circleUser.classList.add(`${'fa-solid'}`);
     circleUser.classList.add(`${'fa-circle'}`);
     circleUser.classList.add(`${'fa-lg'}`);
-   
-    
-    const parrafWord= document.createElement('p');
+
+    const parrafWord = document.createElement('p');
     parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    parrafWord.innerHTML=doc.data().user.substr(0,1);
-    const parraforUser= document.createElement('p');
+    parrafWord.innerHTML = doc.data().user.substr(0, 1);
+    const parraforUser = document.createElement('p');
     parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-    parraforUser.innerHTML=doc.data().user;
-    const parrafLikes= document.createElement('p');
+    parraforUser.innerHTML = doc.data().user;
+    const parrafLikes = document.createElement('p');
     parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-    parrafLikes.innerHTML=doc.data().likes;
+    parrafLikes.innerHTML = doc.data().likes;
     parrafLikes.classList.add(`${'fa-regular'}`);
     parrafLikes.classList.add(`${'fa-heart'}`);
-    const parraforCont= document.createElement('p');
+    const parraforCont = document.createElement('p');
     parraforCont.classList.add('mainContainer__publicaciones__text__content');
-    parraforCont.innerHTML=doc.data().postcontent;
-    const parraforDate= document.createElement('p');
+    parraforCont.innerHTML = doc.data().postcontent;
+    const parraforDate = document.createElement('p');
     parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    parraforDate.innerHTML=doc.data().datePost.toDate().toLocaleDateString("es-MX");
-   
+    parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
     containerPublicaciones.appendChild(textp);
     textp.appendChild(parraforCont);
@@ -175,15 +193,8 @@ export const inicio = (onNavigate) => {
     parrafUserLikes.appendChild(parraforUser);
     parrafUserLikes.appendChild(parrafLikes);
     textp.appendChild(parraforDate);
-
-
   });
-  
 
-
- 
-
-  
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
   // InicioCont.appendChild(containerLogout);
@@ -192,7 +203,6 @@ export const inicio = (onNavigate) => {
   InicioCont.appendChild(containerPublicaciones);
   InicioCont.appendChild(containerPublicar);
   InicioCont.appendChild(containerMenu);
-
   inicioSection.appendChild(InicioCont);
 
   return inicioSection;
