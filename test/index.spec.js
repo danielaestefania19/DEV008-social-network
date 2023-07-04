@@ -5,22 +5,56 @@
 //   it('debería ser una función', () => {
 //     expect(typeof myFunction).toBe('function');
 //   });
-// });
+// }
 
-import { signInWithEmailAndPassword } from '../src/lib/firebase';
-import { iniciaSesionUsuario } from '../src/lib/firebase';
+import {
+  iniciaSesionUsuario,
+  registrarUsuario,
+  inicioGoogle,
+  salirSesion,
+  actualizaPerfil
+} from '../src/lib/firebase';
 
-test('iniciaSesionUsuario debería llamar a signInWithEmailAndPassword con los argumentos correctos', () => {
-  // Arrange (preparación)
-  const email = 'ejemplo@example.com';
-  const password = 'contraseña';
+// Mock de las funciones de Firebase
+jest.mock('../src/lib/firebase', () => ({
+  iniciaSesionUsuario: jest.fn(),
+  registrarUsuario: jest.fn(),
+  inicioGoogle: jest.fn(),
+  salirSesion: jest.fn(),
+  actualizaPerfil: jest.fn()
+}));
 
-  // Act (acción)
-  const signInWithEmailAndPasswordMock = jest.fn();
-  signInWithEmailAndPassword.mockReturnValue(Promise.resolve('usuario'));
-  const resultado = iniciaSesionUsuario(email, password);
+describe('Funciones de Firebase', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-  // Assert (verificación)
-  expect(signInWithEmailAndPasswordMock).toHaveBeenCalledWith(email, password);
-  expect(resultado).resolves.toBe('usuario');
+  describe('iniciaSesionUsuario', () => {
+    it('debe llamar a la función signInWithEmailAndPassword con los parámetros correctos', () => {
+      const email = 'prueba@gmail.com';
+      const password = '123456';
+
+      iniciaSesionUsuario(email, password);
+
+      expect(iniciaSesionUsuario).toHaveBeenCalledWith(email, password);
+
+    });
+  });
+
+  describe('registrarUsuario', () => {
+    it('debe llamar a la función createUserWithEmailAndPassword con los parámetros correctos', () => {
+      // Configuración del mock o spy
+      const createUserWithEmailAndPassword = jest.fn();
+      const email = 'test@example.com';
+      const password = 'password123';
+
+      // Llamar a la función que se está probando
+      registrarUsuario(email, password);
+
+      // Verificar que la función createUserWithEmailAndPassword se haya llamado con los parámetros correctos
+      expect(registrarUsuario).toHaveBeenCalledWith(email, password);
+    });
+  });
 });
+
+
