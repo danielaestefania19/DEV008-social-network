@@ -1,4 +1,4 @@
-import { salirSesion, querySnapshot } from '../lib/firebase';
+import { salirSesion, querySnapshot, pushDoc } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -42,7 +42,7 @@ export const inicio = (onNavigate) => {
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      // console.log(errorCode, errorMessage);
     });
   });
 
