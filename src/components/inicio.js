@@ -145,13 +145,12 @@ export const inicio = (onNavigate) => {
     });
 
     // Obtener datos para post en modal
-    // publishBtn.addEventListener('click', (e) => {
-    //   const postTitle = document.querySelector('.content__title').value;
-    //   const postContent = document.querySelector('.content__text').value;
-    //   e.preventDefault();
-    //   pushDoc(postTitle, postContent);
-    //   console.log(pushDoc());
-    // });
+    publishBtn.addEventListener('click', (e) => {
+      const postTitle = document.querySelector('.content__title').value;
+      const postContent = document.querySelector('.content__text').value;
+      e.preventDefault();
+      pushDoc(postTitle, postContent);
+    });
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -201,7 +200,7 @@ export const inicio = (onNavigate) => {
   // InicioCont.appendChild(containerLogout);
   InicioCont.appendChild(right);
   InicioCont.appendChild(containerBienvenida);
-  // InicioCont.appendChild(containerPublicaciones);
+  InicioCont.appendChild(containerPublicaciones);
   InicioCont.appendChild(containerPublicar);
   InicioCont.appendChild(containerMenu);
   inicioSection.appendChild(InicioCont);

@@ -17,7 +17,9 @@ import {
   getFirestore,
   doc,
   getDocs,
+  onSnapshot,
 } from 'firebase/firestore';
+import { async } from 'regenerator-runtime';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -85,7 +87,7 @@ export const actualizaPerfil = (nombre) => {
 |--------------------------------------------------------------------------
 | obtener post en DB firestore
 |--------------------------------------------------------------------------
-*/
+// */
 // const colRef = (collection(db, 'post'));
 // getDocs.then((snapshot) => {
 //   let post = [];
@@ -96,13 +98,16 @@ export const actualizaPerfil = (nombre) => {
 // }).catch((err) => {
 //   console.log(err.message)});
 
+// export const pushPubl = async () => { 
 export const querySnapshot = await getDocs(collection(db, "post"));
+
+// export const onPost = (callback) => onSnapshot(colRef, callback);
 
 /*
 |--------------------------------------------------------------------------
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-// export const pushDoc = (title, post) => {
-//   return addDoc(colRef, { title: title, post: post });
-// };
+export const pushDoc = (title, post) => {
+  return addDoc(querySnapshot, { title: title, post: post });
+};
