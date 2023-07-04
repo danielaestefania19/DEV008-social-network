@@ -660,14 +660,56 @@ hr {
     width: 80%;
   }
   .mainContainer__publicaciones {
-    background-color: none;
+    margin-left: 10%;
+    margin-right: 10%;
     height: 50%;
-    width: 70%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
     border-right: solid;
     border-left: solid;
     border-color: white;
-    position: relative;
-    top: 70px;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  .mainContainer__publicaciones__text {
+    width: 80%;
+    height: 38%;
+    color: #1A1A1A;
+    background: white;
+    border-radius: 20px;
+    font-family: "Poppins", monospace;
+    margin: 15px;
+  }
+  .mainContainer__publicaciones__text__imgUser {
+    color: #C4E24C;
+    z-index: 1;
+    margin-top: -21px;
+  }
+  .mainContainer__publicaciones__text__userLikes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    z-index: 2;
+  }
+  .mainContainer__publicaciones__text__userLikes__likes {
+    color: #B03449;
+  }
+  .mainContainer__publicaciones__text__userLikes__user {
+    font-weight: 600;
+  }
+  .mainContainer__publicaciones__text__content {
+    margin: 20px 10px 0 10px;
+    font-size: 14px;
+  }
+  .mainContainer__publicaciones__text__date {
+    margin-left: 15px;
+    font-size: 10px;
   }
   .mainContainer__menu {
     justify-content: space-around;

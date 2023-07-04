@@ -86,7 +86,7 @@ export const actualizaPerfil = (nombre) => {
 | obtener post en DB firestore
 |--------------------------------------------------------------------------
 */
-const colRef = (collection(db, 'post'));
+// const colRef = (collection(db, 'post'));
 // getDocs.then((snapshot) => {
 //   let post = [];
 //   snapshot.docs.forEach((document) => {
@@ -96,13 +96,13 @@ const colRef = (collection(db, 'post'));
 // }).catch((err) => {
 //   console.log(err.message)});
 
-// export const querySnapshot = await getDocs(collection(db, "post"));
+export const querySnapshot = await getDocs(collection(db, "post"));
 
 /*
 |--------------------------------------------------------------------------
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-export const pushDoc = (title, post) => {
-  return addDoc(colRef, { title: title, post: post });
-};
+// export const pushDoc = (title, post) => {
+//   return addDoc(colRef, { title: title, post: post });
+// };
