@@ -18,6 +18,7 @@ import {
   doc,
   getDocs,
   onSnapshot,
+  query
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 
@@ -99,9 +100,16 @@ export const actualizaPerfil = (nombre) => {
 //   console.log(err.message)});
 
 // export const pushPubl = async () => { 
-export const querySnapshot = await getDocs(collection(db, "post"));
+export const queryS = await getDocs(collection(db, "post"));
 
 // export const onPost = (callback) => onSnapshot(colRef, callback);
+const q = query(collection(db, "post"));
+export const getPost = () => {
+ 
+  return onSnapshot (q, (querySnapshot));
+ 
+};
+
 
 /*
 |--------------------------------------------------------------------------

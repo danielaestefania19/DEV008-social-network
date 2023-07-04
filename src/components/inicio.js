@@ -1,4 +1,4 @@
-import { salirSesion, querySnapshot } from '../lib/firebase';
+import { salirSesion, queryS, getPost } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -156,7 +156,9 @@ export const inicio = (onNavigate) => {
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
 
-  querySnapshot.forEach((doc) => {
+  getPost();
+
+  queryS.forEach((doc) => {
     const textp = document.createElement('div');
     textp.classList.add('mainContainer__publicaciones__text');
     const parrafUserLikes = document.createElement('div');
@@ -204,6 +206,7 @@ export const inicio = (onNavigate) => {
   InicioCont.appendChild(containerPublicar);
   InicioCont.appendChild(containerMenu);
   inicioSection.appendChild(InicioCont);
+  
 
   return inicioSection;
 };
