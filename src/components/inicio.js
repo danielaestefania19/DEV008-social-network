@@ -1,4 +1,4 @@
-import { salirSesion, queryS, getPost } from '../lib/firebase';
+import { salirSesion, pushDoc, unsub } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -156,9 +156,10 @@ export const inicio = (onNavigate) => {
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
 
-  getPost();
-
-  queryS.forEach((doc) => {
+  const pintarCosas = (myresponse) => {
+    containerPublicaciones.innerHTML = '';
+    console.log(myresponse.docs);
+    myresponse.docs.forEach((doc) => {
     const textp = document.createElement('div');
     textp.classList.add('mainContainer__publicaciones__text');
     const parrafUserLikes = document.createElement('div');
@@ -171,7 +172,7 @@ export const inicio = (onNavigate) => {
 
     const parrafWord = document.createElement('p');
     parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    parrafWord.innerHTML = doc.data().user.substr(0, 1);
+    // parrafWord.innerHTML = doc.data().user.substr(0, 1);
     const parraforUser = document.createElement('p');
     parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
     parraforUser.innerHTML = doc.data().user;
@@ -185,7 +186,7 @@ export const inicio = (onNavigate) => {
     parraforCont.innerHTML = doc.data().postcontent;
     const parraforDate = document.createElement('p');
     parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+    // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
     containerPublicaciones.appendChild(textp);
     textp.appendChild(parraforCont);
@@ -195,7 +196,48 @@ export const inicio = (onNavigate) => {
     parrafUserLikes.appendChild(parraforUser);
     parrafUserLikes.appendChild(parrafLikes);
     textp.appendChild(parraforDate);
-  });
+    });
+  };
+  unsub(pintarCosas);
+
+  // QuerySnapshot.forEach((doc) => {
+  //   const textp = document.createElement('div');
+  //   textp.classList.add('mainContainer__publicaciones__text');
+  //   const parrafUserLikes = document.createElement('div');
+  //   parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+  //   const circleUser = document.createElement('div');
+  //   circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
+  //   circleUser.classList.add(`${'fa-solid'}`);
+  //   circleUser.classList.add(`${'fa-circle'}`);
+  //   circleUser.classList.add(`${'fa-lg'}`);
+
+  //   const parrafWord = document.createElement('p');
+  //   parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
+  //   parrafWord.innerHTML = doc.data().user.substr(0, 1);
+  //   const parraforUser = document.createElement('p');
+  //   parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
+  //   parraforUser.innerHTML = doc.data().user;
+  //   const parrafLikes = document.createElement('p');
+  //   parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+  //   parrafLikes.innerHTML = doc.data().likes;
+  //   parrafLikes.classList.add(`${'fa-regular'}`);
+  //   parrafLikes.classList.add(`${'fa-heart'}`);
+  //   const parraforCont = document.createElement('p');
+  //   parraforCont.classList.add('mainContainer__publicaciones__text__content');
+  //   parraforCont.innerHTML = doc.data().postcontent;
+  //   const parraforDate = document.createElement('p');
+  //   parraforDate.classList.add('mainContainer__publicaciones__text__date');
+  //   parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+
+  //   containerPublicaciones.appendChild(textp);
+  //   textp.appendChild(parraforCont);
+  //   textp.appendChild(parrafUserLikes);
+  //   textp.appendChild(circleUser);
+  //   parrafUserLikes.appendChild(parrafWord);
+  //   parrafUserLikes.appendChild(parraforUser);
+  //   parrafUserLikes.appendChild(parrafLikes);
+  //   textp.appendChild(parraforDate);
+  // });
 
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);

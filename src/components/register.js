@@ -33,7 +33,7 @@ export const register = (onNavigate) => {
   email.setAttribute('type', 'text');
   email.setAttribute('placeholder', 'Correo electrónico');
   email.setAttribute('id', 'idEmail');
-  email.required = "true";
+  email.required = 'true';
   email.classList.add('registerContainer__inputs__text');
   const pass = document.createElement('input');
   pass.setAttribute('type', 'password');
@@ -41,10 +41,10 @@ export const register = (onNavigate) => {
   pass.setAttribute('id', 'idPassword');
   pass.classList.add('registerContainer__inputs__text');
   const msj = document.createElement('label');
-  msj.setAttribute('id','idmsjerror');
+  msj.setAttribute('id', 'idmsjerror');
   msj.classList.add('registerContainer__inputs__error');
   msj.classList.add('alert-content');
-  msj.style.display="none";
+  msj.style.display = 'none';
 
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
@@ -71,42 +71,37 @@ export const register = (onNavigate) => {
 
   IngresaT.addEventListener('click', () => onNavigate('/'));
 
-  createUser.addEventListener('click', ()=>{ 
-    document.getElementById("idmsjerror").style.display="none";
-    const email= document.getElementById("idEmail");
-    const pass = document.getElementById("idPassword");
-    //localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
-    registrarUsuario(email.value,pass.value).then(function(response) {
-       if(response.user.email !== null){
-       
-         onNavigate('/inicio');
-       }
-
-    }).catch(function(error) {
-     const errorCode = error.code;
-         //const errorMessage = error.message;
-         document.getElementById("idmsjerror").style.display="block";
-         document.getElementById("idmsjerror").innerHTML="Favor de ingresar correo electrónico y contraseña.";
-         //console.log(errorCode, errorMessage);
-    });
-  
-  
- });
-
- gooBtnCreate.addEventListener("click", () => {
-  inicioGoogle()
-    .then(function (response) {
-      console.log("my google -->", response);
-      onNavigate("/inicio");
-    })
-    .catch(function (error) {
+  createUser.addEventListener('click', () => { 
+    document.getElementById('idmsjerror').style.display='none';
+    const email= document.getElementById('idEmail');
+    const pass = document.getElementById('idPassword');
+    // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
+    registrarUsuario(email.value, pass.value).then((response) => {
+      if(response.user.email !== null) {
+        onNavigate('/inicio');
+      }
+    }).catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      // const errorMessage = error.message;
+      document.getElementById('idmsjerror').style.display='block';
+      document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
+      //console.log(errorCode, errorMessage);
     });
-});
+  });
 
-  
+  gooBtnCreate.addEventListener('click', () => {
+    inicioGoogle()
+      .then((response) => {
+        console.log('my google -->', response);
+        onNavigate('/inicio');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
+      });
+  });
+
   containerBtns.appendChild(createUser);
   containerBtns.appendChild(labelO);
   createAccount.appendChild(noAccount);
@@ -125,14 +120,13 @@ export const register = (onNavigate) => {
 
   containertImg.appendChild(imgBoun);
   containertImg.appendChild(imgMujer);
-  
+
   // Agregar todos los div al div principal
   logInCont.appendChild(containerLogo);
   logInCont.appendChild(containerInput);
   logInCont.appendChild(containerBtns);
   rsgisterImagenCont.appendChild(containertImg);
 
- 
   logMainSection.appendChild(logInCont);
   logMainSection.appendChild(rsgisterImagenCont);
 
