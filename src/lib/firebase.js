@@ -1,16 +1,23 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth,
-   createUserWithEmailAndPassword,
-   signInWithEmailAndPassword,
-   onAuthStateChanged,
-   GoogleAuthProvider,
-   signInWithPopup,
-   signOut,
-   updateProfile  } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from 'firebase/auth';
 
-   import { collection, addDoc, getFirestore, doc, getDocs } from "firebase/firestore"; 
-
+import {
+  collection,
+  addDoc,
+  getFirestore,
+  doc,
+  getDocs,
+} from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,7 +38,7 @@ const db = getFirestore(app);
 
 /*
 |--------------------------------------------------------------------------
-| Inicia sesion 
+| Inicia sesion
 |--------------------------------------------------------------------------
 */
 export const iniciaSesionUsuario = (email, password) => {
@@ -53,7 +60,7 @@ export const registrarUsuario = (email, password) => {
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const inicioGoogle = () => { 
+export const inicioGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 /*
@@ -61,7 +68,7 @@ export const inicioGoogle = () => {
 | Cierra sesion de la usuaria
 |--------------------------------------------------------------------------
 */
-export const salirSesion =() =>{
+export const salirSesion = () => {
   return signOut(auth);
 };
 /*
@@ -69,9 +76,9 @@ export const salirSesion =() =>{
 | Actualiza nombre de la usuaria
 |--------------------------------------------------------------------------
 */
-export const actualizaPerfil =(nombre) =>{
+export const actualizaPerfil = (nombre) => {
   return updateProfile(auth.currentUser, {
-    displayName: nombre
+    displayName: nombre,
   });
 };
 /*
@@ -79,14 +86,23 @@ export const actualizaPerfil =(nombre) =>{
 | obtener post en DB firestore
 |--------------------------------------------------------------------------
 */
-const colRef = (collection(db, "post"));
-export const allDocs = getDocs(colRef);
+const colRef = (collection(db, 'post'));
+// getDocs.then((snapshot) => {
+//   let post = [];
+//   snapshot.docs.forEach((document) => {
+//     post.push({ ...document.data(), id: document.id});
+//   });
+//   console.log(post);
+// }).catch((err) => {
+//   console.log(err.message)});
+
+// export const querySnapshot = await getDocs(collection(db, "post"));
 
 /*
 |--------------------------------------------------------------------------
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-export const pushDoc = (title, post) => { 
-  return addDoc(colRef, {title: title , post: post})
+export const pushDoc = (title, post) => {
+  return addDoc(colRef, { title: title, post: post });
 };

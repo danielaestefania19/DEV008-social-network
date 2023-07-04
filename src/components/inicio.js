@@ -1,4 +1,4 @@
-import { salirSesion, allDocs, pushDoc } from '../lib/firebase';
+import { salirSesion, pushDoc } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -51,7 +51,6 @@ export const inicio = (onNavigate) => {
   containerLogout.appendChild(closeMenu);
   header.appendChild(containerLogout);
   header.appendChild(menuBtn);
-  // btlogout.appendChild(imgLogout);
 
   const containerBienvenida = document.createElement('div');
   containerBienvenida.classList.add('mainContainer__bienvenida');
@@ -106,11 +105,10 @@ export const inicio = (onNavigate) => {
   perfilBtn.classList.add(`${'fa-solid'}`);
   perfilBtn.classList.add(`${'fa-user'}`);
   perfilBtn.classList.add(`${'fa-xl'}`);
-  
+
   containerMenu.appendChild(inicioBtn);
   containerMenu.appendChild(negociosBtn);
   containerMenu.appendChild(perfilBtn);
-
 
   const containerPublicar = document.createElement('div');
   containerPublicar.classList.add('mainContainer__publicar');
@@ -146,49 +144,65 @@ export const inicio = (onNavigate) => {
       publishModal.classList.add('closeModal');
     });
 
+    // Obtener datos para post en modal
     publishBtn.addEventListener('click', (e) => {
       const postTitle = document.querySelector('.content__title').value;
       const postContent = document.querySelector('.content__text').value;
       e.preventDefault();
       pushDoc(postTitle, postContent);
+      console.log(pushDoc());
     });
   });
 
-  const containerPublicaciones = document.createElement('div');
-  containerPublicaciones.classList.add('mainContainer__publicaciones');
-  
-  allDocs.then((snapshot) => {
-    let post = [];
-    snapshot.docs.forEach((document) => {
-      post.push({ ...document.data(), id: document.id});
-    });
-    console.log(post);
-  }).catch((err) => {
-    console.log(err.message);
-  });
-  
-// postInfo(querySnapshot).then((snapshot) => {
-//   console.log(snapshot.docs);
-// });
-  // querySnapshot.then((doc) => {
-  //   // const textp = document.createElement('div');
-  //   // textp.classList.add('mainContainer__publicaciones__text');
-  //   // textp.innerHTML=doc.data().postcontent;
-  //   // containerPublicaciones.appendChild(textp);
-    
-  //   console.log(doc);
-    
+  // const containerPublicaciones = document.createElement('div');
+  // containerPublicaciones.classList.add('mainContainer__publicaciones');
+  // querySnapshot.forEach((doc) => {
+  //   const textp = document.createElement('div');
+  //   textp.classList.add('mainContainer__publicaciones__text');
+  //   const parrafUserLikes = document.createElement('div');
+  //   parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+  //   const circleUser = document.createElement('div');
+  //   circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
+  //   circleUser.classList.add(`${'fa-solid'}`);
+  //   circleUser.classList.add(`${'fa-circle'}`);
+  //   circleUser.classList.add(`${'fa-lg'}`);
+
+  //   const parrafWord = document.createElement('p');
+  //   parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
+  //   parrafWord.innerHTML = doc.data().user.substr(0, 1);
+  //   const parraforUser = document.createElement('p');
+  //   parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
+  //   parraforUser.innerHTML = doc.data().user;
+  //   const parrafLikes = document.createElement('p');
+  //   parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+  //   parrafLikes.innerHTML = doc.data().likes;
+  //   parrafLikes.classList.add(`${'fa-regular'}`);
+  //   parrafLikes.classList.add(`${'fa-heart'}`);
+  //   const parraforCont = document.createElement('p');
+  //   parraforCont.classList.add('mainContainer__publicaciones__text__content');
+  //   parraforCont.innerHTML = doc.data().postcontent;
+  //   const parraforDate = document.createElement('p');
+  //   parraforDate.classList.add('mainContainer__publicaciones__text__date');
+  //   parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+
+  //   containerPublicaciones.appendChild(textp);
+  //   textp.appendChild(parraforCont);
+  //   textp.appendChild(parrafUserLikes);
+  //   textp.appendChild(circleUser);
+  //   parrafUserLikes.appendChild(parrafWord);
+  //   parrafUserLikes.appendChild(parraforUser);
+  //   parrafUserLikes.appendChild(parrafLikes);
+  //   textp.appendChild(parraforDate);
   // });
-  
+
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
   // InicioCont.appendChild(containerLogout);
   InicioCont.appendChild(right);
   InicioCont.appendChild(containerBienvenida);
-  InicioCont.appendChild(containerPublicaciones);
+  // InicioCont.appendChild(containerPublicaciones);
   InicioCont.appendChild(containerPublicar);
   InicioCont.appendChild(containerMenu);
-
   inicioSection.appendChild(InicioCont);
 
   return inicioSection;

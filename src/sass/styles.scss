@@ -63,7 +63,7 @@ hr {
   &__logo {
     height: 45%;
     &__img {
-      margin-top:-50px;
+      margin-top: -50px;
       width: 250px;
       height: 250px;
     }
@@ -123,13 +123,13 @@ hr {
     }
   }
 }
-  .loginImagenContainer{
+.loginImagenContainer {
   &__idImagen {
     display: flex;
     width: 100%;
     height: 50%;
 
-    &__log{
+    &__log {
       position: relative;
       left: -43%;
       width: 80%;
@@ -139,78 +139,26 @@ hr {
       top: -60%;
       left: 35%;
       width: 80%;
-
     }
-}
+  }
 }
 
-
-.sectionLog{
+.sectionLog {
   display: flex;
   background: variables.$sl-principal;
   flex-direction: column;
   align-items: flex-end;
 }
-
-@media only screen and (min-width: 992px) {
-  .sectionLog {
-    flex-direction: row-reverse;
-  }
-  .loginContainer {
-    width: 80vw;
-    height: 100vh;
-
-    &__inputs {
-      width: 54%;
-    height: 147px;
-    }
-    &__logo {
-      height: 45%;
-      &__img {
-        margin-top: -60px;
-        width: 100%;
-        height: 120%;
-      }
-      &__label {
-        bottom: 130px;
-        margin-left: 80px;
-      }
-    }
-    &__botones {
-      width: 52%;
-    }
-    }
-
-    .loginImagenContainer{
-      &__idImagen {
-        position: relative;
-        left: 20%;
-      &__log{
-        width: 96%;
-        left: -3%;
-         }
-         &__boun {
-          position: absolute;
-          top: -14%;
-          left: -19%;
-          width: 66%;
-          height: 114%;
-         }
-        
-    }
-  }
-
-}
-
-
 // empieza pagina inicio
 .mainContainer {
   background-color: variables.$sl-morado-claro;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   &__header {
     display: flex;
     width: 100vw;
@@ -364,18 +312,53 @@ hr {
     border-right: solid;
     border-left: solid;
     border-color: white;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
     &__text {
       width: 80%;
       height: 38%;
-      color: white;
+      color: variables.$sl-negro;
       background: white;
       border-radius: 20px;
+      font-family: variables.$tp-poppins;
+      margin: 15px;
+      &__imgUser {
+        color: variables.$sl-verde-amarillo;
+        z-index: 1;
+        margin-top: -21px;
+      }
+      &__userLikes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        z-index: 2;
+        &__likes {
+          color: variables.$sl-rojo;
+        }
+        &__user {
+          font-weight: 600;
+        }
+      }
+      &__content {
+        margin: 20px 10px 0 10px;
+        font-size: 14px;
+      }
+      &__date {
+        margin-left: 15px;
+        font-size: 10px;
+      }
     }
   }
   .navAction {
     opacity: 0;
     visibility: hidden;
   }
+}
   // estilos modal
   #idModal {
     display: flex;
@@ -383,7 +366,7 @@ hr {
     width: 95%;
     margin: 10px;
     position: absolute;
-    top: 10;
+    bottom: 30%;
     left: 0;
     background-color: variables.$sl-blanco;
     border-radius: 15px;
@@ -404,35 +387,266 @@ hr {
     height: 80%;
     width: 90%;
     justify-content: space-around;
-    &__title{
+    &__title {
       width: 90%;
       height: 12%;
     }
-    &__text{
+    &__text {
       width: 90%;
       height: 30%;
     }
   }
-  .closeModal{
+  .closeModal {
     opacity: 0;
     visibility: hidden;
   }
-}
 
 @media only screen and (min-width: 992px) {
+//  seccion login
+  .sectionLog {
+    flex-direction: row-reverse;
+  }
+  .loginContainer {
+    width: 80vw;
+    height: 100vh;
+
+    &__inputs {
+      width: 54%;
+      height: 147px;
+    }
+    &__logo {
+      height: 45%;
+      &__img {
+        margin-top: -60px;
+        width: 100%;
+        height: 120%;
+      }
+      &__label {
+        bottom: 130px;
+        margin-left: 80px;
+      }
+    }
+    &__botones {
+      width: 52%;
+    }
+  }
+
+  .loginImagenContainer {
+    &__idImagen {
+      position: relative;
+      left: 20%;
+      &__log {
+        width: 96%;
+        left: -3%;
+      }
+      &__boun {
+        position: absolute;
+        top: -14%;
+        left: -19%;
+        width: 66%;
+        height: 114%;
+      }
+    }
+  }
+
+  // sección register
+  .sectionReg {
+    flex-direction: row-reverse;
+  }
+  .registerContainer {
+    width: 80vw;
+    height: 100vh;
+    &__inputs {
+      width: 54%;
+      height: 147px;
+    }
+    &__logo {
+      height: 45%;
+      &__img {
+        margin-top: -60px;
+        width: 100%;
+        height: 120%;
+      }
+      &__label {
+        bottom: 130px;
+        margin-left: 80px;
+      }
+    }
+    &__botones {
+      width: 52%;
+    }
+  }
+
+  .registerImagenContainer {
+    &__idImagen {
+      &__reg {
+        width: 100%;
+        left: 3%;
+      }
+      &__boun {
+        position: absolute;
+        top: 7%;
+        left: 0%;
+        width: 40%;
+        height: 93%;
+      }
+    }
+  }
+  .registerContainer {
+    display: flex;
+    width: 100vw;
+    height: 80vh;
+    flex-direction: column;
+    align-items: center;
+
+    color: variables.$sl-blanco;
+    &__inputs {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      height: 20%;
+      font-family: variables.$tp-roboto;
+      color: variables.$sl-blanco;
+
+      &__text {
+        margin: 10px;
+        font-family: variables.$tp-roboto;
+        font-size: 15px;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+        border-bottom: 2px solid variables.$sl-gris;
+        &::placeholder {
+          color: variables.$sl-blanco;
+        }
+        // &:active {
+        //     border-style: outset
+        // }
+        &:focus {
+          outline: none;
+        }
+      }
+      &__rec {
+        color: variables.$sl-blanco;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      &__error {
+        width: 512px;
+        padding: 5px;
+        //margin: 8px;
+        max-width: 100%;
+        //margin-top: 0;
+        margin-bottom: 5px;
+        font-family: "Poppins", sans-serif;
+      }
+    }
+    &__logo {
+      height: 45%;
+      &__img {
+        margin-top: 0px;
+        width: 250px;
+        height: 250px;
+      }
+      &__label {
+        position: relative;
+        bottom: 80px;
+        font-size: 20px;
+        color: variables.$sl-blanco;
+        font-family: variables.$tp-roboto;
+        font-weight: 400;
+      }
+    }
+    &__botones {
+      font-family: variables.$tp-roboto;
+      display: flex;
+      width: 80%;
+      height: 200px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      &__ing {
+        font-family: variables.$tp-roboto;
+        font-weight: 700;
+        font-size: 15px;
+        background: variables.$sl-amarillo;
+        width: 95%;
+        height: 40px;
+        border-radius: 13px;
+        border: 0;
+      }
+      &__goo {
+        font-family: variables.$tp-roboto;
+        font-weight: 700;
+        font-size: 15px;
+        background: variables.$sl-blanco;
+        width: 95%;
+        height: 40px;
+        border-radius: 13px;
+        border: 0;
+        img {
+          padding-left: 5px;
+          padding-top: 5px;
+          width: 15px;
+          height: 15px;
+        }
+      }
+      label,
+      a {
+        font-weight: 100px;
+        font-size: 10px;
+      }
+      a {
+        color: variables.$sl-amarillo;
+      }
+    }
+  }
+  .registerImagenContainer {
+    &__idImagen {
+      display: flex;
+      width: 100%;
+      height: 50%;
+
+      &__reg {
+        position: relative;
+        /* top: 13%; */
+        left: -48%;
+        width: 80%;
+      }
+      &__boun {
+        top: -60%;
+        left: 35%;
+        width: 60%;
+      }
+    }
+  }
+
+  .alert-content {
+    background-color: rgba(#ff3838, 0.05);
+    margin: 0;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    color: #ff3838;
+    border: 1px solid lighten(#ff3838, 25%);
+    border-radius: 8px;
+    background-color: rgba(#ff3838, 0.05);
+  }
+
+  .sectionReg {
+    display: flex;
+    background: variables.$sl-principal;
+    flex-direction: column;
+    align-items: flex-end;
+  }
   #idInicio {
     // display: flex;
     // justify-content: center;
     background-color: variables.$sl-morado-claro;
   }
   .mainContainer {
-    background-color: #ccb5f8;
-    height: 100vh;
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+
     &__header {
       height: 0%;
       // display: flex;
@@ -531,196 +745,6 @@ hr {
   }
 }
 
-.registerContainer {
-  display: flex;
-  width: 100vw;
-  height: 80vh;
-  flex-direction: column;
-  align-items: center;
 
-  color: variables.$sl-blanco;
-  &__inputs {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 20%;
-    font-family: variables.$tp-roboto;
-    color: variables.$sl-blanco;
 
-    &__text {
-      margin: 10px;
-      font-family: variables.$tp-roboto;
-      font-size: 15px;
-      border: none;
-      background-color: transparent;
-      border-radius: 0;
-      border-bottom: 2px solid variables.$sl-gris;
-      &::placeholder {
-        color: variables.$sl-blanco;
-      }
-      // &:active {
-      //     border-style: outset
-      // }
-      &:focus {
-        outline: none;
-      }
-    }
-    &__rec {
-      color: variables.$sl-blanco;
-      font-size: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    &__error{
-      width: 512px;
-      padding: 5px;
-      //margin: 8px;
-      max-width: 100%;
-      //margin-top: 0;
-      margin-bottom: 5px;
-      font-family: 'Poppins', sans-serif;
-    }
-  }
-  &__logo {
-    height: 45%;
-    &__img {
-      margin-top: 0px;
-      width: 250px;
-      height: 250px;
-    }
-    &__label {
-      position: relative;
-      bottom: 80px;
-      font-size: 20px;
-      color: variables.$sl-blanco;
-      font-family: variables.$tp-roboto;
-      font-weight: 400;
-    }
-  }
-  &__botones {
-    font-family: variables.$tp-roboto;
-    display: flex;
-    width: 80%;
-    height: 200px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    &__ing {
-      font-family: variables.$tp-roboto;
-      font-weight: 700;
-      font-size: 15px;
-      background: variables.$sl-amarillo;
-      width: 95%;
-      height: 40px;
-      border-radius: 13px;
-      border: 0;
-    }
-    &__goo {
-      font-family: variables.$tp-roboto;
-      font-weight: 700;
-      font-size: 15px;
-      background: variables.$sl-blanco;
-      width: 95%;
-      height: 40px;
-      border-radius: 13px;
-      border: 0;
-      img {
-        padding-left: 5px;
-        padding-top: 5px;
-        width: 15px;
-        height: 15px;
-      }
-    }
-    label,
-    a {
-      font-weight: 100px;
-      font-size: 10px;
-    }
-    a {
-      color: variables.$sl-amarillo;
-    }
-  }
-}
-.registerImagenContainer {
-  &__idImagen {
-    display: flex;
-    width: 100%;
-    height: 50%;
 
-    &__reg {
-      position: relative;
-      /* top: 13%; */
-      left: -48%;
-      width: 80%;
-    }
-    &__boun {
-      top: -60%;
-      left: 35%;
-      width: 60%;
-    }
-  }
-}
-
-.alert-content {
-  background-color: rgba(#ff3838, 0.05);
-  margin: 0;
-  font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-  color: #ff3838;
-  border: 1px solid lighten(#ff3838, 25%);
-  border-radius: 8px;
-  background-color: rgba(#ff3838, 0.05);
-}
-
-.sectionReg{
-  display: flex;
-  background: variables.$sl-principal;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-@media only screen and (min-width: 992px) {
-  .sectionReg {
-    flex-direction: row-reverse;
-  }
-  .registerContainer {
-    width: 80vw;
-    height: 100vh;
-    &__inputs {
-      width: 54%;
-      height: 147px;
-    }
-    &__logo {
-      height: 45%;
-      &__img {
-        margin-top: -60px;
-        width: 100%;
-        height: 120%;
-      }
-      &__label {
-        bottom: 130px;
-        margin-left: 80px;
-      }
-    }
-    &__botones {
-      width: 52%;
-    }
-  }
-
-  .registerImagenContainer {
-    &__idImagen {
-      &__reg {
-        width: 100%;
-        left: 3%;
-      }
-      &__boun {
-        position: absolute;
-        top: 7%;
-        left: 0%;
-        width: 40%;
-        height: 93%;
-      }
-    }
-  }
-}
