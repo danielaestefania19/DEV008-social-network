@@ -121,18 +121,21 @@ export const inicio = (onNavigate) => {
   containerPublicar.appendChild(btpub);
   btpub.appendChild(imgPlus);
 
+  // <label for= "title">Título de tu publicación</label>
+  // <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
+
   btpub.addEventListener('click', () => {
     const publishModal = document.createElement('div');
     publishModal.setAttribute('id', 'idModal');
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
-    <label for= "title">Título de tu publicación</label>
-    <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
-    <label for= "postcontent">Publicación</label>
+    <label for= "postcontent" class= "content__title">Cuéntanos</label>
     <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
-    <button class= "content__publishbtn">Publicar</button>
-    <button class= 'content__closeBtn'>Cerrar</button>`;
+    <div class= "btnContainer">
+    <button class= "unstyle is-publish content__publishbtn">Publicar</button>
+    <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>
+    </div>`;
 
     publishModal.appendChild(content);
     InicioCont.appendChild(publishModal);
@@ -160,42 +163,42 @@ export const inicio = (onNavigate) => {
     containerPublicaciones.innerHTML = '';
     console.log(myresponse.docs);
     myresponse.docs.forEach((doc) => {
-    const textp = document.createElement('div');
-    textp.classList.add('mainContainer__publicaciones__text');
-    const parrafUserLikes = document.createElement('div');
-    parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
-    const circleUser = document.createElement('div');
-    circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
-    circleUser.classList.add(`${'fa-solid'}`);
-    circleUser.classList.add(`${'fa-circle'}`);
-    circleUser.classList.add(`${'fa-lg'}`);
+      const textp = document.createElement('div');
+      textp.classList.add('mainContainer__publicaciones__text');
+      const parrafUserLikes = document.createElement('div');
+      parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+      const circleUser = document.createElement('div');
+      circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
+      circleUser.classList.add(`${'fa-solid'}`);
+      circleUser.classList.add(`${'fa-circle'}`);
+      circleUser.classList.add(`${'fa-lg'}`);
 
-    const parrafWord = document.createElement('p');
-    parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    // parrafWord.innerHTML = doc.data().user.substr(0, 1);
-    const parraforUser = document.createElement('p');
-    parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-    parraforUser.innerHTML = doc.data().user;
-    const parrafLikes = document.createElement('p');
-    parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-    parrafLikes.innerHTML = doc.data().likes;
-    parrafLikes.classList.add(`${'fa-regular'}`);
-    parrafLikes.classList.add(`${'fa-heart'}`);
-    const parraforCont = document.createElement('p');
-    parraforCont.classList.add('mainContainer__publicaciones__text__content');
-    parraforCont.innerHTML = doc.data().postcontent;
-    const parraforDate = document.createElement('p');
-    parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+      const parrafWord = document.createElement('p');
+      parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
+      // parrafWord.innerHTML = doc.data().user.substr(0, 1);
+      const parraforUser = document.createElement('p');
+      parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
+      parraforUser.innerHTML = doc.data().user;
+      const parrafLikes = document.createElement('p');
+      parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+      parrafLikes.innerHTML = doc.data().likes;
+      parrafLikes.classList.add(`${'fa-regular'}`);
+      parrafLikes.classList.add(`${'fa-heart'}`);
+      const parraforCont = document.createElement('p');
+      parraforCont.classList.add('mainContainer__publicaciones__text__content');
+      parraforCont.innerHTML = doc.data().postcontent;
+      const parraforDate = document.createElement('p');
+      parraforDate.classList.add('mainContainer__publicaciones__text__date');
+      // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
-    containerPublicaciones.appendChild(textp);
-    textp.appendChild(parraforCont);
-    textp.appendChild(parrafUserLikes);
-    textp.appendChild(circleUser);
-    parrafUserLikes.appendChild(parrafWord);
-    parrafUserLikes.appendChild(parraforUser);
-    parrafUserLikes.appendChild(parrafLikes);
-    textp.appendChild(parraforDate);
+      containerPublicaciones.appendChild(textp);
+      textp.appendChild(parraforCont);
+      textp.appendChild(parrafUserLikes);
+      textp.appendChild(circleUser);
+      parrafUserLikes.appendChild(parrafWord);
+      parrafUserLikes.appendChild(parraforUser);
+      parrafUserLikes.appendChild(parrafLikes);
+      textp.appendChild(parraforDate);
     });
   };
   unsub(pintarCosas);

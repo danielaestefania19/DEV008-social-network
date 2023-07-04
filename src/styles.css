@@ -13,6 +13,10 @@ body {
   padding: 0px;
 }
 
+.unstyle {
+  all: unset;
+}
+
 hr {
   margin: 0;
   height: 2px;
@@ -357,8 +361,11 @@ hr {
   bottom: 30%;
   left: 0;
   background-color: rgb(255, 255, 255);
+  color: #A2A3A8;
+  font-family: "Poppins", monospace;
+  font-weight: 400;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5);
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
@@ -373,17 +380,63 @@ hr {
   justify-content: space-around;
 }
 .content__title {
+  font-weight: 500;
   width: 90%;
   height: 12%;
+  padding-left: 60%;
 }
 .content__text {
+  border-style: solid;
+  border-color: #7851D9;
+  border-radius: 20px;
   width: 90%;
-  height: 30%;
+  height: 50%;
+}
+.content__publishbtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: rgb(255, 255, 255);
+  background: #F6BD01;
+  height: 35px;
+  width: 70px;
+  border: solid 2px #f6bd01;
+  border-radius: 5px;
+}
+.content__closeBtn {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #A2A3A8;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
 }
 
 .closeModal {
   opacity: 0;
   visibility: hidden;
+}
+
+.is-ghost:hover {
+  background-color: #dfdad7;
+}
+
+.is-publish:hover {
+  background-color: #F6BD01;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 @media only screen and (min-width: 992px) {
@@ -604,6 +657,9 @@ hr {
   #idInicio {
     background-color: #CCB5F8;
   }
+  .mainContainer {
+    justify-content: center;
+  }
   .mainContainer__header {
     height: 0%;
   }
@@ -663,7 +719,7 @@ hr {
     margin-left: 10%;
     margin-right: 10%;
     height: 50%;
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: center;
     border-right: solid;
@@ -713,13 +769,19 @@ hr {
   }
   .mainContainer__menu {
     justify-content: space-around;
-    background-color: rgb(255, 255, 255);
-    border-radius: 38px;
-    width: 70%;
-    height: 52px;
+    border-radius: 0 38px 38px 0;
+    width: 5%;
+    height: 100vh;
     align-items: center;
     position: absolute;
-    left: 12%;
+    flex-direction: column;
+  }
+  .mainContainer__menu__button:hover {
+    padding: 0;
+    height: 50px;
+    width: 50px;
+    border-radius: 55px;
+    background-color: #AB4BD5;
   }
   .mainContainer__publicar {
     position: absolute;
@@ -732,6 +794,73 @@ hr {
   }
   .mainContainer__publicar__button {
     width: 100%;
+  }
+  #idModal {
+    height: 30%;
+    width: 70%;
+    left: 16%;
+    bottom: 36%;
+    box-shadow: 4px 14px 45px -10px rgba(0, 0, 0, 0.75);
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    width: 90%;
+    justify-content: space-around;
+  }
+  .content__title {
+    width: 74%;
+  }
+  .content__text {
+    border-style: solid;
+    border-color: #7851D9;
+    border-radius: 20px;
+    width: 90%;
+    height: 50%;
+  }
+  .content__publishbtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    background: #F6BD01;
+    height: 35px;
+    width: 70px;
+    border: solid 2px #f6bd01;
+    border-radius: 5px;
+  }
+  .content__closeBtn {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #A2A3A8;
+    border: 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s ease;
+  }
+  .closeModal {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .is-ghost:hover {
+    background-color: #dfdad7;
+  }
+  .is-publish:hover {
+    background-color: #F6BD01;
+  }
+  .btnContainer {
+    width: 200px;
+    justify-content: space-evenly;
   }
 }
 
