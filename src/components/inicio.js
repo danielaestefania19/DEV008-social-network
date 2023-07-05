@@ -39,10 +39,11 @@ export const inicio = (onNavigate) => {
   btlogout.addEventListener('click', () => {
     salirSesion().then(() => {
       onNavigate('/');
+    // eslint-disable-next-line no-unused-vars
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
     });
   });
 
@@ -174,7 +175,7 @@ export const inicio = (onNavigate) => {
 
   const pintarCosas = (myresponse) => {
     containerPublicaciones.innerHTML = '';
-    console.log(myresponse.docs);
+    // console.log(myresponse.docs);
     myresponse.docs.forEach((doc) => {
       const textp = document.createElement('div');
       textp.classList.add('mainContainer__publicaciones__text');

@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import { registrarUsuario, inicioGoogle } from '../lib/firebase';
 
 export const register = (onNavigate) => {
@@ -73,19 +75,18 @@ export const register = (onNavigate) => {
 
   createUser.addEventListener('click', () => {
     document.getElementById('idmsjerror').style.display = 'none';
-    const email= document.getElementById('idEmail');
+    const email = document.getElementById('idEmail');
     const pass = document.getElementById('idPassword');
     // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
     registrarUsuario(email.value, pass.value).then((response) => {
-      if(response.user.email !== null) {
+      if (response.user.email !== null) {
         onNavigate('/inicio');
       }
     }).catch((error) => {
       const errorCode = error.code;
       // const errorMessage = error.message;
-      document.getElementById('idmsjerror').style.display='block';
-      document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
-      //console.log(errorCode, errorMessage);
+      document.getElementById('idmsjerror').style.display = 'block';
+      document.getElementById('idmsjerror').innerHTML = 'Favor de ingresar correo electrónico y contraseña.';
     });
   });
 

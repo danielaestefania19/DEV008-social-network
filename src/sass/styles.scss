@@ -1,3 +1,4 @@
+/*eslint-disable */
 @use "variables";
 
 * {
@@ -218,7 +219,7 @@ hr {
       justify-content: center;
       &__logo {
         position: absolute;
-        width: 35%;
+        width: 50%;
       }
       &__text {
         font-family: variables.$tp-roboto;
@@ -413,7 +414,7 @@ hr {
     border: 0;
     font-family: variables.$tp-roboto;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 20px;
     color: variables.$sl-blanco;
     background: variables.$sl-amarillo;
     height: 35px;
@@ -497,6 +498,7 @@ hr {
       }
     }
   }
+  // fin seccion login
 
   // sección register
   .sectionReg {
@@ -689,6 +691,9 @@ hr {
     flex-direction: column;
     align-items: flex-end;
   }
+  // fin sesion register
+
+  // seccion inicio
   #idInicio {
     // display: flex;
     // justify-content: center;
@@ -873,7 +878,7 @@ hr {
     border: 0;
     font-family: variables.$tp-roboto;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     color: variables.$sl-blanco;
     background: variables.$sl-amarillo;
     height: 35px;
@@ -885,7 +890,7 @@ hr {
   &__closeBtn {
     font-family: variables.$tp-roboto;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     padding: 12px 20px;
     border-radius: 8px;
     background-color: transparent;
@@ -911,3 +916,4 @@ width: 200px;
 justify-content: space-evenly;
 }
 }
+// fin seccion inicio
