@@ -1,4 +1,4 @@
-import { salirSesion } from '../lib/firebase';
+import { salirSesion, pushDoc, getpost, dataUserCurrent } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -39,10 +39,11 @@ export const inicio = (onNavigate) => {
   btlogout.addEventListener('click', () => {
     salirSesion().then(() => {
       onNavigate('/');
+    // eslint-disable-next-line no-unused-vars
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
     });
   });
 
@@ -51,7 +52,6 @@ export const inicio = (onNavigate) => {
   containerLogout.appendChild(closeMenu);
   header.appendChild(containerLogout);
   header.appendChild(menuBtn);
-  // btlogout.appendChild(imgLogout);
 
   const containerBienvenida = document.createElement('div');
   containerBienvenida.classList.add('mainContainer__bienvenida');
@@ -67,7 +67,12 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
-  parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
+  // if (user !== null) {
+  //   parrName.innerHTML =user.displayName;
+ 
+  // }
+  console.log(dataUserCurrent)
+  //parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
   const parrfFeed = document.createElement('p');
   parrfFeed.classList.add('mainContainer__bienvenida__nombre__feed');
   parrfFeed.innerHTML = ('lo nuevo en tu feed');
@@ -92,8 +97,6 @@ export const inicio = (onNavigate) => {
   containerMenu.classList.add('mainContainer__menu');
   const inicioBtn = document.createElement('i');
   inicioBtn.classList.add('mainContainer__menu__button');
-  // const imgbt1m = document.createElement('img');
-  // imgbt1m.setAttribute('src', 'img/iconHome.png');
   inicioBtn.classList.add(`${'fa-solid'}`);
   inicioBtn.classList.add(`${'fa-house'}`);
   inicioBtn.classList.add(`${'fa-xl'}`);
@@ -102,38 +105,127 @@ export const inicio = (onNavigate) => {
   negociosBtn.classList.add(`${'fa-solid'}`);
   negociosBtn.classList.add(`${'fa-store'}`);
   negociosBtn.classList.add(`${'fa-xl'}`);
-  // const imgbt2m = document.createElement('img');
-  // imgbt2m.setAttribute('src','img/iconBusiness.png');
 
   const perfilBtn = document.createElement('i');
   perfilBtn.classList.add('mainContainer__menu__button');
   perfilBtn.classList.add(`${'fa-solid'}`);
   perfilBtn.classList.add(`${'fa-user'}`);
   perfilBtn.classList.add(`${'fa-xl'}`);
-  
+
   containerMenu.appendChild(inicioBtn);
   containerMenu.appendChild(negociosBtn);
   containerMenu.appendChild(perfilBtn);
-
 
   const containerPublicar = document.createElement('div');
   containerPublicar.classList.add('mainContainer__publicar');
   const btpub = document.createElement('button');
   btpub.classList.add('mainContainer__publicar__button');
   const imgPlus = document.createElement('i');
-  // imgPlus.setAttribute('src', 'img/iconPost.png');
   imgPlus.classList.add(`${'fa-solid'}`);
   imgPlus.classList.add(`${'fa-plus'}`);
+  const btlogout2 = document.createElement('ul');
+  btlogout2.classList.add('mainContainer__publicar__logout');
+  btlogout2.innerHTML = 'Cerrar sesión';
 
   containerPublicar.appendChild(btpub);
+  containerPublicar.appendChild(btlogout2);
   btpub.appendChild(imgPlus);
+
+  btlogout2.addEventListener('click', () => {
+    salirSesion().then(() => {
+      onNavigate('/');
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+  });
+
+  btpub.addEventListener('click', () => {
+    const publishModal = document.createElement('div');
+    publishModal.setAttribute('id', 'idModal');
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.innerHTML = `
+    <label for= "postcontent" class= "content__title">Cuéntanos</label>
+    <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
+    <div class= "btnContainer">
+    <button class= "unstyle is-publish content__publishbtn">Publicar</button>
+    <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>
+    </div>`;
+
+    publishModal.appendChild(content);
+    InicioCont.appendChild(publishModal);
+
+    const btnCloseModal = document.querySelector('.content__closeBtn');
+    const publishBtn = document.querySelector('.content__publishbtn');
+
+    btnCloseModal.addEventListener('click', () => {
+      // publishModal.classList.add('closeModal');
+      publishModal.remove();
+    });
+
+    // Obtener datos para post en modal
+    publishBtn.addEventListener('click', (e) => {
+      // const postTitle = document.querySelector('.content__title').value;
+      const postContent = document.querySelector('.content__text').value;
+      e.preventDefault();
+      if (postContent.length !== 0) {
+        pushDoc(postContent);
+        publishModal.remove();
+      } if (postContent.length === 0) {
+        const postError = document.createElement('label');
+        postError.setAttribute('id', 'idmsjerror');
+        postError.classList.add('registerContainer__inputs__error');
+        postError.classList.add('alert-content');
+        postError.style.display = 'block';
+        postError.innerHTML = 'El campo no puede estar vacio';
+
+        publishModal.append(postError);
+      }
+    });
+  });
 
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
-  const textp = document.createElement('div');
-  textp.classList.add('mainContainer__publicaciones__text');
 
-  containerPublicaciones.appendChild(textp);
+  const publicaciones = (myresponse) => {
+    containerPublicaciones.innerHTML = '';
+    myresponse.docs.forEach((doc) => {
+    const textp = document.createElement('div');
+    textp.classList.add('mainContainer__publicaciones__text');
+    const parrafUserLikes = document.createElement('div');
+    parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+
+    const parrafWord = document.createElement('p');
+    parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
+    parrafWord.innerHTML = doc.data().user.substr(0, 1);
+    const parraforUser = document.createElement('p');
+    parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
+    parraforUser.innerHTML = doc.data().user;
+    const parrafLikes = document.createElement('p');
+    parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+    parrafLikes.innerHTML = doc.data().likes;
+    parrafLikes.classList.add(`${'fa-regular'}`);
+    parrafLikes.classList.add(`${'fa-heart'}`);
+    const parraforCont = document.createElement('p');
+    parraforCont.classList.add('mainContainer__publicaciones__text__content');
+    parraforCont.innerHTML = doc.data().postcontent;
+    const parraforDate = document.createElement('p');
+    parraforDate.classList.add('mainContainer__publicaciones__text__date');
+    parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+
+    containerPublicaciones.appendChild(textp);
+    textp.appendChild(parraforCont);
+    textp.appendChild(parrafUserLikes);
+    parrafUserLikes.appendChild(parrafWord);
+    parrafUserLikes.appendChild(parraforUser);
+    parrafUserLikes.appendChild(parrafLikes);
+    textp.appendChild(parraforDate);
+    });
+  };
+  getpost(publicaciones);
+
 
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);
@@ -143,8 +235,8 @@ export const inicio = (onNavigate) => {
   InicioCont.appendChild(containerPublicaciones);
   InicioCont.appendChild(containerPublicar);
   InicioCont.appendChild(containerMenu);
-
   inicioSection.appendChild(InicioCont);
+  
 
   return inicioSection;
 };

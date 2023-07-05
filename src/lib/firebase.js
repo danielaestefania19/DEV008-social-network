@@ -1,13 +1,27 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable arrow-body-style */
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth,
-   createUserWithEmailAndPassword,
-   signInWithEmailAndPassword,
-   onAuthStateChanged,
-   GoogleAuthProvider,
-   signInWithPopup,
-   signOut,
-   updateProfile  } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from 'firebase/auth';
+
+import {
+  collection,
+  addDoc,
+  getFirestore,
+  doc,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,11 +36,13 @@ const firebaseConfig = {
   appId: '1:196468811247:web:191b6369b8cbe2f786421a',
 };
 
-// Initialize Firebase
+// Initialize Firebase y firestore
 export const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 /*
 |--------------------------------------------------------------------------
-| Inicia sesion 
+| Inicia sesion
 |--------------------------------------------------------------------------
 */
 export const iniciaSesionUsuario = (email, password) => {
@@ -45,10 +61,10 @@ export const registrarUsuario = (email, password) => {
 | Inicia sesion con la usuaria de Google
 |--------------------------------------------------------------------------
 */
-export const auth = getAuth(app);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const inicioGoogle = () => { 
+export const inicioGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 /*
@@ -56,7 +72,7 @@ export const inicioGoogle = () => {
 | Cierra sesion de la usuaria
 |--------------------------------------------------------------------------
 */
-export const salirSesion =() =>{
+export const salirSesion = () => {
   return signOut(auth);
 };
 /*
@@ -64,8 +80,41 @@ export const salirSesion =() =>{
 | Actualiza nombre de la usuaria
 |--------------------------------------------------------------------------
 */
-export const actualizaPerfil =(nombre) =>{
+export const actualizaPerfil = (nombre) => {
   return updateProfile(auth.currentUser, {
-    displayName: nombre
+    displayName: nombre,
   });
 };
+/*
+|--------------------------------------------------------------------------
+| obtener post en DB firestore
+|--------------------------------------------------------------------------
+// */
+const colRef = (collection(db, 'post'));
+
+export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
+
+/*
+|--------------------------------------------------------------------------
+| agregar post en DB firestore
+|--------------------------------------------------------------------------
+*/
+export const pushDoc = (post) => {
+  return addDoc(colRef, { postcontent: post });
+};
+
+
+/*
+|--------------------------------------------------------------------------
+| obtener datos del usuario
+|--------------------------------------------------------------------------
+*/
+
+export const dataUserCurrent = () => {
+  const auth = getAuth();
+  return user = auth.currentUser;
+  
+};
+
+
+
