@@ -85,7 +85,6 @@ export const register = (onNavigate) => {
       // const errorMessage = error.message;
       document.getElementById('idmsjerror').style.display='block';
       document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
-      //console.log(errorCode, errorMessage);
     });
   });
 

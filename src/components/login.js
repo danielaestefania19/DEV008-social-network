@@ -34,17 +34,23 @@ export const logIn = (onNavigate) => {
   pass.setAttribute('placeholder', 'Contraseña');
   pass.setAttribute('id', 'idUserPass');
   pass.classList.add('loginContainer__inputs__text');
-  const remember = document.createElement('p');
-  remember.classList.add('loginContainer__inputs__rec');
-  remember.textContent = 'Recuérdame';
-  const rememInput = document.createElement('input');
-  rememInput.setAttribute('type', 'radio');
-  rememInput.setAttribute('value', 'idrecuerdame');
-  remember.appendChild(rememInput);
+  const msj = document.createElement('label');
+  msj.setAttribute('id', 'idmsjerror');
+  msj.classList.add('registerContainer__inputs__error');
+  msj.classList.add('alert-content');
+  msj.style.display = 'none';
+  // const remember = document.createElement('p');
+  // remember.classList.add('loginContainer__inputs__rec');
+  // remember.textContent = 'Recuérdame';
+  // const rememInput = document.createElement('input');
+  // rememInput.setAttribute('type', 'radio');
+  // rememInput.setAttribute('value', 'idrecuerdame');
+  // remember.appendChild(rememInput);
 
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
-  containerInput.appendChild(remember);
+  //containerInput.appendChild(remember);
+  containerInput.appendChild(msj);
 
   const containerBtns = document.createElement('div');
   containerBtns.classList.add('loginContainer__botones');
@@ -69,22 +75,19 @@ export const logIn = (onNavigate) => {
   creaC.addEventListener('click', () => onNavigate('/register'));
 
   iniciaBtn.addEventListener('click', () => {
+    document.getElementById('idmsjerror').style.display='none';
     const email = document.getElementById('idUserEmail').value;
     const pass = document.getElementById('idUserPass').value;
     iniciaSesionUsuario(email, pass)
       .then((response) => {
-        // console.log('my user -->', response.user);
         if (response.user.email !== null) {
-          // guardar esos datos local.storage
-          // redirigir
-          // onNavigate("/home");
           onNavigate('/inicio');
         }
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        // console.log(errorCode, errorMessage);
+        document.getElementById('idmsjerror').style.display='block';
+        document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
       });
   });
   gooBtn.addEventListener('click', () => {

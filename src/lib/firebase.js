@@ -59,7 +59,7 @@ export const registrarUsuario = (email, password) => {
 | Inicia sesion con la usuaria de Google
 |--------------------------------------------------------------------------
 */
-export const auth = getAuth(app);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export const inicioGoogle = () => {
@@ -89,21 +89,8 @@ export const actualizaPerfil = (nombre) => {
 |--------------------------------------------------------------------------
 // */
 const colRef = (collection(db, 'post'));
-// getDocs.then((snapshot) => {
-//   let post = [];
-//   snapshot.docs.forEach((document) => {
-//     post.push({ ...document.data(), id: document.id});
-//   });
-//   console.log(post);
-// }).catch((err) => {
-//   console.log(err.message)});
 
-// export const pushPubl = async () => {
-// export const querySnapshot = await getDocs(collection(db, 'post'));
-// console.log(querySnapshot);
-
-// export const onPost = (callback) => onSnapshot(colRef, callback);
-export const unsub = (pintarCosas) => onSnapshot(colRef, pintarCosas);
+export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
 
 /*
 |--------------------------------------------------------------------------
@@ -113,3 +100,19 @@ export const unsub = (pintarCosas) => onSnapshot(colRef, pintarCosas);
 export const pushDoc = (title, post) => {
   return addDoc(colRef, { title: title, postcontent: post });
 };
+
+
+/*
+|--------------------------------------------------------------------------
+| obtener datos del usuario
+|--------------------------------------------------------------------------
+*/
+
+export const dataUserCurrent = () => {
+  const auth = getAuth();
+  return user = auth.currentUser;
+  
+};
+
+
+

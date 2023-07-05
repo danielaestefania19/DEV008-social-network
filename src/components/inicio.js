@@ -1,4 +1,4 @@
-import { salirSesion, pushDoc, unsub } from '../lib/firebase';
+import { salirSesion, pushDoc, getpost, dataUserCurrent } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -66,7 +66,12 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
-  parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
+  // if (user !== null) {
+  //   parrName.innerHTML =user.displayName;
+ 
+  // }
+  console.log(dataUserCurrent)
+  //parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
   const parrfFeed = document.createElement('p');
   parrfFeed.classList.add('mainContainer__bienvenida__nombre__feed');
   parrfFeed.innerHTML = ('lo nuevo en tu feed');
@@ -117,9 +122,23 @@ export const inicio = (onNavigate) => {
   const imgPlus = document.createElement('i');
   imgPlus.classList.add(`${'fa-solid'}`);
   imgPlus.classList.add(`${'fa-plus'}`);
+  const btlogout2 = document.createElement('ul');
+  btlogout2.classList.add('mainContainer__publicar__logout');
+  btlogout2.innerHTML = 'Cerrar sesión';
 
   containerPublicar.appendChild(btpub);
+  containerPublicar.appendChild(btlogout2);
   btpub.appendChild(imgPlus);
+
+  btlogout2.addEventListener('click', () => {
+    salirSesion().then(() => {
+      onNavigate('/');
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+  });
 
   btpub.addEventListener('click', () => {
     const publishModal = document.createElement('div');
@@ -156,23 +175,17 @@ export const inicio = (onNavigate) => {
   const containerPublicaciones = document.createElement('div');
   containerPublicaciones.classList.add('mainContainer__publicaciones');
 
-  const pintarCosas = (myresponse) => {
+  const publicaciones = (myresponse) => {
     containerPublicaciones.innerHTML = '';
-    console.log(myresponse.docs);
     myresponse.docs.forEach((doc) => {
     const textp = document.createElement('div');
     textp.classList.add('mainContainer__publicaciones__text');
     const parrafUserLikes = document.createElement('div');
     parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
-    const circleUser = document.createElement('div');
-    circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
-    circleUser.classList.add(`${'fa-solid'}`);
-    circleUser.classList.add(`${'fa-circle'}`);
-    circleUser.classList.add(`${'fa-lg'}`);
 
     const parrafWord = document.createElement('p');
     parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    // parrafWord.innerHTML = doc.data().user.substr(0, 1);
+    parrafWord.innerHTML = doc.data().user.substr(0, 1);
     const parraforUser = document.createElement('p');
     parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
     parraforUser.innerHTML = doc.data().user;
@@ -186,58 +199,19 @@ export const inicio = (onNavigate) => {
     parraforCont.innerHTML = doc.data().postcontent;
     const parraforDate = document.createElement('p');
     parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+    parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
     containerPublicaciones.appendChild(textp);
     textp.appendChild(parraforCont);
     textp.appendChild(parrafUserLikes);
-    textp.appendChild(circleUser);
     parrafUserLikes.appendChild(parrafWord);
     parrafUserLikes.appendChild(parraforUser);
     parrafUserLikes.appendChild(parrafLikes);
     textp.appendChild(parraforDate);
     });
   };
-  unsub(pintarCosas);
+  getpost(publicaciones);
 
-  // QuerySnapshot.forEach((doc) => {
-  //   const textp = document.createElement('div');
-  //   textp.classList.add('mainContainer__publicaciones__text');
-  //   const parrafUserLikes = document.createElement('div');
-  //   parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
-  //   const circleUser = document.createElement('div');
-  //   circleUser.classList.add('mainContainer__publicaciones__text__imgUser');
-  //   circleUser.classList.add(`${'fa-solid'}`);
-  //   circleUser.classList.add(`${'fa-circle'}`);
-  //   circleUser.classList.add(`${'fa-lg'}`);
-
-  //   const parrafWord = document.createElement('p');
-  //   parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-  //   parrafWord.innerHTML = doc.data().user.substr(0, 1);
-  //   const parraforUser = document.createElement('p');
-  //   parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-  //   parraforUser.innerHTML = doc.data().user;
-  //   const parrafLikes = document.createElement('p');
-  //   parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-  //   parrafLikes.innerHTML = doc.data().likes;
-  //   parrafLikes.classList.add(`${'fa-regular'}`);
-  //   parrafLikes.classList.add(`${'fa-heart'}`);
-  //   const parraforCont = document.createElement('p');
-  //   parraforCont.classList.add('mainContainer__publicaciones__text__content');
-  //   parraforCont.innerHTML = doc.data().postcontent;
-  //   const parraforDate = document.createElement('p');
-  //   parraforDate.classList.add('mainContainer__publicaciones__text__date');
-  //   parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
-
-  //   containerPublicaciones.appendChild(textp);
-  //   textp.appendChild(parraforCont);
-  //   textp.appendChild(parrafUserLikes);
-  //   textp.appendChild(circleUser);
-  //   parrafUserLikes.appendChild(parrafWord);
-  //   parrafUserLikes.appendChild(parraforUser);
-  //   parrafUserLikes.appendChild(parrafLikes);
-  //   textp.appendChild(parraforDate);
-  // });
 
   // Agregar todos los div al div principal
   InicioCont.appendChild(header);

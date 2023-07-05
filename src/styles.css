@@ -183,7 +183,7 @@ hr {
 }
 .mainContainer__header__logout__selection {
   padding: 0;
-  color: #000;
+  color: #1A1A1A;
 }
 .mainContainer__header__btn {
   color: azure;
@@ -244,6 +244,7 @@ hr {
 .mainContainer__menu {
   display: flex;
   justify-content: space-between;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px 10px 0 0;
   width: 100%;
   height: 52px;
@@ -251,11 +252,11 @@ hr {
   position: fixed;
   left: 0;
   bottom: 0;
-  background-image: url("img/RectangleMenu.png");
 }
 .mainContainer__menu__button {
   border: none;
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
 }
 .mainContainer__menu__button img {
@@ -272,8 +273,8 @@ hr {
   bottom: 60px;
 }
 .mainContainer__publicar__button {
-  background: #f6bd01;
-  width: 15%;
+  background: #F6BD01;
+  width: 50px;
   height: 100%;
   border-radius: 50%;
   border: 0;
@@ -290,17 +291,19 @@ hr {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.mainContainer__publicar__logout {
+  display: none;
+}
 .mainContainer__publicaciones {
   margin-left: 10%;
   margin-right: 10%;
   height: 50%;
   width: 80%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   border-right: solid;
   border-left: solid;
-  border-color: white;
-  flex-direction: column;
+  border-color: rgb(255, 255, 255);
   align-items: center;
   overflow-y: scroll;
 }
@@ -308,7 +311,7 @@ hr {
   width: 80%;
   height: 38%;
   color: #1A1A1A;
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 20px;
   font-family: "Poppins", monospace;
   margin: 15px;
@@ -319,8 +322,6 @@ hr {
   margin-top: -21px;
 }
 .mainContainer__publicaciones__text__userLikes {
-  position: relative;
-  margin-bottom: -21px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -329,6 +330,16 @@ hr {
   margin-left: 5px;
   margin-right: 5px;
   z-index: 2;
+}
+.mainContainer__publicaciones__text__userLikes__userWord {
+  height: 5%;
+  width: 20px;
+  display: table-cell;
+  text-align: center;
+  font-size: 20px;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: #F56056;
 }
 .mainContainer__publicaciones__text__userLikes__likes {
   color: #B03449;
@@ -385,6 +396,139 @@ hr {
 .closeModal {
   opacity: 0;
   visibility: hidden;
+}
+
+.registerContainer {
+  display: flex;
+  width: 100vw;
+  height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(255, 255, 255);
+}
+.registerContainer__inputs {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 200px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(255, 255, 255);
+}
+.registerContainer__inputs__text {
+  margin: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 2px solid #A2A3A8;
+}
+.registerContainer__inputs__text::placeholder {
+  color: rgb(255, 255, 255);
+}
+.registerContainer__inputs__text:focus {
+  outline: none;
+}
+.registerContainer__inputs__rec {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.registerContainer__logo {
+  height: 45%;
+}
+.registerContainer__logo__img {
+  margin-top: -50px;
+  width: 250px;
+  height: 250px;
+}
+.registerContainer__logo__label {
+  position: relative;
+  bottom: 80px;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+.registerContainer__botones {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  width: 80%;
+  height: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.registerContainer__botones__ing {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  background: #F6BD01;
+  width: 95%;
+  height: 40px;
+  border-radius: 13px;
+  border: 0;
+}
+.registerContainer__botones__goo {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  background: rgb(255, 255, 255);
+  width: 95%;
+  height: 40px;
+  border-radius: 13px;
+  border: 0;
+}
+.registerContainer__botones__goo img {
+  padding-left: 5px;
+  padding-top: 5px;
+  width: 15px;
+  height: 15px;
+}
+.registerContainer__botones label,
+.registerContainer__botones a {
+  font-weight: 100px;
+  font-size: 10px;
+}
+.registerContainer__botones a {
+  color: #F6BD01;
+}
+
+.registerImagenContainer__idImagen {
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+.registerImagenContainer__idImagen__reg {
+  position: relative;
+  /* top: 13%; */
+  left: -70%;
+  width: 80%;
+}
+.registerImagenContainer__idImagen__boun {
+  top: -60%;
+  left: 35%;
+  width: 80%;
+}
+
+.sectionReg {
+  display: flex;
+  background: #9747FF;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.alert-content {
+  background-color: rgba(255, 56, 56, 0.05);
+  margin: 0;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: #B03449;
+  border: 1px solid #ffb8b8;
+  border-radius: 8px;
+  background-color: rgba(255, 56, 56, 0.05);
 }
 
 @media only screen and (min-width: 992px) {
@@ -466,136 +610,6 @@ hr {
     width: 40%;
     height: 93%;
   }
-  .registerContainer {
-    display: flex;
-    width: 100vw;
-    height: 80vh;
-    flex-direction: column;
-    align-items: center;
-    color: rgb(255, 255, 255);
-  }
-  .registerContainer__inputs {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 20%;
-    font-family: "Roboto", sans-serif;
-    color: rgb(255, 255, 255);
-  }
-  .registerContainer__inputs__text {
-    margin: 10px;
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    border: none;
-    background-color: transparent;
-    border-radius: 0;
-    border-bottom: 2px solid #A2A3A8;
-  }
-  .registerContainer__inputs__text::placeholder {
-    color: rgb(255, 255, 255);
-  }
-  .registerContainer__inputs__text:focus {
-    outline: none;
-  }
-  .registerContainer__inputs__rec {
-    color: rgb(255, 255, 255);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .registerContainer__inputs__error {
-    width: 512px;
-    padding: 5px;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-family: "Poppins", sans-serif;
-  }
-  .registerContainer__logo {
-    height: 45%;
-  }
-  .registerContainer__logo__img {
-    margin-top: 0px;
-    width: 250px;
-    height: 250px;
-  }
-  .registerContainer__logo__label {
-    position: relative;
-    bottom: 80px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-  }
-  .registerContainer__botones {
-    font-family: "Roboto", sans-serif;
-    display: flex;
-    width: 80%;
-    height: 200px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-  .registerContainer__botones__ing {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    background: #F6BD01;
-    width: 95%;
-    height: 40px;
-    border-radius: 13px;
-    border: 0;
-  }
-  .registerContainer__botones__goo {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    background: rgb(255, 255, 255);
-    width: 95%;
-    height: 40px;
-    border-radius: 13px;
-    border: 0;
-  }
-  .registerContainer__botones__goo img {
-    padding-left: 5px;
-    padding-top: 5px;
-    width: 15px;
-    height: 15px;
-  }
-  .registerContainer__botones label,
-  .registerContainer__botones a {
-    font-weight: 100px;
-    font-size: 10px;
-  }
-  .registerContainer__botones a {
-    color: #F6BD01;
-  }
-  .registerImagenContainer__idImagen {
-    display: flex;
-    width: 100%;
-    height: 50%;
-  }
-  .registerImagenContainer__idImagen__reg {
-    position: relative;
-    /* top: 13%; */
-    left: -48%;
-    width: 80%;
-  }
-  .registerImagenContainer__idImagen__boun {
-    top: -60%;
-    left: 35%;
-    width: 60%;
-  }
-  .alert-content {
-    background-color: rgba(255, 56, 56, 0.05);
-    margin: 0;
-    font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-    color: #ff3838;
-    border: 1px solid #ffb8b8;
-    border-radius: 8px;
-    background-color: rgba(255, 56, 56, 0.05);
-  }
   .sectionReg {
     display: flex;
     background: #9747FF;
@@ -604,6 +618,10 @@ hr {
   }
   #idInicio {
     background-color: #CCB5F8;
+  }
+  .mainContainer {
+    flex-direction: column;
+    align-items: baseline;
   }
   .mainContainer__header {
     height: 0%;
@@ -636,6 +654,9 @@ hr {
     display: none;
   }
   .mainContainer__bienvenida {
+    border-left: solid;
+    border-right: solid;
+    border-color: rgb(255, 255, 255);
     width: 80%;
     height: 15%;
   }
@@ -643,6 +664,8 @@ hr {
     width: 80%;
     height: 10%;
     margin-top: 4%;
+    align-items: center;
+    justify-content: normal;
   }
   .mainContainer__bienvenida__right__logo {
     width: 25%;
@@ -655,6 +678,7 @@ hr {
     font-size: 20px;
   }
   .mainContainer__bienvenida__fotoPerfil {
+    margin-top: -80px;
     width: 30%;
   }
   .mainContainer__bienvenida__fotoPerfil__Imagen {
@@ -666,11 +690,10 @@ hr {
     height: 50%;
     width: 80%;
     display: flex;
-    justify-content: center;
+    flex-direction: center;
     border-right: solid;
     border-left: solid;
     border-color: white;
-    flex-direction: column;
     align-items: center;
     overflow-y: scroll;
   }
@@ -716,23 +739,30 @@ hr {
     justify-content: space-around;
     background-color: rgb(255, 255, 255);
     border-radius: 38px;
-    width: 70%;
-    height: 52px;
+    width: 7%;
+    height: 50%;
     align-items: center;
     position: absolute;
-    left: 12%;
+    left: 1%;
+    flex-direction: column;
+    top: 18%;
   }
   .mainContainer__publicar {
     position: absolute;
     height: 70px;
-    width: 70px;
+    width: 95%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     bottom: 60px;
+    left: 25px;
+    justify-content: space-between;
+  }
+  .mainContainer__publicar__logout {
+    cursor: pointer;
+    display: block;
+    font-family: "Poppins", monospace;
   }
   .mainContainer__publicar__button {
-    width: 100%;
+    width: 5%;
   }
 }
 
