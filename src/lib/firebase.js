@@ -110,6 +110,6 @@ export const unsub = (pintarCosas) => onSnapshot(colRef, pintarCosas);
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-export const pushDoc = (title, post) => {
-  return addDoc(colRef, { title: title, postcontent: post });
+export const pushDoc = (post) => {
+  return addDoc(colRef, { postcontent: post });
 };

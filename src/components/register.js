@@ -71,8 +71,8 @@ export const register = (onNavigate) => {
 
   IngresaT.addEventListener('click', () => onNavigate('/'));
 
-  createUser.addEventListener('click', () => { 
-    document.getElementById('idmsjerror').style.display='none';
+  createUser.addEventListener('click', () => {
+    document.getElementById('idmsjerror').style.display = 'none';
     const email= document.getElementById('idEmail');
     const pass = document.getElementById('idPassword');
     // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
