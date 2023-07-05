@@ -39,10 +39,11 @@ export const inicio = (onNavigate) => {
   btlogout.addEventListener('click', () => {
     salirSesion().then(() => {
       onNavigate('/');
+    // eslint-disable-next-line no-unused-vars
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
     });
   });
 
@@ -146,12 +147,12 @@ export const inicio = (onNavigate) => {
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
-    <label for= "title">Título de tu publicación</label>
-    <input type= "text" placeholder= "Título de tu publicación" class= "content__title"></input>
-    <label for= "postcontent">Publicación</label>
+    <label for= "postcontent" class= "content__title">Cuéntanos</label>
     <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
-    <button class= "content__publishbtn">Publicar</button>
-    <button class= 'content__closeBtn'>Cerrar</button>`;
+    <div class= "btnContainer">
+    <button class= "unstyle is-publish content__publishbtn">Publicar</button>
+    <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>
+    </div>`;
 
     publishModal.appendChild(content);
     InicioCont.appendChild(publishModal);
@@ -160,15 +161,28 @@ export const inicio = (onNavigate) => {
     const publishBtn = document.querySelector('.content__publishbtn');
 
     btnCloseModal.addEventListener('click', () => {
-      publishModal.classList.add('closeModal');
+      // publishModal.classList.add('closeModal');
+      publishModal.remove();
     });
 
     // Obtener datos para post en modal
     publishBtn.addEventListener('click', (e) => {
-      const postTitle = document.querySelector('.content__title').value;
+      // const postTitle = document.querySelector('.content__title').value;
       const postContent = document.querySelector('.content__text').value;
       e.preventDefault();
-      pushDoc(postTitle, postContent);
+      if (postContent.length !== 0) {
+        pushDoc(postContent);
+        publishModal.remove();
+      } if (postContent.length === 0) {
+        const postError = document.createElement('label');
+        postError.setAttribute('id', 'idmsjerror');
+        postError.classList.add('registerContainer__inputs__error');
+        postError.classList.add('alert-content');
+        postError.style.display = 'block';
+        postError.innerHTML = 'El campo no puede estar vacio';
+
+        publishModal.append(postError);
+      }
     });
   });
 

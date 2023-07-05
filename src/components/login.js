@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import { iniciaSesionUsuario, inicioGoogle } from '../lib/firebase';
 
 export const logIn = (onNavigate) => {

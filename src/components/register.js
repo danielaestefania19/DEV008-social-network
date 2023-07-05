@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import { registrarUsuario, inicioGoogle } from '../lib/firebase';
 
 export const register = (onNavigate) => {
@@ -71,13 +73,13 @@ export const register = (onNavigate) => {
 
   IngresaT.addEventListener('click', () => onNavigate('/'));
 
-  createUser.addEventListener('click', () => { 
-    document.getElementById('idmsjerror').style.display='none';
-    const email= document.getElementById('idEmail');
+  createUser.addEventListener('click', () => {
+    document.getElementById('idmsjerror').style.display = 'none';
+    const email = document.getElementById('idEmail');
     const pass = document.getElementById('idPassword');
     // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
     registrarUsuario(email.value, pass.value).then((response) => {
-      if(response.user.email !== null) {
+      if (response.user.email !== null) {
         onNavigate('/inicio');
       }
     }).catch((error) => {

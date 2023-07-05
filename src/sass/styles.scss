@@ -1,3 +1,4 @@
+/*eslint-disable */
 @use "variables";
 
 * {
@@ -6,6 +7,9 @@
 body {
   margin: 0px;
   padding: 0px;
+}
+.unstyle {
+  all: unset;
 }
 
 hr {
@@ -153,12 +157,12 @@ hr {
 .mainContainer {
   background-color: variables.$sl-morado-claro;
 
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   &__header {
     display: flex;
     width: 100vw;
@@ -215,7 +219,7 @@ hr {
       justify-content: center;
       &__logo {
         position: absolute;
-        width: 35%;
+        width: 50%;
       }
       &__text {
         font-family: variables.$tp-roboto;
@@ -372,47 +376,93 @@ hr {
     visibility: hidden;
   }
 }
-  // estilos modal
-  #idModal {
-    display: flex;
-    height: 40%;
-    width: 95%;
-    margin: 10px;
-    position: absolute;
-    bottom: 30%;
-    left: 0;
-    background-color: variables.$sl-blanco;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    // z-index: 2;
-    // transition: all 0.3s;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
-    // opacity: 0;
-    // visibility: hidden;
-  }
+// estilos modal
+#idModal {
+  display: flex;
+  height: 40%;
+  width: 95%;
+  margin: 10px;
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  background-color: variables.$sl-blanco;
+  color: variables.$sl-gris;
+  font-family: variables.$tp-poppins;
+  font-weight: 400;
+  border-radius: 15px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5);
+  // z-index: 2;
+  // transition: all 0.3s;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  // opacity: 0;
+  // visibility: hidden;
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 80%;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  width: 90%;
+  justify-content: space-around;
+  &__title {
+    font-weight: 500;
     width: 90%;
+    height: 12%;
+    padding-left: 60%;
+  }
+  &__text {
+    border-style: solid;
+    border-color: variables.$sl-morado-secundario;
+    border-radius: 20px;
+    width: 90%;
+    height: 50%;
+  }
+  &__publishbtn {
+    display: flex;
+    align-items: center;
     justify-content: space-around;
-    &__title {
-      width: 90%;
-      height: 12%;
-    }
-    &__text {
-      width: 90%;
-      height: 30%;
-    }
+    border: 0;
+    font-family: variables.$tp-roboto;
+    font-weight: 700;
+    font-size: 20px;
+    color: variables.$sl-blanco;
+    background: variables.$sl-amarillo;
+    height: 35px;
+    width: 70px;
+    border: solid 2px #f6bd01;
+    border-radius: 5px;
   }
-  .closeModal {
-    opacity: 0;
-    visibility: hidden;
+  &__closeBtn {
+    font-family: variables.$tp-roboto;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: variables.$sl-gris;
+    border: 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s ease;
   }
+}
+.closeModal {
+  opacity: 0;
+  visibility: hidden;
+}
+.is-ghost:hover {
+  background-color: #dfdad7;
+}
+.is-publish:hover {
+  background-color: variables.$sl-amarillo;
+}
+.btnContainer{
+  display: flex;
+  flex-direction: row-reverse;
+}
 
   .registerContainer {
     display: flex;
@@ -556,7 +606,7 @@ hr {
   }
 
 @media only screen and (min-width: 992px) {
-//  seccion login
+  //  seccion login
   .sectionLog {
     flex-direction: row-reverse;
   }
@@ -602,6 +652,7 @@ hr {
       }
     }
   }
+  // fin seccion login
 
   // sección register
   .sectionReg {
@@ -656,6 +707,9 @@ hr {
     flex-direction: column;
     align-items: flex-end;
   }
+  // fin sesion register
+
+  // seccion inicio
   #idInicio {
     // display: flex;
     // justify-content: center;
@@ -733,11 +787,11 @@ hr {
         }
       }
     }
-    &__publicaciones{
+    &__publicaciones {
       margin-left: 10%;
       margin-right: 10%;
       height: 50%;
-      width: 80%;
+      width: 70%;
       display: flex;
       flex-direction: center;
       border-right: solid;
@@ -745,45 +799,45 @@ hr {
       border-color: white;
       align-items: center;
       overflow-y: scroll;
-      &__text{
+      &__text {
         width: 80%;
         height: 38%;
-          color: variables.$sl-negro;
+        color: variables.$sl-negro;
         background: white;
         border-radius: 20px;
         font-family: variables.$tp-poppins;
-        margin:15px;
-        &__imgUser{
+        margin: 15px;
+        &__imgUser {
           color: variables.$sl-verde-amarillo;
           z-index: 1;
           margin-top: -21px;
         }
-        &__userLikes{
+        &__userLikes {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          align-items:center;
+          align-items: center;
           margin-top: 20px;
-          margin-left:5px ;
+          margin-left: 5px;
           margin-right: 5px;
           z-index: 2;
-          &__likes{
+          &__likes {
             color: variables.$sl-rojo;
           }
-          &__user{
+          &__user {
             font-weight: 600;
           }
         }
-        &__content{
+        &__content {
           margin: 20px 10px 0 10px;
           font-size: 14px;
         }
-        &__date{
+        &__date {
           margin-left: 15px;
           font-size: 10px;
         }
       }
-      }
+    }
     &__menu {
       justify-content: space-around;
       background-color: rgb(255, 255, 255);
@@ -814,8 +868,75 @@ hr {
       }
     }
   }
+  #idModal {
+    height: 30%;
+    width: 70%;
+    left: 16%;
+    bottom: 36%;
+  box-shadow: 4px 14px 45px -10px rgba(0,0,0,0.75);
+  
 }
 
-
-
-
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  width: 90%;
+  justify-content: space-around;
+  &__title {
+    width: 74%;
+  }
+  &__text {
+    border-style: solid;
+    border-color: variables.$sl-morado-secundario;
+    border-radius: 20px;
+    width: 90%;
+    height: 50%;
+  }
+  &__publishbtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 0;
+    font-family: variables.$tp-roboto;
+    font-weight: 700;
+    font-size: 15px;
+    color: variables.$sl-blanco;
+    background: variables.$sl-amarillo;
+    height: 35px;
+    width: 70px;
+    border: solid 2px #f6bd01;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  &__closeBtn {
+    font-family: variables.$tp-roboto;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: variables.$sl-gris;
+    border: 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s ease;
+  }
+}
+.closeModal {
+  opacity: 0;
+  visibility: hidden;
+}
+.is-ghost:hover {
+  background-color: #dfdad7;
+}
+.is-publish:hover {
+  background-color: variables.$sl-amarillo;
+}
+.btnContainer{
+width: 200px;
+justify-content: space-evenly;
+}
+}
+// fin seccion inicio
