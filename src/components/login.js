@@ -80,7 +80,7 @@ export const logIn = (onNavigate) => {
     document.getElementById('idmsjerror').style.display='none';
     const email = document.getElementById('idUserEmail').value;
     const pass = document.getElementById('idUserPass').value;
-    iniciaSesionUsuario(email, pass)
+    iniciaSesionUsuario(email.trim(), pass.trim())
       .then((response) => {
         if (response.user.email !== null) {
           onNavigate('/inicio');

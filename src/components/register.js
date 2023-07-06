@@ -78,7 +78,7 @@ export const register = (onNavigate) => {
     const email = document.getElementById('idEmail');
     const pass = document.getElementById('idPassword');
     // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
-    registrarUsuario(email.value, pass.value).then((response) => {
+    registrarUsuario(email.value.trim(), pass.value.trim()).then((response) => {
       if (response.user.email !== null) {
         onNavigate('/inicio');
       }
