@@ -164,7 +164,7 @@ export const inicio = (onNavigate) => {
     <button class= "unstyle is-publish content__publishbtn">Publicar</button>
     <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>
     </div>`;
-    
+
     publishModal.appendChild(content);
     InicioCont.appendChild(publishModal);
 
@@ -172,7 +172,6 @@ export const inicio = (onNavigate) => {
     const publishBtn = document.querySelector('.content__publishbtn');
 
     btnCloseModal.addEventListener('click', () => {
-      // publishModal.classList.add('closeModal');
       publishModal.remove();
     });
 
