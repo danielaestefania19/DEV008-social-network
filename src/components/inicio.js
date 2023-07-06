@@ -216,7 +216,7 @@ export const inicio = (onNavigate) => {
 
     const parrafWord = document.createElement('p');
     parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    // parrafWord.innerHTML = doc.data().user.substr(0, 1);
+    //parrafWord.innerHTML = doc.data().user.substr(0, 1);
     const parraforUser = document.createElement('p');
     parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
     parraforUser.innerHTML = doc.data().user;
@@ -230,7 +230,7 @@ export const inicio = (onNavigate) => {
     parraforCont.innerHTML = doc.data().postcontent;
     const parraforDate = document.createElement('p');
     parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+    //parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
     containerPublicaciones.appendChild(textp);
     textp.appendChild(parraforCont);
