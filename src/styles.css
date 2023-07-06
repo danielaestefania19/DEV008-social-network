@@ -200,7 +200,7 @@ hr {
   display: flex;
   align-items: center;
   height: 20%;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .mainContainer__bienvenida__right {
   display: flex;
@@ -221,7 +221,7 @@ hr {
 }
 .mainContainer__bienvenida__nombre {
   width: 40%;
-  font-size: 30px;
+  font-size: 25px;
   padding: 0 0 0 42px;
 }
 .mainContainer__bienvenida__nombre__parrName {
@@ -674,8 +674,9 @@ hr {
     background-color: #CCB5F8;
   }
   .mainContainer {
+    display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
   }
   .mainContainer__header {
     height: 0%;
@@ -708,16 +709,14 @@ hr {
     display: none;
   }
   .mainContainer__bienvenida {
-    border-left: solid;
-    border-right: solid;
-    border-color: rgb(255, 255, 255);
-    width: 80%;
+    width: 70%;
     height: 15%;
   }
   .mainContainer__bienvenida__right {
-    width: 80%;
+    width: 77%;
     height: 10%;
     margin-top: 4%;
+    margin-bottom: 4%;
     align-items: center;
     justify-content: normal;
   }
@@ -802,11 +801,10 @@ hr {
     top: 18%;
   }
   .mainContainer__publicar {
+    width: 90%;
     position: absolute;
-    height: 70px;
-    width: 95%;
     display: flex;
-    bottom: 60px;
+    bottom: 50px;
     left: 25px;
     justify-content: space-between;
   }

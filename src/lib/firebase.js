@@ -116,7 +116,6 @@ export const pushDoc = (post) => {
 |--------------------------------------------------------------------------
 */
 
-export const dataUserCurrent = () => {
-  const auth = getAuth();
-  return user = auth.currentUser;
-};
+// export const dataUserCurrent = () => {
+//   return user = auth.currentUser;
+// };

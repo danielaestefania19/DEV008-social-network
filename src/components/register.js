@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-import { registrarUsuario, inicioGoogle } from '../lib/firebase';
+import { registrarUsuario, inicioGoogle, verifyUser } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -85,8 +85,8 @@ export const register = (onNavigate) => {
     }).catch((error) => {
       const errorCode = error.code;
       // const errorMessage = error.message;
-      document.getElementById('idmsjerror').style.display='block';
-      document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
+      document.getElementById('idmsjerror').style.display = 'block';
+      document.getElementById('idmsjerror').innerHTML = 'Favor de ingresar correo electrónico y contraseña.';
     });
   });
 

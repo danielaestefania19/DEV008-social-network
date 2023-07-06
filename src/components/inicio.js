@@ -76,21 +76,14 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
-
   const knowUser = (user) => {
     if (user) {
       parrName.innerHTML = `${user.displayName}`;
     } else {
-      parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
+      // parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
     }
   };
   verifyUser(knowUser);
-  // if (user !== null) {
-  //   parrName.innerHTML =user.displayName;
-  // }
-  // console.log(dataUserCurrent)
-  // parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
-  // parrName.innerHTML = `${knowUser()}`;
   const parrfFeed = document.createElement('p');
   parrfFeed.classList.add('mainContainer__bienvenida__nombre__feed');
   parrfFeed.innerHTML = ('lo nuevo en tu feed');
@@ -143,7 +136,7 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
-  btlogout2.innerHTML = 'Cerrar sesión';
+  btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
 
   containerPublicar.appendChild(btpub);
   containerPublicar.appendChild(btlogout2);
