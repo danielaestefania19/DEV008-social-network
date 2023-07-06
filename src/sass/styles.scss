@@ -379,13 +379,13 @@ hr {
 // estilos modal
 #idModal {
   display: flex;
-  height: 40%;
-  width: 95%;
+  height: 46%;
+  width: 77%;
   margin: 10px;
   position: absolute;
   bottom: 30%;
-  left: 0;
-  background-color: variables.$sl-blanco;
+  left: 8%;
+  background-color: #ede3ff;
   color: variables.$sl-gris;
   font-family: variables.$tp-poppins;
   font-weight: 400;
@@ -407,6 +407,20 @@ hr {
   height: 80%;
   width: 90%;
   justify-content: space-around;
+  position: relative;
+
+  // &::content {
+  //   // content: '';
+  //   position: absolute;
+  //   top: -31px;
+  //   right: -14px; /* Ajusta el valor según el ancho deseado del orillo */
+  //   height: 125%;
+  //   width: 20px; /* Ajusta el ancho del orillo según tus necesidades */
+  //   background-color: variables.$sl-morado-secundario;
+  //   border-top-right-radius: 15px; /* Agregado para redondear el orillo */
+  //   border-bottom-right-radius: 14px; /* Agregado para redondear el orillo */
+  // }
+
   &__title {
     font-weight: 500;
     width: 90%;
@@ -711,7 +725,7 @@ hr {
 
   // seccion inicio
   #idInicio {
-    // display: flex;
+    //display: flex;
     // justify-content: center;
     background-color: variables.$sl-morado-claro;
   }
@@ -869,10 +883,10 @@ hr {
     }
   }
   #idModal {
-    height: 30%;
-    width: 70%;
-    left: 16%;
-    bottom: 36%;
+    height: 60%;
+    width: 50%;
+    left: 19%;
+    bottom: 15%;
   box-shadow: 4px 14px 45px -10px rgba(0,0,0,0.75);
   
 }
@@ -887,6 +901,11 @@ hr {
   &__title {
     width: 74%;
   }
+
+  // &::before {
+  //   //right: 10px;
+  //   width: 50px;
+  // }
   &__text {
     border-style: solid;
     border-color: variables.$sl-morado-secundario;

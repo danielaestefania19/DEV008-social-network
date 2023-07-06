@@ -153,7 +153,7 @@ export const inicio = (onNavigate) => {
     <button class= "unstyle is-publish content__publishbtn">Publicar</button>
     <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>
     </div>`;
-
+    
     publishModal.appendChild(content);
     InicioCont.appendChild(publishModal);
 
@@ -165,8 +165,15 @@ export const inicio = (onNavigate) => {
       publishModal.remove();
     });
 
+    document.addEventListener('click', (e) => {
+      if (!publishModal.contains(e.target) && e.target !== btpub) {
+        publishModal.remove();
+      }
+    });
+    
     // Obtener datos para post en modal
     publishBtn.addEventListener('click', (e) => {
+
       // const postTitle = document.querySelector('.content__title').value;
       const postContent = document.querySelector('.content__text').value;
       e.preventDefault();

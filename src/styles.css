@@ -367,13 +367,13 @@ hr {
 
 #idModal {
   display: flex;
-  height: 40%;
-  width: 95%;
+  height: 46%;
+  width: 77%;
   margin: 10px;
   position: absolute;
   bottom: 30%;
-  left: 0;
-  background-color: rgb(255, 255, 255);
+  left: 8%;
+  background-color: #ede3ff;
   color: #A2A3A8;
   font-family: "Poppins", monospace;
   font-weight: 400;
@@ -391,6 +391,7 @@ hr {
   height: 80%;
   width: 90%;
   justify-content: space-around;
+  position: relative;
 }
 .content__title {
   font-weight: 500;
@@ -819,10 +820,10 @@ hr {
     width: 5%;
   }
   #idModal {
-    height: 30%;
-    width: 70%;
-    left: 16%;
-    bottom: 36%;
+    height: 60%;
+    width: 50%;
+    left: 19%;
+    bottom: 15%;
     box-shadow: 4px 14px 45px -10px rgba(0, 0, 0, 0.75);
   }
   .content {
