@@ -39,6 +39,9 @@ const firebaseConfig = {
 // Initialize Firebase y firestore
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+const user = auth.currentUser;
+const provider = new GoogleAuthProvider();
 
 /*
 |--------------------------------------------------------------------------
@@ -58,12 +61,17 @@ export const registrarUsuario = (email, password) => {
 };
 /*
 |--------------------------------------------------------------------------
+| Usuario con inicio de sesion
+|--------------------------------------------------------------------------
+*/
+export const verifyUser = (knowUser) => {
+  return onAuthStateChanged(auth, knowUser);
+};
+/*
+|--------------------------------------------------------------------------
 | Inicia sesion con la usuaria de Google
 |--------------------------------------------------------------------------
 */
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
 export const inicioGoogle = () => {
   return signInWithPopup(auth, provider);
 };
@@ -80,11 +88,11 @@ export const salirSesion = () => {
 | Actualiza nombre de la usuaria
 |--------------------------------------------------------------------------
 */
-export const actualizaPerfil = (nombre) => {
-  return updateProfile(auth.currentUser, {
-    displayName: nombre,
-  });
-};
+// export const actualizaPerfil = (nombre) => {
+//   return updateProfile(auth.currentUser, {
+//     displayName: nombre,
+//   });
+// };
 /*
 |--------------------------------------------------------------------------
 | obtener post en DB firestore
@@ -102,19 +110,12 @@ export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
 export const pushDoc = (post) => {
   return addDoc(colRef, { postcontent: post });
 };
-
-
 /*
 |--------------------------------------------------------------------------
 | obtener datos del usuario
 |--------------------------------------------------------------------------
 */
 
-export const dataUserCurrent = () => {
-  const auth = getAuth();
-  return user = auth.currentUser;
-  
-};
-
-
-
+// export const dataUserCurrent = () => {
+//   return user = auth.currentUser;
+// };
