@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-import { registrarUsuario, inicioGoogle, verifyUser } from '../lib/firebase';
+import { registrarUsuario, inicioGoogle } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const logMainSection = document.createElement('section');
@@ -77,23 +77,27 @@ export const register = (onNavigate) => {
     document.getElementById('idmsjerror').style.display = 'none';
     const email = document.getElementById('idEmail');
     const pass = document.getElementById('idPassword');
-    // localStorage.setItem("nameStorage",document.getElementById("idNameUser").value);
-    registrarUsuario(email.value.trim(), pass.value.trim()).then((response) => {
-      if (response.user.email !== null) {
-        onNavigate('/inicio');
-      }
-    }).catch((error) => {
-      const errorCode = error.code;
-      // const errorMessage = error.message;
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    if (validEmail.test(email.value)) {
+      registrarUsuario(email.value.trim(), pass.value.trim()).then((response) => {
+        if (response.user.email !== null) {
+          onNavigate('/inicio');
+        }
+      }).catch((error) => {
+        const errorCode = error.code;
+        // const errorMessage = error.message;
+        document.getElementById('idmsjerror').style.display = 'block';
+        document.getElementById('idmsjerror').innerHTML = 'Favor de ingresar correo electrónico y contraseña.';
+      });
+    } else {
       document.getElementById('idmsjerror').style.display = 'block';
-      document.getElementById('idmsjerror').innerHTML = 'Favor de ingresar correo electrónico y contraseña.';
-    });
+      document.getElementById('idmsjerror').innerHTML = 'El correo es inválido.';
+    }
   });
 
   gooBtnCreate.addEventListener('click', () => {
     inicioGoogle()
       .then((response) => {
-        console.log('my google -->', response);
         onNavigate('/inicio');
       })
       .catch((error) => {

@@ -12,6 +12,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  sendEmailVerification
 } from 'firebase/auth';
 
 import {
@@ -40,9 +41,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const user = auth.currentUser;
+export const user = auth.currentUser;
 const provider = new GoogleAuthProvider();
-
 /*
 |--------------------------------------------------------------------------
 | Inicia sesion
@@ -112,10 +112,38 @@ export const pushDoc = (post) => {
 };
 /*
 |--------------------------------------------------------------------------
-| obtener datos del usuario
+| obtener datos del usuarioa
 |--------------------------------------------------------------------------
 */
 
 // export const dataUserCurrent = () => {
 //   return user = auth.currentUser;
 // };
+
+/*
+|--------------------------------------------------------------------------
+| verificar correo
+|--------------------------------------------------------------------------
+*/
+export const enviaCorreoVerificacion = (userEmail) => {
+  return sendEmailVerification(userEmail);
+};
+/*
+|--------------------------------------------------------------------------
+| sesion activa
+|--------------------------------------------------------------------------
+*/
+export const verificaSesion = () => {
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      console.log(user.emailVerified)
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+};

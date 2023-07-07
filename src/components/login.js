@@ -51,7 +51,6 @@ export const logIn = (onNavigate) => {
 
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
-  //containerInput.appendChild(remember);
   containerInput.appendChild(msj);
 
   const containerBtns = document.createElement('div');
@@ -82,7 +81,7 @@ export const logIn = (onNavigate) => {
     const pass = document.getElementById('idUserPass').value;
     iniciaSesionUsuario(email.trim(), pass.trim())
       .then((response) => {
-        if (response.user.email !== null) {
+        if (response.user.email !== null && response.user.emailVerified === true) {
           onNavigate('/inicio');
         }
       })
@@ -95,7 +94,6 @@ export const logIn = (onNavigate) => {
   gooBtn.addEventListener('click', () => {
     inicioGoogle()
       .then((response) => {
-        // console.log('my google -->', response);
         onNavigate('/inicio');
       })
       .catch((error) => {
