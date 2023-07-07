@@ -51,7 +51,7 @@ export const logIn = (onNavigate) => {
 
   containerInput.appendChild(email);
   containerInput.appendChild(pass);
-  //containerInput.appendChild(remember);
+  // containerInput.appendChild(remember);
   containerInput.appendChild(msj);
 
   const containerBtns = document.createElement('div');
@@ -77,7 +77,7 @@ export const logIn = (onNavigate) => {
   creaC.addEventListener('click', () => onNavigate('/register'));
 
   iniciaBtn.addEventListener('click', () => {
-    document.getElementById('idmsjerror').style.display='none';
+    document.getElementById('idmsjerror').style.display = 'none';
     const email = document.getElementById('idUserEmail').value;
     const pass = document.getElementById('idUserPass').value;
     iniciaSesionUsuario(email.trim(), pass.trim())
@@ -88,8 +88,8 @@ export const logIn = (onNavigate) => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        document.getElementById('idmsjerror').style.display='block';
-        document.getElementById('idmsjerror').innerHTML='Favor de ingresar correo electrónico y contraseña.';
+        document.getElementById('idmsjerror').style.display = 'block';
+        document.getElementById('idmsjerror').innerHTML = 'Favor de ingresar correo electrónico y contraseña.';
       });
   });
   gooBtn.addEventListener('click', () => {

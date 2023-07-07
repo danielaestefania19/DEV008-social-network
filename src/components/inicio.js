@@ -1,4 +1,6 @@
-import { salirSesion, pushDoc, getpost, verifyUser } from '../lib/firebase';
+import {
+  salirSesion, pushDoc, getpost, verifyUser,
+} from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
   const inicioSection = document.createElement('section');
@@ -53,15 +55,6 @@ export const inicio = (onNavigate) => {
   header.appendChild(containerLogout);
   header.appendChild(menuBtn);
 
-    // const knowUser = (user) => {
-  //   if (user !== null) {
-  //     const displayName = user.displayName;
-  //     `<p>${displayName}</p>`;
-  //     return knowUser;
-  //   }
-  // };
-  // verifyUser(knowUser);
-
   const containerBienvenida = document.createElement('div');
   containerBienvenida.classList.add('mainContainer__bienvenida');
   const right = document.createElement('div');
@@ -78,9 +71,13 @@ export const inicio = (onNavigate) => {
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
   const knowUser = (user) => {
     if (user) {
+      console.log(user);
       parrName.innerHTML = `${user.displayName}`;
-    } else {
+    } if (user.displayName === null) {
+      parrName.innerHTML = 'prueba de nombre';
       // parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
+    } else {
+      console.error();
     }
   };
   verifyUser(knowUser);
@@ -136,6 +133,7 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
+  // eslint-disable-next-line quotes
   btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
 
   containerPublicar.appendChild(btpub);
@@ -145,10 +143,10 @@ export const inicio = (onNavigate) => {
   btlogout2.addEventListener('click', () => {
     salirSesion().then(() => {
       onNavigate('/');
-    }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+    }).catch(() => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
     });
   });
 
@@ -180,27 +178,30 @@ export const inicio = (onNavigate) => {
         publishModal.remove();
       }
     });
-    
     // Obtener datos para post en modal
-    publishBtn.addEventListener('click', (e) => {
+    const otrafuncion = (user) => {
+      publishBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const postContent = document.querySelector('.content__text');
 
-      // const postTitle = document.querySelector('.content__title').value;
-      const postContent = document.querySelector('.content__text').value;
-      e.preventDefault();
-      if (postContent.length !== 0) {
-        pushDoc(postContent);
-        publishModal.remove();
-      } if (postContent.length === 0) {
-        const postError = document.createElement('label');
-        postError.setAttribute('id', 'idmsjerror');
-        postError.classList.add('registerContainer__inputs__error');
-        postError.classList.add('alert-content');
-        postError.style.display = 'block';
-        postError.innerHTML = 'El campo no puede estar vacio';
+        if (postContent.length !== 0) {
+          const post = postContent.value;
+          const dateNow = Date.now();
+          pushDoc(post, dateNow);
+          publishModal.remove();
+        } if (postContent.length === 0) {
+          const postError = document.createElement('label');
+          postError.setAttribute('id', 'idmsjerror');
+          postError.classList.add('registerContainer__inputs__error');
+          postError.classList.add('alert-content');
+          postError.style.display = 'block';
+          postError.innerHTML = 'El campo no puede estar vacio';
 
-        publishModal.append(postError);
-      }
-    });
+          publishModal.append(postError);
+        }
+      });
+    };
+    otrafuncion();
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -209,36 +210,35 @@ export const inicio = (onNavigate) => {
   const publicaciones = (myresponse) => {
     containerPublicaciones.innerHTML = '';
     myresponse.docs.forEach((doc) => {
-    const textp = document.createElement('div');
-    textp.classList.add('mainContainer__publicaciones__text');
-    const parrafUserLikes = document.createElement('div');
-    parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+      const textp = document.createElement('div');
+      textp.classList.add('mainContainer__publicaciones__text');
+      const parrafUserLikes = document.createElement('div');
+      parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
+      const parrafWord = document.createElement('p');
+      parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
+      // parrafWord.innerHTML = doc.data().user.substr(0, 1);
+      const parraforUser = document.createElement('p');
+      parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
+      parraforUser.innerHTML = doc.data().user;
+      const parrafLikes = document.createElement('p');
+      parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+      parrafLikes.innerHTML = doc.data().likes;
+      parrafLikes.classList.add(`${'fa-regular'}`);
+      parrafLikes.classList.add(`${'fa-heart'}`);
+      const parraforCont = document.createElement('p');
+      parraforCont.classList.add('mainContainer__publicaciones__text__content');
+      parraforCont.innerHTML = doc.data().postcontent;
+      const parraforDate = document.createElement('p');
+      parraforDate.classList.add('mainContainer__publicaciones__text__date');
+      // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
 
-    const parrafWord = document.createElement('p');
-    parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-    //parrafWord.innerHTML = doc.data().user.substr(0, 1);
-    const parraforUser = document.createElement('p');
-    parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-    parraforUser.innerHTML = doc.data().user;
-    const parrafLikes = document.createElement('p');
-    parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-    parrafLikes.innerHTML = doc.data().likes;
-    parrafLikes.classList.add(`${'fa-regular'}`);
-    parrafLikes.classList.add(`${'fa-heart'}`);
-    const parraforCont = document.createElement('p');
-    parraforCont.classList.add('mainContainer__publicaciones__text__content');
-    parraforCont.innerHTML = doc.data().postcontent;
-    const parraforDate = document.createElement('p');
-    parraforDate.classList.add('mainContainer__publicaciones__text__date');
-    //parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
-
-    containerPublicaciones.appendChild(textp);
-    textp.appendChild(parraforCont);
-    textp.appendChild(parrafUserLikes);
-    parrafUserLikes.appendChild(parrafWord);
-    parrafUserLikes.appendChild(parraforUser);
-    parrafUserLikes.appendChild(parrafLikes);
-    textp.appendChild(parraforDate);
+      containerPublicaciones.appendChild(textp);
+      textp.appendChild(parraforCont);
+      textp.appendChild(parrafUserLikes);
+      parrafUserLikes.appendChild(parrafWord);
+      parrafUserLikes.appendChild(parraforUser);
+      parrafUserLikes.appendChild(parrafLikes);
+      textp.appendChild(parraforDate);
     });
   };
   getpost(publicaciones);

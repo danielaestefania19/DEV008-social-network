@@ -18,8 +18,6 @@ import {
   collection,
   addDoc,
   getFirestore,
-  doc,
-  getDocs,
   onSnapshot,
 } from 'firebase/firestore';
 
@@ -40,7 +38,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const user = auth.currentUser;
+
 const provider = new GoogleAuthProvider();
 
 /*
@@ -107,8 +105,21 @@ export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-export const pushDoc = (post) => {
-  return addDoc(colRef, { postcontent: post });
+// export const pushDoc = (post, user, date) => {
+//   return addDoc(colRef, user, {
+//     postcontent: post,
+//     date: date,
+//     like: 0,
+//   });
+// };
+export const pushDoc = (post, date) => {
+  // const username = user.uid;
+  const user = auth.currentUser.email;
+  return addDoc(colRef, {
+    postcontent: post,
+    user,
+    nowdate: date,
+  });
 };
 /*
 |--------------------------------------------------------------------------
