@@ -73,10 +73,7 @@ export const inicio = (onNavigate) => {
     if (user) {
       parrName.innerHTML = `${user.displayName}`;
     } if (user.displayName === null) {
-      parrName.innerHTML = 'prueba de nombre';
-      // parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
-    } else {
-      console.log("error");
+      parrName.innerHTML = '';
     }
   };
   verifyUser(knowUser);

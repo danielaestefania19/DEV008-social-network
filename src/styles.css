@@ -12,6 +12,7 @@
 body {
   margin: 0px;
   padding: 0px;
+  scrollbar-width: thin;
 }
 
 .unstyle {
@@ -311,6 +312,17 @@ hr {
   align-items: center;
   overflow-y: scroll;
 }
+.mainContainer__publicaciones::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.mainContainer__publicaciones::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+}
+.mainContainer__publicaciones::-webkit-scrollbar-thumb {
+  background-color: #9747FF;
+  border-radius: 20px;
+}
 .mainContainer__publicaciones__text {
   width: 80%;
   height: 38%;
@@ -417,7 +429,7 @@ hr {
   background: #F6BD01;
   height: 35px;
   width: 70px;
-  /* border: solid 2px #f6bd01; */
+  border: solid 2px #f6bd01;
   border-radius: 5px;
 }
 .content__closeBtn {
@@ -429,7 +441,7 @@ hr {
   background-color: transparent;
   color: #A2A3A8;
   border: 0;
-  /* font-weight: 600; */
+  font-weight: 600;
   cursor: pointer;
   transition: 0.15s ease;
 }
@@ -455,11 +467,12 @@ hr {
 .registerContainer {
   display: flex;
   width: 100vw;
-  height: 60vh;
+  height: 80vh;
   flex-direction: column;
   align-items: center;
   color: rgb(255, 255, 255);
   font-weight: 100;
+  color: rgb(255, 255, 255);
 }
 
 .registerContainer__inputs {
@@ -468,7 +481,6 @@ hr {
   width: 80%;
   height: 200px;
   font-family: "Roboto", sans-serif;
-  color: rgb(255, 255, 255);
 }
 
 .registerContainer__inputs__text {
@@ -479,6 +491,7 @@ hr {
   background-color: transparent;
   border-radius: 0;
   border-bottom: 2px solid #A2A3A8;
+  color: rgb(255, 255, 255);
 }
 
 .registerContainer__inputs__text::placeholder {
@@ -520,7 +533,7 @@ hr {
   font-family: "Roboto", sans-serif;
   display: flex;
   width: 80%;
-  height: 200px;
+  height: 300px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -571,15 +584,12 @@ hr {
 
 .registerImagenContainer__idImagen__reg {
   position: relative;
-  /* top: 13%; */
-  left: -70%;
+  left: -60%;
   width: 80%;
 }
 
 .registerImagenContainer__idImagen__boun {
-  top: -60%;
-  left: 35%;
-  width: 80%;
+  width: 67%;
 }
 
 .sectionReg {
@@ -597,7 +607,7 @@ hr {
   color: #B03449;
   border: 1px solid #ffb8b8;
   border-radius: 8px;
-  /* background-color: rgba(255, 56, 56, 0.05); */
+  background-color: rgba(255, 56, 56, 0.05);
 }
 
 @media only screen and (min-width: 992px) {
@@ -646,7 +656,7 @@ hr {
     flex-direction: row-reverse;
   }
   .registerContainer {
-    width: 80vw;
+    width: 95vw;
     height: 100vh;
   }
   .registerContainer__inputs {
@@ -880,7 +890,7 @@ hr {
     background: #F6BD01;
     height: 35px;
     width: 70px;
-    /* border: solid 2px #f6bd01; */
+    border: solid 2px #f6bd01;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -893,7 +903,7 @@ hr {
     background-color: transparent;
     color: #A2A3A8;
     border: 0;
-    /* font-weight: 600; */
+    font-weight: 600;
     cursor: pointer;
     transition: 0.15s ease;
   }

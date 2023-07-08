@@ -20,6 +20,8 @@ import {
   addDoc,
   getFirestore,
   onSnapshot,
+  orderBy,
+  query,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -96,8 +98,9 @@ export const salirSesion = () => {
 |--------------------------------------------------------------------------
 // */
 const colRef = (collection(db, 'post'));
+const q = query(colRef, orderBy('nowdate', 'desc'));
 
-export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
+export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 
 /*
 |--------------------------------------------------------------------------
@@ -135,24 +138,24 @@ export const pushDoc = (post, date) => {
 | verificar correo
 |--------------------------------------------------------------------------
 */
-export const enviaCorreoVerificacion = (userEmail) => {
-  return sendEmailVerification(userEmail);
-};
+// export const enviaCorreoVerificacion = (userEmail) => {
+//   return sendEmailVerification(userEmail);
+// };
 /*
 |--------------------------------------------------------------------------
 | sesion activa
 |--------------------------------------------------------------------------
 */
-export const verificaSesion = () => {
-  return onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
-};
+// export const verificaSesion = () => {
+//   return onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       // User is signed in, see docs for a list of available properties
+//       // https://firebase.google.com/docs/reference/js/auth.user
+//       const uid = user.uid;
+//       // ...
+//     } else {
+//       // User is signed out
+//       // ...
+//     }
+//   });
+// };
