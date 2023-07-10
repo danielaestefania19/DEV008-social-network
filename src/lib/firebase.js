@@ -19,6 +19,8 @@ import {
   addDoc,
   getFirestore,
   onSnapshot,
+  deleteDoc,
+  doc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -38,7 +40,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-
 const provider = new GoogleAuthProvider();
 
 /*
@@ -130,3 +131,16 @@ export const pushDoc = (post, date) => {
 // export const dataUserCurrent = () => {
 //   return user = auth.currentUser;
 // };
+/*
+|--------------------------------------------------------------------------
+| eliminar post segun id
+|--------------------------------------------------------------------------
+*/
+// export const deletebtn = () => {
+//   return user = auth.currentUser.email;
+// }
+// export const user = auth.currentUser.email;
+export const deletePost = (id) => {
+  const docRef = doc(db, 'post', id);
+  return deleteDoc(docRef);
+}; 

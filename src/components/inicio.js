@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser,
+  salirSesion, pushDoc, getpost, verifyUser, deletePost,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -69,9 +69,10 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
+  let usuarioLogueado;
   const knowUser = (user) => {
     if (user) {
-      console.log(user);
+      usuarioLogueado = user;
       parrName.innerHTML = `${user.displayName}`;
     } if (user.displayName === null) {
       parrName.innerHTML = 'prueba de nombre';
@@ -179,29 +180,25 @@ export const inicio = (onNavigate) => {
       }
     });
     // Obtener datos para post en modal
-    const otrafuncion = (user) => {
-      publishBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const postContent = document.querySelector('.content__text');
+    publishBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const postContent = document.querySelector('.content__text');
+      const post = postContent.value;
+      const dateNow = Date.now();
+      if (postContent.length !== 0) {
+        pushDoc(post, dateNow);
+        publishModal.remove();
+      } if (post.length === 0 && post === " ") {
+        const postError = document.createElement('label');
+        postError.setAttribute('id', 'idmsjerror');
+        postError.classList.add('registerContainer__inputs__error');
+        postError.classList.add('alert-content');
+        postError.style.display = 'block';
+        postError.innerHTML = 'El campo no puede estar vacio';
 
-        if (postContent.length !== 0) {
-          const post = postContent.value;
-          const dateNow = Date.now();
-          pushDoc(post, dateNow);
-          publishModal.remove();
-        } if (postContent.length === 0) {
-          const postError = document.createElement('label');
-          postError.setAttribute('id', 'idmsjerror');
-          postError.classList.add('registerContainer__inputs__error');
-          postError.classList.add('alert-content');
-          postError.style.display = 'block';
-          postError.innerHTML = 'El campo no puede estar vacio';
-
-          publishModal.append(postError);
-        }
-      });
-    };
-    otrafuncion();
+        publishModal.append(postError);
+      }
+    });
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -225,6 +222,30 @@ export const inicio = (onNavigate) => {
       parrafLikes.innerHTML = doc.data().likes;
       parrafLikes.classList.add(`${'fa-regular'}`);
       parrafLikes.classList.add(`${'fa-heart'}`);
+      const deletePostbtn = document.createElement('button');
+      deletePostbtn.innerHTML = 'eliminar post';
+
+      if (usuarioLogueado.email === doc.data().user) {
+        parrafUserLikes.appendChild(deletePostbtn);
+      }
+
+      deletePostbtn.addEventListener('click', () => {
+        deletePost(doc.id).then(() => {
+
+        });
+      });
+      // const createDeleteBtn = () => {
+      //   if () {
+      //     const deletePostbtn = document.createElement('button');
+      //     deletePostbtn.innerHTML = 'eliminar post';
+      //     parrafUserLikes.appendChild(deletePostbtn);
+
+      //     deletePostbtn.addEventListener('click', () => {
+      //       deletePost();
+      //     });
+      //   }
+      // };
+      // createDeleteBtn();
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
       parraforCont.innerHTML = doc.data().postcontent;
