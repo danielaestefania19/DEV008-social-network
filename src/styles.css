@@ -417,7 +417,7 @@ hr {
   background: #F6BD01;
   height: 35px;
   width: 70px;
-  /* border: solid 2px #f6bd01; */
+  border: solid 2px #f6bd01;
   border-radius: 5px;
 }
 .content__closeBtn {
@@ -429,7 +429,7 @@ hr {
   background-color: transparent;
   color: #A2A3A8;
   border: 0;
-  /* font-weight: 600; */
+  font-weight: 600;
   cursor: pointer;
   transition: 0.15s ease;
 }
@@ -597,7 +597,7 @@ hr {
   color: #B03449;
   border: 1px solid #ffb8b8;
   border-radius: 8px;
-  /* background-color: rgba(255, 56, 56, 0.05); */
+  background-color: rgba(255, 56, 56, 0.05);
 }
 
 @media only screen and (min-width: 992px) {
@@ -880,7 +880,7 @@ hr {
     background: #F6BD01;
     height: 35px;
     width: 70px;
-    /* border: solid 2px #f6bd01; */
+    border: solid 2px #f6bd01;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -893,7 +893,7 @@ hr {
     background-color: transparent;
     color: #A2A3A8;
     border: 0;
-    /* font-weight: 600; */
+    font-weight: 600;
     cursor: pointer;
     transition: 0.15s ease;
   }
