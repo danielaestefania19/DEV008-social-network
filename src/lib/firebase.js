@@ -12,7 +12,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-  sendEmailVerification,
+
 } from 'firebase/auth';
 
 import {
@@ -22,6 +22,10 @@ import {
   onSnapshot,
   orderBy,
   query,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -38,6 +42,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase y firestore
+
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -114,48 +119,43 @@ export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 //     like: 0,
 //   });
 // };
-export const pushDoc = (post, date) => {
+export const pushDoc = (post) => {
   // const username = user.uid;
   const user = auth.currentUser.email;
   return addDoc(colRef, {
     postcontent: post,
     user,
-    nowdate: date,
+    nowdate: serverTimestamp(),
   });
 };
-/*
-|--------------------------------------------------------------------------
-| obtener datos del usuarioa
-|--------------------------------------------------------------------------
-*/
-
-// export const dataUserCurrent = () => {
-//   return user = auth.currentUser;
-// };
 
 /*
 |--------------------------------------------------------------------------
-| verificar correo
+| obtner likes
 |--------------------------------------------------------------------------
 */
-// export const enviaCorreoVerificacion = (userEmail) => {
-//   return sendEmailVerification(userEmail);
-// };
+// const likesDocumentRef = (collection(db, 'post', 'like'));
+// const qry = query(likesDocumentRef);
+
+// export const getpostLikes = (uid) => onSnapshot(qry, auth.currentUser.email);
 /*
 |--------------------------------------------------------------------------
-| sesion activa
+| actualiza post
 |--------------------------------------------------------------------------
 */
-// export const verificaSesion = () => {
-//   return onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/auth.user
-//       const uid = user.uid;
-//       // ...
-//     } else {
-//       // User is signed out
-//       // ...
-//     }
-//   });
-// };
+export const updateDocument = (updatePost, idPost) => {
+  const user = auth.currentUser.uid;
+  const connDocRef = doc(db, 'post', idPost);
+
+  return updateDoc(connDocRef, { postcontent: updatePost, nowdate: serverTimestamp() });
+};
+
+/*
+|--------------------------------------------------------------------------
+| borra post
+|--------------------------------------------------------------------------
+*/
+export const deleteDocument = (idPost) => {
+  const user = auth.currentUser.uid;
+  return deleteDoc(doc(db, 'post', idPost));
+};
