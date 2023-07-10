@@ -82,7 +82,7 @@ export const logIn = (onNavigate) => {
     const pass = document.getElementById('idUserPass').value;
     iniciaSesionUsuario(email.trim(), pass.trim())
       .then((response) => {
-        if (response.user.email !== null && response.user.emailVerified === true) {
+        if (response.user.email !== null) {
           onNavigate('/inicio');
         }
       })
