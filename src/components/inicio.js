@@ -69,8 +69,10 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
+  let userLogin;
   const knowUser = (user) => {
     if (user) {
+      userLogin = user;
       parrName.innerHTML = `${user.displayName}`;
     } if (user.displayName === null) {
       parrName.innerHTML = '';
@@ -243,12 +245,14 @@ export const inicio = (onNavigate) => {
       containerPublicaciones.appendChild(textp);
       textp.appendChild(parraforCont);
       textp.appendChild(parrafUserLikes);
+      parrafUserLikes.appendChild(parrafLikes);
+      if (userLogin.email === doc.data().user) {
+        parrafUpdate.appendChild(botnUpdate);
+        parrafUpdate.appendChild(botnSave);
+        parrafUpdate.appendChild(botnDelete);
+      }
       parrafUserLikes.appendChild(parrafUpdate);
       parrafUserLikes.appendChild(parraforUser);
-      parrafUserLikes.appendChild(parrafLikes);
-      parrafUpdate.appendChild(botnUpdate);
-      parrafUpdate.appendChild(botnSave);
-      parrafUpdate.appendChild(botnDelete);
       textp.appendChild(parraforDate);
 
       botnSave.style.display = 'none';
@@ -260,6 +264,7 @@ export const inicio = (onNavigate) => {
         parraforCont.appendChild(postUpdateInput);
 
         botnUpdate.style.display = 'none';
+        botnDelete.style.display = 'none';
         botnSave.style.display = 'block';
 
         botnSave.addEventListener('click', () => {
