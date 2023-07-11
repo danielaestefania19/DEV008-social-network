@@ -26,6 +26,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  setDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -121,19 +122,27 @@ export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 // };
 export const pushDoc = (post) => {
   // const username = user.uid;
+  const postRef = doc(collection(db, 'post'));
   const user = auth.currentUser.email;
-  return addDoc(colRef, {
+  setDoc(postRef, {
     postcontent: post,
     user,
     nowdate: serverTimestamp(),
+    like: [],
   });
 };
 
 /*
 |--------------------------------------------------------------------------
-| obtner likes
+| dar like
 |--------------------------------------------------------------------------
 */
+// export const getLikesUser = (idPost) => {
+//   const user = auth.currentUser.uid;
+//   const connDocRef = doc(db, 'post', idPost);
+
+//   return updateDoc(connDocRef, { postcontent: updatePost, nowdate: serverTimestamp() });
+// };
 // const likesDocumentRef = (collection(db, 'post', 'like'));
 // const qry = query(likesDocumentRef);
 
