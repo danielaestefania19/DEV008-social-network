@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,
+  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,  addLike, dislike, showmeLike,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -297,6 +297,10 @@ export const inicio = (onNavigate) => {
       iLikes.addEventListener('click', () => {
         iLikes.setAttribute('style', 'color: #f90606');
         iLikes.classList.add(`${'fa-solid'}`);
+        const check = true; 
+        addLike(check, doc.id);
+        const showLike = showmeLike (doc.id); 
+       console.log (showLike); 
       });
     });
   };
