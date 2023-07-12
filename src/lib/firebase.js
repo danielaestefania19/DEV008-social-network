@@ -134,8 +134,7 @@ export const addLike = (idPost) => {
   const postRef = doc(db, 'post', idPost);
   updateDoc(postRef, {
     likes: arrayUnion(user),
-});
-console.log(user);
+  });
 };
 
 /*
@@ -150,23 +149,7 @@ export const disLike = (idPost) => {
   updateDoc(postRef, {
     likes: arrayRemove(user),
   });
-  console.log(user);
 };
-/*
-|--------------------------------------------------------------------------
-|Remove like
-|--------------------------------------------------------------------------
-*/
-
-export const showmeLike = (idPost) => {
-  const user = auth.currentUser.uid;
-  const postRef = doc(db, 'post', idPost);
-// const likeQuery = query(postRef, where("likes", "array-contains", user));
-
-  const obtineLike = getDoc(postRef);
-
-  console.log (likeQuery);
-}; 
 /*
 |--------------------------------------------------------------------------
 | actualiza post

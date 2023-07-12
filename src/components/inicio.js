@@ -131,7 +131,6 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
-  // eslint-disable-next-line quotes
   btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
 
   containerPublicar.appendChild(btpub);
@@ -208,9 +207,6 @@ export const inicio = (onNavigate) => {
       textp.classList.add('mainContainer__publicaciones__text');
       const parrafUserLikes = document.createElement('div');
       parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
-      const parrafWord = document.createElement('p');
-      parrafWord.classList.add('mainContainer__publicaciones__text__userLikes__userWord');
-      // parrafWord.innerHTML = doc.data().user.substr(0, 1);
       const parraforUser = document.createElement('p');
       parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
       parraforUser.innerHTML = doc.data().user;
@@ -242,7 +238,7 @@ export const inicio = (onNavigate) => {
       parraforCont.innerHTML = doc.data().postcontent;
       const parraforDate = document.createElement('p');
       parraforDate.classList.add('mainContainer__publicaciones__text__date');
-      // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
+      parraforDate.innerHTML = doc.data().nowdate.toDate().toLocaleDateString('es-MX');
       containerPublicaciones.appendChild(textp);
       textp.appendChild(parraforCont);
       textp.appendChild(parrafUserLikes);
@@ -274,11 +270,9 @@ export const inicio = (onNavigate) => {
 
         botnSave.addEventListener('click', () => {
           updateDocument(postUpdateInput.value, doc.id).then(() => {
-            console.log('post actualizado');
           }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
           });
         });
       });
@@ -287,11 +281,9 @@ export const inicio = (onNavigate) => {
           const opcion = confirm('Seguro que quieres eliminar el POST');
           if (opcion === true) {
             deleteDocument(doc.id).then(() => {
-              console.log('post ELIMINADO');
             }).catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
             });
           }
         }
@@ -312,15 +304,9 @@ export const inicio = (onNavigate) => {
 
         if (findUserLike) {
           disLike(doc.id);
-          console.log('elimino like');
         } else {
           addLike(doc.id);
-          console.log('agrego like');
         }
-      //   const check = true;
-      //   addLike(check, doc.id);
-      //   const showLike = showmeLike (doc.id);
-      //  console.log (showLike);
       });
     });
   };
