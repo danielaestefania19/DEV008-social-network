@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,  addLike, dislike, showmeLike,
+  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,  addLike, disLike, showmeLike,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -234,7 +234,7 @@ export const inicio = (onNavigate) => {
       iLikes.classList.add(`${'fa-heart'}`);
       const parrafLike = document.createElement('p');
       parrafLike.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-      parrafLike.innerHTML = doc.data().like;
+      parrafLike.innerHTML = doc.data().likes.length;
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
       // parraforCont.setAttribute('id', 'idPostContent');
@@ -295,12 +295,22 @@ export const inicio = (onNavigate) => {
         alerta();
       });
       iLikes.addEventListener('click', () => {
-        iLikes.setAttribute('style', 'color: #f90606');
-        iLikes.classList.add(`${'fa-solid'}`);
-        const check = true; 
-        addLike(check, doc.id);
-        const showLike = showmeLike (doc.id); 
-       console.log (showLike); 
+        const findUserLike = doc.data().likes.includes(userLogin.uid);
+
+        if (findUserLike) {
+          disLike(doc.id);
+          console.log('elimino like');
+        }else{
+          addLike(doc.id);
+          console.log('agrego like');
+        }
+       
+      //   iLikes.setAttribute('style', 'color: #f90606');
+      //   iLikes.classList.add(`${'fa-solid'}`);
+      //   const check = true;
+      //   addLike(check, doc.id);
+      //   const showLike = showmeLike (doc.id);
+      //  console.log (showLike);
       });
     });
   };

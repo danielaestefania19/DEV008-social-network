@@ -26,10 +26,9 @@ import {
   doc,
   updateDoc,
   deleteDoc,
-  setDoc,
-  arrayUnion, 
+  getDoc,
+  arrayUnion,
   arrayRemove,
-  where, 
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -116,39 +115,28 @@ export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 | agregar post en DB firestore
 |--------------------------------------------------------------------------
 */
-// export const pushDoc = (post, user, date) => {
-//   return addDoc(colRef, user, {
-//     postcontent: post,
-//     date: date,
-//     like: 0,
-//   });
-// };
 export const pushDoc = (post) => {
-  // const username = user.uid;
-  const postRef = doc(collection(db, 'post'));
   const user = auth.currentUser.email;
-  setDoc(postRef, {
+  return addDoc(colRef, {
     postcontent: post,
     user,
     nowdate: serverTimestamp(),
     likes: [],
   });
 };
-
 /*
 |--------------------------------------------------------------------------
 | dar like
 |--------------------------------------------------------------------------
 */
-export const addLike  = (check, idPost) => {
-const user = auth.currentUser.uid;
-const postRef = doc(db, 'post', idPost);
-updateDoc(postRef, {
-   likes: arrayUnion(user),
-  
- });
+export const addLike = (idPost) => {
+  const user = auth.currentUser.uid;
+  const postRef = doc(db, 'post', idPost);
+  updateDoc(postRef, {
+    likes: arrayUnion(user),
+});
 console.log(user);
-}; 
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -156,13 +144,12 @@ console.log(user);
 |--------------------------------------------------------------------------
 */
 
-export const dislike  = (check, idPost) => {
+export const disLike = (idPost) => {
   const user = auth.currentUser.uid;
   const postRef = doc(db, 'post', idPost);
   updateDoc(postRef, {
-     likes: arrayRemove(user),
-    
-   });
+    likes: arrayRemove(user),
+  });
   console.log(user);
 };
  
@@ -173,13 +160,13 @@ export const dislike  = (check, idPost) => {
 */
 
 export const showmeLike = (idPost) => {
-const user = auth.currentUser.uid;
-const postRef = doc(db, 'post', idPost);
-const likeQuery = query(postRef, where("likes", "array-contains", user));
+  const user = auth.currentUser.uid;
+  const postRef = doc(db, 'post', idPost);
+// const likeQuery = query(postRef, where("likes", "array-contains", user));
 
-return likeQuery;
+  const obtineLike = getDoc(postRef);
 
-console.log (likeQuery);
+  console.log (likeQuery);
 }; 
 /*
 |--------------------------------------------------------------------------
