@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,  addLike, disLike, showmeLike,
+  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument, addLike, disLike,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -177,28 +177,25 @@ export const inicio = (onNavigate) => {
       }
     });
     // Obtener datos para post en modal
-    const otrafuncion = () => {
-      publishBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const postContent = document.querySelector('.content__text');
+    publishBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const postContent = document.querySelector('.content__text');
 
-        if (postContent.length !== 0) {
-          const post = postContent.value;
-          pushDoc(post);
-          publishModal.remove();
-        } if (postContent.length === 0) {
-          const postError = document.createElement('label');
-          postError.setAttribute('id', 'idmsjerror');
-          postError.classList.add('registerContainer__inputs__error');
-          postError.classList.add('alert-content');
-          postError.style.display = 'block';
-          postError.innerHTML = 'El campo no puede estar vacio';
+      if (postContent.length !== 0) {
+        const post = postContent.value;
+        pushDoc(post);
+        publishModal.remove();
+      } if (postContent.length === 0) {
+        const postError = document.createElement('label');
+        postError.setAttribute('id', 'idmsjerror');
+        postError.classList.add('registerContainer__inputs__error');
+        postError.classList.add('alert-content');
+        postError.style.display = 'block';
+        postError.innerHTML = 'El campo no puede estar vacio';
 
-          publishModal.append(postError);
-        }
-      });
-    };
-    otrafuncion();
+        publishModal.append(postError);
+      }
+    });
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -241,8 +238,7 @@ export const inicio = (onNavigate) => {
       }
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
-      // parraforCont.setAttribute('id', 'idPostContent');
-      // parraforCont.id = doc.id;
+      parraforCont.setAttribute('id', 'idPostContent');
       parraforCont.innerHTML = doc.data().postcontent;
       const parraforDate = document.createElement('p');
       parraforDate.classList.add('mainContainer__publicaciones__text__date');
@@ -267,7 +263,10 @@ export const inicio = (onNavigate) => {
         const postUpdateInput = document.createElement('input');
         postUpdateInput.setAttribute('type', 'text');
         postUpdateInput.value = doc.data().postcontent;
-        parraforCont.appendChild(postUpdateInput);
+        parraforCont.remove();
+
+        textp.appendChild(postUpdateInput);
+        textp.appendChild(parrafUserLikes);
 
         botnUpdate.style.display = 'none';
         botnDelete.style.display = 'none';

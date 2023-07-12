@@ -152,7 +152,6 @@ export const disLike = (idPost) => {
   });
   console.log(user);
 };
- 
 /*
 |--------------------------------------------------------------------------
 |Remove like
