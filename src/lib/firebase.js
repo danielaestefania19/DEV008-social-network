@@ -26,6 +26,10 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  setDoc,
+  arrayUnion, 
+  arrayRemove,
+  where, 
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -121,23 +125,62 @@ export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 // };
 export const pushDoc = (post) => {
   // const username = user.uid;
+  const postRef = doc(collection(db, 'post'));
   const user = auth.currentUser.email;
-  return addDoc(colRef, {
+  setDoc(postRef, {
     postcontent: post,
     user,
     nowdate: serverTimestamp(),
+    likes: [],
   });
 };
 
 /*
 |--------------------------------------------------------------------------
-| obtner likes
+| dar like
 |--------------------------------------------------------------------------
 */
-// const likesDocumentRef = (collection(db, 'post', 'like'));
-// const qry = query(likesDocumentRef);
+export const addLike  = (check, idPost) => {
+const user = auth.currentUser.uid;
+const postRef = doc(db, 'post', idPost);
+updateDoc(postRef, {
+   likes: arrayUnion(user),
+  
+ });
+console.log(user);
+}; 
 
-// export const getpostLikes = (uid) => onSnapshot(qry, auth.currentUser.email);
+/*
+|--------------------------------------------------------------------------
+| quitar like
+|--------------------------------------------------------------------------
+*/
+
+export const dislike  = (check, idPost) => {
+  const user = auth.currentUser.uid;
+  const postRef = doc(db, 'post', idPost);
+  updateDoc(postRef, {
+     likes: arrayRemove(user),
+    
+   });
+  console.log(user);
+};
+ 
+/*
+|--------------------------------------------------------------------------
+|Remove like
+|--------------------------------------------------------------------------
+*/
+
+export const showmeLike = (idPost) => {
+const user = auth.currentUser.uid;
+const postRef = doc(db, 'post', idPost);
+const likeQuery = query(postRef, where("likes", "array-contains", user));
+
+return likeQuery;
+
+console.log (likeQuery);
+}; 
 /*
 |--------------------------------------------------------------------------
 | actualiza post

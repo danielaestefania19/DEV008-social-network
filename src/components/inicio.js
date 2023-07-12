@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,
+  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,  addLike, dislike, showmeLike,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -196,7 +196,6 @@ export const inicio = (onNavigate) => {
         publishModal.append(postError);
       }
     });
-
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -226,13 +225,13 @@ export const inicio = (onNavigate) => {
       const botnDelete = document.createElement('button');
       botnDelete.setAttribute('id', 'idBotonDelete');
       botnDelete.innerHTML = 'DLT';
-      const parrafLikes = document.createElement('p');
-      parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-      parrafLikes.setAttribute('id', 'docRefIdlike');
-      parrafLikes.innerHTML = doc.data().like;
-      parrafLikes.classList.add(`${'fa-regular'}`);
-      parrafLikes.classList.add(`${'fa-heart'}`);
-
+      const iLikes = document.createElement('i');
+      iLikes.setAttribute('id', 'docRefIdlike');
+      iLikes.classList.add(`${'fa-regular'}`);
+      iLikes.classList.add(`${'fa-heart'}`);
+      const parrafLike = document.createElement('p');
+      parrafLike.classList.add('mainContainer__publicaciones__text__userLikes__likes');
+      parrafLike.innerHTML = doc.data().like;
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
       parraforCont.setAttribute('id', 'idPostContent');
@@ -243,7 +242,8 @@ export const inicio = (onNavigate) => {
       containerPublicaciones.appendChild(textp);
       textp.appendChild(parraforCont);
       textp.appendChild(parrafUserLikes);
-      parrafUserLikes.appendChild(parrafLikes);
+      parrafUserLikes.appendChild(iLikes);
+      parrafUserLikes.appendChild(parrafLike);
       if (userLogin.email === doc.data().user) {
         parrafUpdate.appendChild(botnUpdate);
         parrafUpdate.appendChild(botnSave);
@@ -292,6 +292,14 @@ export const inicio = (onNavigate) => {
           }
         }
         alerta();
+      });
+      iLikes.addEventListener('click', () => {
+        iLikes.setAttribute('style', 'color: #f90606');
+        iLikes.classList.add(`${'fa-solid'}`);
+        const check = true;
+        addLike(check, doc.id);
+        const showLike = showmeLike(doc.id);
+        console.log (showLike);
       });
     });
   };
