@@ -234,7 +234,11 @@ export const inicio = (onNavigate) => {
       iLikes.classList.add(`${'fa-heart'}`);
       const parrafLike = document.createElement('p');
       parrafLike.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-      parrafLike.innerHTML = doc.data().likes.length;
+      if (doc.data().likes.length === 0) {
+        parrafLike.innerHTML = '';
+      } else {
+        parrafLike.innerHTML = doc.data().likes.length;
+      }
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
       // parraforCont.setAttribute('id', 'idPostContent');
@@ -294,19 +298,26 @@ export const inicio = (onNavigate) => {
         }
         alerta();
       });
+
+      const showUserLike = doc.data().likes.includes(userLogin.uid);
+
+      if (showUserLike) {
+        iLikes.setAttribute('style', 'color: #f90606');
+        iLikes.classList.add(`${'fa-solid'}`);
+      } else {
+        iLikes.classList.add(`${'fa-regular'}`);
+      }
+
       iLikes.addEventListener('click', () => {
         const findUserLike = doc.data().likes.includes(userLogin.uid);
 
         if (findUserLike) {
           disLike(doc.id);
           console.log('elimino like');
-        }else{
+        } else {
           addLike(doc.id);
           console.log('agrego like');
         }
-       
-      //   iLikes.setAttribute('style', 'color: #f90606');
-      //   iLikes.classList.add(`${'fa-solid'}`);
       //   const check = true;
       //   addLike(check, doc.id);
       //   const showLike = showmeLike (doc.id);
