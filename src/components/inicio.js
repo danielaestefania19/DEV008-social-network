@@ -1,5 +1,5 @@
 import {
-  salirSesion, pushDoc, getpost, verifyUser, deletePost,
+  salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument,
 } from '../lib/firebase';
 
 export const inicio = (onNavigate) => {
@@ -69,16 +69,13 @@ export const inicio = (onNavigate) => {
   parrfBien.innerHTML = 'Bienvenida,';
   const parrName = document.createElement('p');
   parrName.classList.add('mainContainer__bienvenida__nombre__parrName');
-  let usuarioLogueado;
+  let userLogin;
   const knowUser = (user) => {
     if (user) {
-      usuarioLogueado = user;
+      userLogin = user;
       parrName.innerHTML = `${user.displayName}`;
     } if (user.displayName === null) {
-      parrName.innerHTML = 'prueba de nombre';
-      // parrName.innerHTML = `${localStorage.getItem('nameStorage')}`;
-    } else {
-      console.error();
+      parrName.innerHTML = '';
     }
   };
   verifyUser(knowUser);
@@ -183,12 +180,12 @@ export const inicio = (onNavigate) => {
     publishBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const postContent = document.querySelector('.content__text');
-      const post = postContent.value;
-      const dateNow = Date.now();
+
       if (postContent.length !== 0) {
-        pushDoc(post, dateNow);
+        const post = postContent.value;
+        pushDoc(post);
         publishModal.remove();
-      } if (post.length === 0 && post === " ") {
+      } if (postContent.length === 0) {
         const postError = document.createElement('label');
         postError.setAttribute('id', 'idmsjerror');
         postError.classList.add('registerContainer__inputs__error');
@@ -199,6 +196,7 @@ export const inicio = (onNavigate) => {
         publishModal.append(postError);
       }
     });
+
   });
 
   const containerPublicaciones = document.createElement('div');
@@ -217,49 +215,84 @@ export const inicio = (onNavigate) => {
       const parraforUser = document.createElement('p');
       parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
       parraforUser.innerHTML = doc.data().user;
+      const parrafUpdate = document.createElement('p');
+      parrafUpdate.classList.add('mainContainer__publicaciones__text__userLikes__update');
+      const botnUpdate = document.createElement('button');
+      botnUpdate.setAttribute('id', 'idBotonUpdate');
+      botnUpdate.innerHTML = 'UPD';
+      const botnSave = document.createElement('button');
+      botnSave.setAttribute('id', 'idBotonSave');
+      botnSave.innerHTML = 'SV';
+      const botnDelete = document.createElement('button');
+      botnDelete.setAttribute('id', 'idBotonDelete');
+      botnDelete.innerHTML = 'DLT';
       const parrafLikes = document.createElement('p');
       parrafLikes.classList.add('mainContainer__publicaciones__text__userLikes__likes');
-      parrafLikes.innerHTML = doc.data().likes;
+      parrafLikes.setAttribute('id', 'docRefIdlike');
+      parrafLikes.innerHTML = doc.data().like;
       parrafLikes.classList.add(`${'fa-regular'}`);
       parrafLikes.classList.add(`${'fa-heart'}`);
-      const deletePostbtn = document.createElement('button');
-      deletePostbtn.innerHTML = 'eliminar post';
 
-      if (usuarioLogueado.email === doc.data().user) {
-        parrafUserLikes.appendChild(deletePostbtn);
-      }
-
-      deletePostbtn.addEventListener('click', () => {
-        deletePost(doc.id).then(() => {
-
-        });
-      });
-      // const createDeleteBtn = () => {
-      //   if () {
-      //     const deletePostbtn = document.createElement('button');
-      //     deletePostbtn.innerHTML = 'eliminar post';
-      //     parrafUserLikes.appendChild(deletePostbtn);
-
-      //     deletePostbtn.addEventListener('click', () => {
-      //       deletePost();
-      //     });
-      //   }
-      // };
-      // createDeleteBtn();
       const parraforCont = document.createElement('p');
       parraforCont.classList.add('mainContainer__publicaciones__text__content');
+      parraforCont.setAttribute('id', 'idPostContent');
       parraforCont.innerHTML = doc.data().postcontent;
       const parraforDate = document.createElement('p');
       parraforDate.classList.add('mainContainer__publicaciones__text__date');
       // parraforDate.innerHTML = doc.data().datePost.toDate().toLocaleDateString('es-MX');
-
       containerPublicaciones.appendChild(textp);
       textp.appendChild(parraforCont);
       textp.appendChild(parrafUserLikes);
-      parrafUserLikes.appendChild(parrafWord);
-      parrafUserLikes.appendChild(parraforUser);
       parrafUserLikes.appendChild(parrafLikes);
+      if (userLogin.email === doc.data().user) {
+        parrafUpdate.appendChild(botnUpdate);
+        parrafUpdate.appendChild(botnSave);
+        parrafUpdate.appendChild(botnDelete);
+      }
+      parrafUserLikes.appendChild(parrafUpdate);
+      parrafUserLikes.appendChild(parraforUser);
       textp.appendChild(parraforDate);
+
+      botnSave.style.display = 'none';
+
+      botnUpdate.addEventListener('click', () => {
+        const postUpdateInput = document.createElement('input');
+        postUpdateInput.setAttribute('type', 'text');
+        postUpdateInput.value = doc.data().postcontent;
+        parraforCont.remove();
+
+        textp.appendChild(postUpdateInput);
+        textp.appendChild(parrafUserLikes);
+
+        botnUpdate.style.display = 'none';
+        botnDelete.style.display = 'none';
+        botnSave.style.display = 'block';
+
+        botnSave.addEventListener('click', () => {
+          updateDocument(postUpdateInput.value, doc.id).then(() => {
+            console.log('post actualizado');
+          }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+          });
+        });
+      });
+      botnDelete.addEventListener('click', () => {
+        function alerta() {
+          const opcion = confirm('Seguro que quieres eliminar el POST');
+          if (opcion === true) {
+            deleteDocument(doc.id).then(() => {
+              console.log('post ELIMINADO');
+            }).catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode, errorMessage);
+            });
+          }
+        }
+        alerta();
+      });
     });
   };
   getpost(publicaciones);

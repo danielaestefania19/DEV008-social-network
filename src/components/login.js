@@ -95,7 +95,6 @@ export const logIn = (onNavigate) => {
   gooBtn.addEventListener('click', () => {
     inicioGoogle()
       .then((response) => {
-        // console.log('my google -->', response);
         onNavigate('/inicio');
       })
       .catch((error) => {

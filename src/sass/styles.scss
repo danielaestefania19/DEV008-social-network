@@ -7,6 +7,7 @@
 body {
   margin: 0px;
   padding: 0px;
+  scrollbar-width: thin;
 }
 .unstyle {
   all: unset;
@@ -322,6 +323,16 @@ hr {
     border-color: variables.$sl-blanco;
     align-items: center;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgb(255, 255, 255);;
+    }&::-webkit-scrollbar-thumb {
+      background-color: #9747FF;
+      border-radius: 20px;
+    }
     &__text {
       width: 80%;
       height: 38%;
@@ -480,11 +491,12 @@ hr {
 .registerContainer {
   display: flex;
   width: 100vw;
-  height: 60vh;
+  height: 80vh;
   flex-direction: column;
   align-items: center;
   color: rgb(255, 255, 255);
   font-weight: 100;
+  color: rgb(255, 255, 255);
 }
 .registerContainer__inputs {
   display: flex;
@@ -492,7 +504,7 @@ hr {
   width: 80%;
   height: 200px;
   font-family: "Roboto", sans-serif;
-  color: rgb(255, 255, 255);
+ 
 }
 .registerContainer__inputs__text {
   margin: 10px;
@@ -502,6 +514,7 @@ hr {
   background-color: transparent;
   border-radius: 0;
   border-bottom: 2px solid #A2A3A8;
+  color: rgb(255, 255, 255);
 }
 .registerContainer__inputs__text::placeholder {
   color: rgb(255, 255, 255);
@@ -536,7 +549,7 @@ hr {
   font-family: "Roboto", sans-serif;
   display: flex;
   width: 80%;
-  height: 200px;
+  height: 300px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -581,14 +594,13 @@ hr {
 }
 .registerImagenContainer__idImagen__reg {
   position: relative;
-  /* top: 13%; */
-  left: -70%;
+  left: -60%;
   width: 80%;
 }
 .registerImagenContainer__idImagen__boun {
-  top: -60%;
-  left: 35%;
-  width: 80%;
+  // top: -60%;
+  // left: 35%;
+  width: 67%;
 }
 
 .sectionReg {
@@ -662,7 +674,7 @@ hr {
     flex-direction: row-reverse;
   }
   .registerContainer {
-    width: 80vw;
+    width: 95vw;
     height: 100vh;
   }
   .registerContainer__inputs {

@@ -12,6 +12,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+
 } from 'firebase/auth';
 
 import {
@@ -19,8 +20,12 @@ import {
   addDoc,
   getFirestore,
   onSnapshot,
-  deleteDoc,
+  orderBy,
+  query,
+  serverTimestamp,
   doc,
+  updateDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -37,11 +42,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase y firestore
+
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
 /*
 |--------------------------------------------------------------------------
 | Inicia sesion
@@ -98,8 +103,9 @@ export const salirSesion = () => {
 |--------------------------------------------------------------------------
 // */
 const colRef = (collection(db, 'post'));
+const q = query(colRef, orderBy('nowdate', 'desc'));
 
-export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
+export const getpost = (publicaciones) => onSnapshot(q, publicaciones);
 
 /*
 |--------------------------------------------------------------------------
@@ -113,34 +119,43 @@ export const getpost = (publicaciones) => onSnapshot(colRef, publicaciones);
 //     like: 0,
 //   });
 // };
-export const pushDoc = (post, date) => {
+export const pushDoc = (post) => {
   // const username = user.uid;
   const user = auth.currentUser.email;
   return addDoc(colRef, {
     postcontent: post,
     user,
-    nowdate: date,
+    nowdate: serverTimestamp(),
   });
 };
-/*
-|--------------------------------------------------------------------------
-| obtener datos del usuario
-|--------------------------------------------------------------------------
-*/
 
-// export const dataUserCurrent = () => {
-//   return user = auth.currentUser;
-// };
 /*
 |--------------------------------------------------------------------------
-| eliminar post segun id
+| obtner likes
 |--------------------------------------------------------------------------
 */
-// export const deletebtn = () => {
-//   return user = auth.currentUser.email;
-// }
-// export const user = auth.currentUser.email;
-export const deletePost = (id) => {
-  const docRef = doc(db, 'post', id);
-  return deleteDoc(docRef);
-}; 
+// const likesDocumentRef = (collection(db, 'post', 'like'));
+// const qry = query(likesDocumentRef);
+
+// export const getpostLikes = (uid) => onSnapshot(qry, auth.currentUser.email);
+/*
+|--------------------------------------------------------------------------
+| actualiza post
+|--------------------------------------------------------------------------
+*/
+export const updateDocument = (updatePost, idPost) => {
+  const user = auth.currentUser.uid;
+  const connDocRef = doc(db, 'post', idPost);
+
+  return updateDoc(connDocRef, { postcontent: updatePost, nowdate: serverTimestamp() });
+};
+
+/*
+|--------------------------------------------------------------------------
+| borra post
+|--------------------------------------------------------------------------
+*/
+export const deleteDocument = (idPost) => {
+  const user = auth.currentUser.uid;
+  return deleteDoc(doc(db, 'post', idPost));
+};
