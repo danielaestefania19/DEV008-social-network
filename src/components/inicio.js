@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import {
   salirSesion, pushDoc, getpost, verifyUser, updateDocument, deleteDocument, addLike, disLike,
 } from '../lib/firebase';
@@ -131,7 +132,7 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
-  btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
+  btlogout2.innerHTML = '<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>';
 
   containerPublicar.appendChild(btpub);
   containerPublicar.appendChild(btlogout2);
@@ -271,18 +272,24 @@ export const inicio = (onNavigate) => {
         botnSave.addEventListener('click', () => {
           updateDocument(postUpdateInput.value, doc.id).then(() => {
           }).catch((error) => {
+            // eslint-disable-next-line no-unused-vars
             const errorCode = error.code;
+            // eslint-disable-next-line no-unused-vars
             const errorMessage = error.message;
           });
         });
       });
       botnDelete.addEventListener('click', () => {
         function alerta() {
-          const opcion = confirm('Seguro que quieres eliminar el POST');
+          const msg = '¿Seguro que quieres eliminar el POST?';
+          // eslint-disable-next-line no-restricted-globals
+          const opcion = confirm(msg);
           if (opcion === true) {
             deleteDocument(doc.id).then(() => {
             }).catch((error) => {
+              // eslint-disable-next-line no-unused-vars
               const errorCode = error.code;
+              // eslint-disable-next-line no-unused-vars
               const errorMessage = error.message;
             });
           }
