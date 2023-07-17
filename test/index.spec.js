@@ -67,7 +67,7 @@ import { registrarUsuario } from '../src/lib/firebase';
 import { onNavigate } from '../src/main';
 
 jest.mock('../src/lib/firebase');
-jest.mock('../src/main');
+// jest.mock('../src/main');
 
 function tick() {
   return new Promise((resolve) => {
@@ -109,8 +109,8 @@ describe('first Test for Register', () => {
     );
   });
 
-  it('Debería mostrar exito', async () => {
-    register.mockImplementationOnce((email, pass) => {
+  it('Debería redireccionar a inicio', async () => {
+    registrarUsuario.mockImplementationOnce((email, pass) => {
       return Promise.resolve({
         user: { email: 'hola@hola.com', password: '8520963' },
       });
@@ -120,6 +120,8 @@ describe('first Test for Register', () => {
     // inputForPassword.value = '123456';
     createUser.click();
     await tick();
-    expect(onNavigate()).toHaveBeenCalledWith('/');
+    expect(onNavigate()).toHaveBeenCalledWith('/inicio');
+
+    // expect(global.window.location.href).toContain('/inicio');
   });
 });
