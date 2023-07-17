@@ -339,7 +339,7 @@ hr {
 }
 .mainContainer__publicaciones__text__userLikes {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
@@ -361,13 +361,22 @@ hr {
   color: #B03449;
 }
 .mainContainer__publicaciones__text__userLikes__user {
-  font-weight: 600;
+  margin-left: 15px;
+  font-size: 10px;
+}
+.mainContainer__publicaciones__text__userLikes__heart {
+  display: flex;
+}
+.mainContainer__publicaciones__text__userLikes__update {
+  display: flex;
+  gap: 4px;
 }
 .mainContainer__publicaciones__text__content {
   margin: 20px 10px 0 10px;
   font-size: 14px;
 }
 .mainContainer__publicaciones__text__date {
+  padding-top: 10px;
   margin-left: 15px;
   font-size: 10px;
 }
@@ -610,6 +619,78 @@ hr {
   background-color: rgba(255, 56, 56, 0.05);
 }
 
+#idBotonUpdate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  background: #56AAF5;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#idBotonDelete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  background: #B03449;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#idBotonSave {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  background: #00875A;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#idBotonCancel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  background: #B03449;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#docRefIdlike {
+  padding: 4px;
+}
+
 @media only screen and (min-width: 992px) {
   .sectionLog {
     flex-direction: row-reverse;
@@ -785,7 +866,7 @@ hr {
   }
   .mainContainer__publicaciones__text__userLikes {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -797,7 +878,11 @@ hr {
     color: #B03449;
   }
   .mainContainer__publicaciones__text__userLikes__user {
-    font-weight: 600;
+    margin-left: 15px;
+    font-size: 13px;
+  }
+  .mainContainer__publicaciones__text__userLikes__heart {
+    display: flex;
   }
   .mainContainer__publicaciones__text__content {
     margin: 20px 10px 0 10px;
@@ -932,6 +1017,10 @@ hr {
     border: 0;
     cursor: pointer;
     transition: 0.15s ease;
+  }
+  #idBotonUpdate:focus {
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
   }
 }
 

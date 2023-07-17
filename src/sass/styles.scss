@@ -348,7 +348,7 @@ hr {
       }
       &__userLikes {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
         margin-top: 20px;
@@ -369,7 +369,15 @@ hr {
           color: variables.$sl-rojo;
         }
         &__user {
-          font-weight: 600;
+          margin-left: 15px;
+          font-size: 10px;
+        }
+        &__heart{
+          display: flex;
+        }
+        &__update{
+          display: flex;
+          gap: 4px;
         }
       }
       &__content {
@@ -377,6 +385,7 @@ hr {
         font-size: 14px;
       }
       &__date {
+        padding-top: 10px;
         margin-left: 15px;
         font-size: 10px;
       }
@@ -620,6 +629,78 @@ hr {
   background-color: rgba(#ff3838, 0.05);
 }
 
+#idBotonUpdate{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px ;
+  font-family: variables.$tp-roboto;
+  font-size: 10px;
+  border-radius: 6px;
+  color: variables.$sl-blanco;
+  background: variables.$sl-azul-cielo;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#idBotonDelete{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  font-family: variables.$tp-roboto;
+  font-size: 10px;
+  border-radius: 6px;
+  color: variables.$sl-blanco;
+  background:  variables.$sl-rojo;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation; 
+}
+
+#idBotonSave{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px ;
+  font-family: variables.$tp-roboto;
+  font-size: 10px;
+  border-radius: 6px;
+  color: variables.$sl-blanco;
+  background: variables.$sl-verde;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#idBotonCancel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  font-family: variables.$tp-roboto;
+  font-size: 10px;
+  border-radius: 6px;
+  color: variables.$sl-blanco;
+  background:  variables.$sl-rojo;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation; 
+}
+
+#docRefIdlike{
+padding: 4px;
+}
+
 @media only screen and (min-width: 992px) {
   //  seccion login
   .sectionLog {
@@ -813,7 +894,7 @@ hr {
         }
         &__userLikes {
           display: flex;
-          flex-direction: row;
+          flex-direction: row-reverse;
           justify-content: space-between;
           align-items: center;
           margin-top: 20px;
@@ -824,7 +905,11 @@ hr {
             color: variables.$sl-rojo;
           }
           &__user {
-            font-weight: 600;
+            margin-left: 15px;
+            font-size: 13px;
+          }
+          &__heart{
+            display: flex;
           }
         }
         &__content {
@@ -965,6 +1050,11 @@ hr {
     cursor: pointer;
     transition: 0.15s ease;
   }
+}
+
+#idBotonUpdate:focus {
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }
 
 }

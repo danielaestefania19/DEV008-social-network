@@ -209,18 +209,25 @@ export const inicio = (onNavigate) => {
       parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
       const parraforUser = document.createElement('p');
       parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-      parraforUser.innerHTML = doc.data().user;
-      const parrafUpdate = document.createElement('p');
+      const indice = doc.data().user.indexOf('@');
+      const extraida = doc.data().user.substring(0, indice);
+      parraforUser.innerHTML = extraida;
+      const parrafUpdate = document.createElement('div');
       parrafUpdate.classList.add('mainContainer__publicaciones__text__userLikes__update');
       const botnUpdate = document.createElement('button');
       botnUpdate.setAttribute('id', 'idBotonUpdate');
-      botnUpdate.innerHTML = 'UPD';
+      botnUpdate.innerHTML = 'Editar';
       const botnSave = document.createElement('button');
       botnSave.setAttribute('id', 'idBotonSave');
-      botnSave.innerHTML = 'SV';
+      botnSave.innerHTML = 'Guardar';
+      const botnCancel = document.createElement('button');
+      botnCancel.setAttribute('id', 'idBotonCancel');
+      botnCancel.innerHTML = 'Cancelar';
       const botnDelete = document.createElement('button');
       botnDelete.setAttribute('id', 'idBotonDelete');
-      botnDelete.innerHTML = 'DLT';
+      botnDelete.innerHTML = 'Eliminar';
+      const divLikes = document.createElement('div');
+      divLikes.classList.add('mainContainer__publicaciones__text__userLikes__heart');
       const iLikes = document.createElement('i');
       iLikes.setAttribute('id', 'docRefIdlike');
       iLikes.classList.add(`${'fa-regular'}`);
@@ -240,26 +247,31 @@ export const inicio = (onNavigate) => {
       parraforDate.classList.add('mainContainer__publicaciones__text__date');
       parraforDate.innerHTML = doc.data().nowdate.toDate().toLocaleDateString('es-MX');
       containerPublicaciones.appendChild(textp);
+      textp.appendChild(parraforDate);
       textp.appendChild(parraforCont);
       textp.appendChild(parrafUserLikes);
-      parrafUserLikes.appendChild(iLikes);
-      parrafUserLikes.appendChild(parrafLike);
+      parrafUserLikes.appendChild(divLikes);
+      divLikes.appendChild(iLikes);
+      divLikes.appendChild(parrafLike);
       if (userLogin.email === doc.data().user) {
         parrafUpdate.appendChild(botnUpdate);
         parrafUpdate.appendChild(botnSave);
         parrafUpdate.appendChild(botnDelete);
+        parrafUpdate.appendChild(botnCancel);
       }
       parrafUserLikes.appendChild(parrafUpdate);
       parrafUserLikes.appendChild(parraforUser);
-      textp.appendChild(parraforDate);
+   
 
       botnSave.style.display = 'none';
+      botnCancel.style.display = 'none';
 
       botnUpdate.addEventListener('click', () => {
         const postUpdateInput = document.createElement('input');
+        postUpdateInput.setAttribute('id', 'idbotupdate');
         postUpdateInput.setAttribute('type', 'text');
         postUpdateInput.value = doc.data().postcontent;
-        parraforCont.remove();
+        parraforCont.style.display = 'none';
 
         textp.appendChild(postUpdateInput);
         textp.appendChild(parrafUserLikes);
@@ -267,6 +279,7 @@ export const inicio = (onNavigate) => {
         botnUpdate.style.display = 'none';
         botnDelete.style.display = 'none';
         botnSave.style.display = 'block';
+        botnCancel.style.display = 'block';
 
         botnSave.addEventListener('click', () => {
           updateDocument(postUpdateInput.value, doc.id).then(() => {
@@ -274,6 +287,14 @@ export const inicio = (onNavigate) => {
             const errorCode = error.code;
             const errorMessage = error.message;
           });
+        });
+        botnCancel.addEventListener('click', () => {
+          parraforCont.style.display = 'block';
+          postUpdateInput.style.display = 'none';
+          botnSave.style.display = 'none';
+          botnCancel.style.display = 'none';
+          botnUpdate.style.display = 'block';
+          botnDelete.style.display = 'block';
         });
       });
       botnDelete.addEventListener('click', () => {
@@ -293,7 +314,7 @@ export const inicio = (onNavigate) => {
       const showUserLike = doc.data().likes.includes(userLogin.uid);
 
       if (showUserLike) {
-        iLikes.setAttribute('style', 'color: #f90606');
+        iLikes.setAttribute('style', 'color: #f90606;');
         iLikes.classList.add(`${'fa-solid'}`);
       } else {
         iLikes.classList.add(`${'fa-regular'}`);
