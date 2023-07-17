@@ -356,7 +356,6 @@ hr {
         justify-content: space-between;
         align-items: center;
         gap: 4px;
-        width: 50px;
         margin-left: 5px;
         &__userWord {
           height: 5%;
@@ -385,7 +384,7 @@ hr {
       }
       &__content {
         padding: 5px 0 0 5px;
-        font-size: 10px;
+        font-size: 13px;
       }
       &__date {
         padding-top: 10px;
@@ -702,6 +701,16 @@ hr {
 
 #docRefIdlike{
 padding: 4px;
+}
+
+#idbotupdate{
+  width: 80%;
+        height: 38%;
+        color: variables.$sl-negro;
+        background: white;
+        border-radius: 20px;
+        font-family: variables.$tp-poppins;
+        margin: 15px;
 }
 
 @media only screen and (min-width: 992px) {

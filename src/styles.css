@@ -347,7 +347,6 @@ hr {
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  width: 50px;
   margin-left: 5px;
 }
 .mainContainer__publicaciones__text__userLikes__userWord {
@@ -376,7 +375,7 @@ hr {
 }
 .mainContainer__publicaciones__text__content {
   padding: 5px 0 0 5px;
-  font-size: 10px;
+  font-size: 13px;
 }
 .mainContainer__publicaciones__text__date {
   padding-top: 10px;
@@ -692,6 +691,16 @@ hr {
 
 #docRefIdlike {
   padding: 4px;
+}
+
+#idbotupdate {
+  width: 80%;
+  height: 38%;
+  color: #1A1A1A;
+  background: white;
+  border-radius: 20px;
+  font-family: "Poppins", monospace;
+  margin: 15px;
 }
 
 @media only screen and (min-width: 992px) {

@@ -214,7 +214,6 @@ export const inicio = (onNavigate) => {
       parraforUser.innerHTML = extraida;
       const parrafUpdate = document.createElement('div');
       parrafUpdate.classList.add('mainContainer__publicaciones__text__userLikes__update');
-      parrafUpdate.innerHTML = '. . .';
       const botnUpdate = document.createElement('button');
       botnUpdate.setAttribute('id', 'idBotonUpdate');
       botnUpdate.innerHTML = 'Editar';
@@ -256,21 +255,15 @@ export const inicio = (onNavigate) => {
       divLikes.appendChild(parrafLike);
       if (userLogin.email === doc.data().user) {
         parrafUpdate.appendChild(botnUpdate);
-        parrafUpdate.appendChild(botnSave);
         parrafUpdate.appendChild(botnDelete);
+        parrafUpdate.appendChild(botnSave);
         parrafUpdate.appendChild(botnCancel);
       }
       parrafUserLikes.appendChild(parrafUpdate);
       parrafUserLikes.appendChild(parraforUser);
-   
-
       botnSave.style.display = 'none';
       botnCancel.style.display = 'none';
 
-      parrafUpdate.addEventListener('click', () => {
-        botnUpdate.style.display = 'block';
-        botnDelete.style.display = 'block';
-      });
       botnUpdate.addEventListener('click', () => {
         const postUpdateInput = document.createElement('input');
         postUpdateInput.setAttribute('id', 'idbotupdate');
