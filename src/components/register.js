@@ -97,13 +97,21 @@ export const register = (onNavigate) => {
 
   gooBtnCreate.addEventListener('click', () => {
     inicioGoogle()
-      .then((response) => {
+      .then(() => {
         onNavigate('/inicio');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      // console.log(errorCode, errorMessage);
+        const errorInCode = error.code;
+        throw new Error(errorInCode);
+        // const errorMessage = document.createElement('div');
+        // errorMessage.setAttribute('id', 'errorMessage');
+        // const theError = document.createElement('span');
+        // theError.setAttribute('id', 'theError');
+        // theError.innerHTML = errorInCode;
+
+        // errorMessage.append(theError);
+        // console.log(errorMessage);
+        // return errorMessage;
       });
   });
 

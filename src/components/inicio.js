@@ -131,6 +131,7 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
+  // eslint-disable-next-line quotes
   btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
 
   containerPublicar.appendChild(btpub);
@@ -179,12 +180,11 @@ export const inicio = (onNavigate) => {
     publishBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const postContent = document.querySelector('.content__text');
-
-      if (postContent.length !== 0) {
-        const post = postContent.value;
+      const post = postContent.value;
+      if (post.length !== 0) {
         pushDoc(post);
         publishModal.remove();
-      } if (postContent.length === 0) {
+      } if (post.length === 0) {
         const postError = document.createElement('label');
         postError.setAttribute('id', 'idmsjerror');
         postError.classList.add('registerContainer__inputs__error');
@@ -209,18 +209,22 @@ export const inicio = (onNavigate) => {
       parrafUserLikes.classList.add('mainContainer__publicaciones__text__userLikes');
       const parraforUser = document.createElement('p');
       parraforUser.classList.add('mainContainer__publicaciones__text__userLikes__user');
-      parraforUser.innerHTML = doc.data().user;
-      const parrafUpdate = document.createElement('p');
+      parraforUser.innerHTML = 'nombre';
+      // parraforUser.innerHTML = doc.data().user;
+      const containerActionsInPost = document.createElement('div');
+      containerActionsInPost.classList.add('actionsContainer');
+      const parrafUpdate = document.createElement('ul');
       parrafUpdate.classList.add('mainContainer__publicaciones__text__userLikes__update');
+      parrafUpdate.innerHTML = '. . .';
       const botnUpdate = document.createElement('button');
       botnUpdate.setAttribute('id', 'idBotonUpdate');
-      botnUpdate.innerHTML = 'UPD';
-      const botnSave = document.createElement('button');
+      botnUpdate.innerHTML = 'Editar';
+      const botnSave = document.createElement('li');
       botnSave.setAttribute('id', 'idBotonSave');
-      botnSave.innerHTML = 'SV';
-      const botnDelete = document.createElement('button');
+      botnSave.innerHTML = 'Guardar';
+      const botnDelete = document.createElement('li');
       botnDelete.setAttribute('id', 'idBotonDelete');
-      botnDelete.innerHTML = 'DLT';
+      botnDelete.innerHTML = 'Eliminar';
       const iLikes = document.createElement('i');
       iLikes.setAttribute('id', 'docRefIdlike');
       iLikes.classList.add(`${'fa-regular'}`);
@@ -240,8 +244,8 @@ export const inicio = (onNavigate) => {
       parraforDate.classList.add('mainContainer__publicaciones__text__date');
       parraforDate.innerHTML = doc.data().nowdate.toDate().toLocaleDateString('es-MX');
       containerPublicaciones.appendChild(textp);
-      textp.appendChild(parraforCont);
-      textp.appendChild(parrafUserLikes);
+      // textp.appendChild(parraforCont);
+      // textp.appendChild(parrafUserLikes);
       parrafUserLikes.appendChild(iLikes);
       parrafUserLikes.appendChild(parrafLike);
       if (userLogin.email === doc.data().user) {
@@ -249,12 +253,23 @@ export const inicio = (onNavigate) => {
         parrafUpdate.appendChild(botnSave);
         parrafUpdate.appendChild(botnDelete);
       }
-      parrafUserLikes.appendChild(parrafUpdate);
-      parrafUserLikes.appendChild(parraforUser);
+      containerActionsInPost.appendChild(parrafUpdate);
+      containerActionsInPost.appendChild(parrafUserLikes);
+      // parrafUserLikes.appendChild(iLikes);
+      // parrafUserLikes.appendChild(parrafLike);
+      // textp.appendChild(parrafUpdate);
+      textp.appendChild(parraforCont);
       textp.appendChild(parraforDate);
+      textp.appendChild(containerActionsInPost);
 
       botnSave.style.display = 'none';
+      botnUpdate.style.display = 'none';
+      botnDelete.style.display = 'none';
 
+      parrafUpdate.addEventListener('click', () => {
+        botnUpdate.style.display = 'block';
+        botnDelete.style.display = 'block';
+      });
       botnUpdate.addEventListener('click', () => {
         const postUpdateInput = document.createElement('input');
         postUpdateInput.setAttribute('type', 'text');
@@ -271,19 +286,20 @@ export const inicio = (onNavigate) => {
         botnSave.addEventListener('click', () => {
           updateDocument(postUpdateInput.value, doc.id).then(() => {
           }).catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
+            botnSave.innerHTML = errorMessage;
           });
         });
       });
       botnDelete.addEventListener('click', () => {
         function alerta() {
+          // eslint-disable-next-line no-restricted-globals, no-alert
           const opcion = confirm('Seguro que quieres eliminar el POST');
           if (opcion === true) {
             deleteDocument(doc.id).then(() => {
             }).catch((error) => {
               const errorCode = error.code;
-              const errorMessage = error.message;
+              botnDelete.innerHTML = errorCode;
             });
           }
         }
