@@ -324,13 +324,17 @@ hr {
   border-radius: 20px;
 }
 .mainContainer__publicaciones__text {
-  width: 80%;
-  height: 38%;
+  display: flex;
+  width: 90%;
+  /* height: 100px; */
   color: #1A1A1A;
   background: rgb(255, 255, 255);
   border-radius: 20px;
   font-family: "Poppins", monospace;
-  margin: 15px;
+  margin: 9px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px 3px 5px 3px;
 }
 .mainContainer__publicaciones__text__imgUser {
   color: #C4E24C;
@@ -342,10 +346,9 @@ hr {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  gap: 4px;
+  width: 50px;
   margin-left: 5px;
-  margin-right: 5px;
-  z-index: 2;
 }
 .mainContainer__publicaciones__text__userLikes__userWord {
   height: 5%;
@@ -372,8 +375,8 @@ hr {
   gap: 4px;
 }
 .mainContainer__publicaciones__text__content {
-  margin: 20px 10px 0 10px;
-  font-size: 14px;
+  padding: 5px 0 0 5px;
+  font-size: 10px;
 }
 .mainContainer__publicaciones__text__date {
   padding-top: 10px;

@@ -334,13 +334,17 @@ hr {
       border-radius: 20px;
     }
     &__text {
-      width: 80%;
-      height: 38%;
-      color: variables.$sl-negro;
-      background: variables.$sl-blanco;
+      display: flex;
+      width: 90%;
+      /* height: 100px; */
+      color: #1A1A1A;
+      background: rgb(255, 255, 255);
       border-radius: 20px;
-      font-family: variables.$tp-poppins;
-      margin: 15px;
+      font-family: "Poppins", monospace;
+      margin: 9px;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 5px 3px 5px 3px;
       &__imgUser {
         color: variables.$sl-verde-amarillo;
         z-index: 1;
@@ -351,10 +355,9 @@ hr {
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        gap: 4px;
+        width: 50px;
         margin-left: 5px;
-        margin-right: 5px;
-        z-index: 2;
         &__userWord {
           height: 5%;
           width: 20px;
@@ -381,8 +384,8 @@ hr {
         }
       }
       &__content {
-        margin: 20px 10px 0 10px;
-        font-size: 14px;
+        padding: 5px 0 0 5px;
+        font-size: 10px;
       }
       &__date {
         padding-top: 10px;

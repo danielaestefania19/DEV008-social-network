@@ -131,6 +131,7 @@ export const inicio = (onNavigate) => {
   imgPlus.classList.add(`${'fa-plus'}`);
   const btlogout2 = document.createElement('ul');
   btlogout2.classList.add('mainContainer__publicar__logout');
+  // eslint-disable-next-line quotes
   btlogout2.innerHTML = `<i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff; font-size: 30px"></i>`;
 
   containerPublicar.appendChild(btpub);
@@ -179,12 +180,11 @@ export const inicio = (onNavigate) => {
     publishBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const postContent = document.querySelector('.content__text');
-
-      if (postContent.length !== 0) {
-        const post = postContent.value;
+      const post = postContent.value;
+      if (post.length !== 0) {
         pushDoc(post);
         publishModal.remove();
-      } if (postContent.length === 0) {
+      } if (post.length === 0) {
         const postError = document.createElement('label');
         postError.setAttribute('id', 'idmsjerror');
         postError.classList.add('registerContainer__inputs__error');
@@ -214,6 +214,7 @@ export const inicio = (onNavigate) => {
       parraforUser.innerHTML = extraida;
       const parrafUpdate = document.createElement('div');
       parrafUpdate.classList.add('mainContainer__publicaciones__text__userLikes__update');
+      parrafUpdate.innerHTML = '. . .';
       const botnUpdate = document.createElement('button');
       botnUpdate.setAttribute('id', 'idBotonUpdate');
       botnUpdate.innerHTML = 'Editar';
@@ -266,6 +267,10 @@ export const inicio = (onNavigate) => {
       botnSave.style.display = 'none';
       botnCancel.style.display = 'none';
 
+      parrafUpdate.addEventListener('click', () => {
+        botnUpdate.style.display = 'block';
+        botnDelete.style.display = 'block';
+      });
       botnUpdate.addEventListener('click', () => {
         const postUpdateInput = document.createElement('input');
         postUpdateInput.setAttribute('id', 'idbotupdate');
@@ -284,8 +289,8 @@ export const inicio = (onNavigate) => {
         botnSave.addEventListener('click', () => {
           updateDocument(postUpdateInput.value, doc.id).then(() => {
           }).catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
+            botnSave.innerHTML = errorMessage;
           });
         });
         botnCancel.addEventListener('click', () => {
@@ -299,12 +304,13 @@ export const inicio = (onNavigate) => {
       });
       botnDelete.addEventListener('click', () => {
         function alerta() {
+          // eslint-disable-next-line no-restricted-globals, no-alert
           const opcion = confirm('Seguro que quieres eliminar el POST');
           if (opcion === true) {
             deleteDocument(doc.id).then(() => {
             }).catch((error) => {
               const errorCode = error.code;
-              const errorMessage = error.message;
+              botnDelete.innerHTML = errorCode;
             });
           }
         }
