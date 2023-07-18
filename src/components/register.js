@@ -56,6 +56,7 @@ export const register = (onNavigate) => {
   containerBtns.classList.add('registerContainer__botones');
   const createUser = document.createElement('button');
   createUser.classList.add('registerContainer__botones__ing');
+  createUser.setAttribute('id', 'idCreateUser');
   createUser.textContent = 'Crear cuenta';
   const labelO = document.createElement('label');
   labelO.textContent = 'o';
