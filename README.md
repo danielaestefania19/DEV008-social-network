@@ -133,14 +133,14 @@ Definición de terminado:
 * Desplegaron su aplicación y etiquetaron la versión (git tag).
 
 ## 4. Prototipos: 
-### Baja Fidelidad: ![Prototipo de Baja Fidelidad](/src/img/Bajafidelidad.PNG)  
+### Baja Fidelidad: ![Prototipo de Baja Fidelidad](/src/img/Bajafidelidad.png)  
 ### Alta Fidelidad:
 **Login:**
-![Prototipo de Baja Fidelidad](/src/img/Login.PNG)  
+![Prototipo de Baja Fidelidad](/src/img/Login.png)  
 **Registro:**
-![Prototipo de Baja Fidelidad](/src/img/Register.PNG)  
+![Prototipo de Baja Fidelidad](/src/img/Register.png)  
 **Inicio:**
-![Prototipo de Baja Fidelidad](/src/img/Inicio.PNG)  
+![Prototipo de Baja Fidelidad](/src/img/Inicio.png)  
 
 ## 5. Etapa Dos del Proyecto (Historias de Usuario): 
 
