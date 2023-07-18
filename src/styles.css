@@ -432,6 +432,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -444,6 +445,7 @@ hr {
 }
 .content__closeBtn {
   font-family: "Roboto", sans-serif;
+  font-weight: 700;
   font-size: 13px;
   padding: 12px 20px;
   border-radius: 8px;
@@ -481,6 +483,7 @@ hr {
   align-items: center;
   color: rgb(255, 255, 255);
   font-weight: 100;
+  color: rgb(255, 255, 255);
 }
 
 .registerContainer__inputs {
@@ -615,6 +618,7 @@ hr {
   color: #B03449;
   border: 1px solid #ffb8b8;
   border-radius: 8px;
+  background-color: rgba(255, 56, 56, 0.05);
 }
 
 #idBotonUpdate {
@@ -934,6 +938,7 @@ hr {
     left: 19%;
     bottom: 15%;
     box-shadow: 4px 14px 45px -10px rgba(0, 0, 0, 0.75);
+    z-index: 2;
   }
   .content {
     display: flex;
@@ -975,6 +980,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border: 0;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 15px;
@@ -988,6 +994,7 @@ hr {
   }
   .content__publishbtn__closeBtn {
     font-family: "Roboto", sans-serif;
+    font-weight: 700;
     font-size: 15px;
     padding: 12px 20px;
     border-radius: 8px;
