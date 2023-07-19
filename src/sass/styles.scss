@@ -402,7 +402,7 @@ hr {
 // estilos modal
 #idModal {
   display: flex;
-  height: 46%;
+  height: 37%;
   width: 77%;
   margin: 10px;
   position: absolute;
@@ -449,11 +449,13 @@ hr {
     padding-left: 60%;
   }
   &__text {
+    font-family: variables.$tp-poppins;
     border-style: solid;
     border-color: variables.$sl-morado-secundario;
     border-radius: 20px;
     width: 90%;
-    height: 50%;
+    height: 30%;
+    padding: 20px;
   }
   &__publishbtn {
     display: flex;
@@ -984,11 +986,13 @@ padding: 4px;
     width: 74%;
   }
   &__text {
+    font-family: variables.$tp-poppins;
     border-style: solid;
     border-color: variables.$sl-morado-secundario;
     border-radius: 20px;
     width: 90%;
-    height: 50%;
+    height: 30%;
+    padding: 20px;
   }
   &__publishbtn {
     display: flex;

@@ -107,6 +107,7 @@ export const inicio = (onNavigate) => {
   inicioBtn.classList.add(`${'fa-solid'}`);
   inicioBtn.classList.add(`${'fa-house'}`);
   inicioBtn.classList.add(`${'fa-xl'}`);
+  inicioBtn.setAttribute('style', 'color: #9747FF;');
   const negociosBtn = document.createElement('i');
   negociosBtn.classList.add('mainContainer__menu__button');
   negociosBtn.classList.add(`${'fa-solid'}`);
@@ -155,7 +156,7 @@ export const inicio = (onNavigate) => {
     content.classList.add('content');
     content.innerHTML = `
     <label for= "postcontent" class= "content__title">Cuéntanos</label>
-    <input type= "text" placeholder= "Escribe aqui..." class= "content__text"></input>
+    <textarea  placeholder= "Escribe aqui..." class= "content__text"></textarea >
     <div class= "btnContainer">
     <button class= "unstyle is-publish content__publishbtn">Publicar</button>
     <button class= 'unstyle is-ghost content__closeBtn'>Cerrar</button>

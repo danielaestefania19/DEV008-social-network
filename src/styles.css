@@ -389,7 +389,7 @@ hr {
 
 #idModal {
   display: flex;
-  height: 46%;
+  height: 37%;
   width: 77%;
   margin: 10px;
   position: absolute;
@@ -422,11 +422,13 @@ hr {
   padding-left: 60%;
 }
 .content__text {
+  font-family: "Poppins", monospace;
   border-style: solid;
   border-color: #7851D9;
   border-radius: 20px;
   width: 90%;
-  height: 50%;
+  height: 30%;
+  padding: 20px;
 }
 .content__publishbtn {
   display: flex;
@@ -952,11 +954,13 @@ hr {
     width: 74%;
   }
   .content__text {
+    font-family: "Poppins", monospace;
     border-style: solid;
     border-color: #7851D9;
     border-radius: 20px;
     width: 90%;
-    height: 50%;
+    height: 30%;
+    padding: 20px;
   }
   .content__publishbtn {
     display: flex;
