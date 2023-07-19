@@ -136,9 +136,9 @@ Definición de terminado:
 ### Baja Fidelidad: ![Prototipo de Baja Fidelidad](/src/img/Bajafidelidad.png)  
 ### Alta Fidelidad:
 **Login:**
-![Prototipo de Baja Fidelidad](/src/img/Login.png)  
+![Prototipo de Baja Fidelidad](/src/img/Login.png) 
 **Registro:**
-![Prototipo de Baja Fidelidad](/src/img/Register.png)  
+![Prototipo de Baja Fidelidad](/src/img/Register.png) 
 **Inicio:**
 ![Prototipo de Baja Fidelidad](/src/img/Inicio.png)  
 
